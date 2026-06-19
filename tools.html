@@ -1,0 +1,536 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI Tools — Tanay Das · AMD DSV</title>
+<meta name="description" content="AI-powered internal tooling built at AMD DSV — RTL Verification Platform and CR Batch Verification Portal."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg:#07090f; --bg2:#0d1117; --bg3:#141b27; --bg4:#1a2438; --surface:#1e2a3e;
+  --line:rgba(255,255,255,0.07); --line2:rgba(255,255,255,0.12);
+  --ink:#e8edf5; --ink2:#b0bace; --muted:#64748b;
+  --gold:#c9a84c; --gold2:#e8c86a; --golddim:rgba(201,168,76,0.12);
+  --teal:#2dd4bf; --blue:#60a5fa; --green:#4ade80; --red:#f87171;
+  --serif:'Playfair Display',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(0.16,1,0.3,1); --r:8px; --max:1120px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:2px}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(7,9,15,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--line);transition:box-shadow .3s}
+.nav.scrolled{box-shadow:0 1px 30px rgba(0,0,0,.4)}
+.nav__logo{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--ink)}
+.nav__logo em{font-style:italic;color:var(--gold)}
+.nav__links{display:flex;gap:4px}
+.nav__links a{font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:.4rem .75rem;border-radius:5px;transition:color .2s,background .2s}
+.nav__links a:hover,.nav__links a.active{color:var(--ink);background:rgba(255,255,255,.06)}
+.nav__actions{display:flex;align-items:center;gap:10px}
+.nav__cv{font-family:var(--mono);font-size:.63rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.4);padding:.38rem 1rem;border-radius:5px;transition:background .2s;display:flex;align-items:center;gap:6px}
+.nav__cv:hover{background:var(--golddim)}
+.nav__cv svg{width:13px;height:13px;stroke:currentColor;stroke-width:2;fill:none}
+.nav__burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.nav__burger span{display:block;width:20px;height:1.5px;background:var(--ink);border-radius:2px;transition:all .25s}
+.nav__mobile{display:none;flex-direction:column;background:var(--bg2);border-top:1px solid var(--line);padding:.75rem 1.5rem;gap:.25rem}
+.nav__mobile.open{display:flex}
+.nav__mobile a{font-size:.82rem;color:var(--muted);padding:.45rem 0;border-bottom:1px solid var(--line)}
+.nav__mobile a:last-child{border:none}
+
+/* HERO */
+.hero{padding:110px 48px 70px;background:var(--bg2);position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 50% -20%,rgba(201,168,76,.06) 0%,transparent 60%);pointer-events:none}
+.hero__inner{position:relative;z-index:1;max-width:var(--max);margin:0 auto;text-align:center}
+.hero__back{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1.75rem;transition:color .2s}
+.hero__back:hover{color:var(--gold)}
+.hero__back svg{width:12px;height:12px;stroke:currentColor;stroke-width:2;fill:none}
+.hero__label{display:inline-block;font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);background:var(--golddim);border:1px solid rgba(201,168,76,.3);padding:.3rem 1rem;border-radius:100px;margin-bottom:1.5rem}
+.hero__title{font-family:var(--serif);font-size:clamp(2rem,5vw,3.2rem);color:var(--ink);line-height:1.15;margin-bottom:1.25rem}
+.hero__title em{font-style:italic;color:var(--gold)}
+.hero__sub{font-size:.95rem;color:var(--ink2);max-width:580px;margin:0 auto 2.5rem;line-height:1.8}
+.hero__pills{display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap;margin-bottom:1.75rem}
+.hero__pills a{font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1.4rem;border-radius:100px;transition:all .2s}
+.hero__pills a.primary{background:var(--gold);color:var(--bg)}
+.hero__pills a.primary:hover{background:var(--gold2);transform:translateY(-2px)}
+.hero__pills a.secondary{background:rgba(255,255,255,.06);color:var(--ink2);border:1px solid var(--line2)}
+.hero__pills a.secondary:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+.hero__meta{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;color:var(--muted)}
+.hero__meta span{color:var(--ink2)}
+
+/* METRICS ROW */
+.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:var(--max);margin:0 auto;padding:2rem 48px;border-bottom:1px solid var(--line)}
+.mcard{background:var(--bg3);border:1px solid var(--line);border-radius:var(--r);padding:1.25rem 1.1rem;text-align:center;border-left:3px solid var(--gold);transition:border-color .2s,transform .2s}
+.mcard:hover{border-color:rgba(201,168,76,.5);transform:translateY(-2px)}
+.mcard__n{font-family:var(--serif);font-size:1.8rem;font-weight:700;color:var(--ink);line-height:1;margin-bottom:.25rem}
+.mcard__l{font-family:var(--mono);font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+
+/* SECTION */
+.sec{padding:72px 48px;border-top:1px solid var(--line)}
+.sec--alt{background:var(--bg2)}
+.wrap{max-width:var(--max);margin:0 auto}
+.sh__eyebrow{font-family:var(--mono);font-size:.6rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem;display:flex;align-items:center;gap:.6rem}
+.sh__eyebrow::after{content:'';flex:1;max-width:36px;height:1px;background:rgba(201,168,76,.4)}
+.sh__title{font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.2rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;color:var(--ink);margin-bottom:.6rem}
+.sh__title em{font-style:italic;color:var(--gold);font-weight:400}
+.sh__bar{width:48px;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:1px;margin:0 0 2.5rem}
+.sh__sub{font-size:.9rem;color:var(--ink2);line-height:1.75;max-width:560px;margin-bottom:2.5rem}
+
+/* TOOL LAYOUT */
+.tool-block{margin-bottom:3.5rem}
+.tool-block:last-child{margin-bottom:0}
+.tool-split{display:grid;gap:3rem;align-items:start}
+.tool-split.left{grid-template-columns:1fr 1.3fr}
+.tool-split.right{grid-template-columns:1.3fr 1fr}
+.tool-badge{display:inline-block;font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);background:var(--golddim);border:1px solid rgba(201,168,76,.25);padding:.2rem .75rem;border-radius:100px;margin-bottom:.85rem}
+.tool-num{font-family:var(--serif);font-size:3rem;font-weight:700;color:rgba(201,168,76,.15);line-height:1;margin-bottom:.25rem}
+.tool-name{font-family:var(--serif);font-size:clamp(1.5rem,2.5vw,1.9rem);font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:.75rem}
+.tool-desc{font-size:.9rem;color:var(--ink2);line-height:1.8;margin-bottom:1.5rem}
+.tool-stack{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.25rem}
+.ts{font-family:var(--mono);font-size:.6rem;letter-spacing:.04em;padding:.2rem .65rem;border-radius:100px;background:rgba(255,255,255,.04);border:1px solid var(--line2);color:var(--muted)}
+.tool-link{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:.63rem;letter-spacing:.08em;color:var(--ink);border-bottom:1.5px solid var(--gold);padding-bottom:1px;transition:color .2s}
+.tool-link:hover{color:var(--gold)}
+
+/* Steps */
+.steps{display:flex;flex-direction:column;gap:.9rem;margin-bottom:1.5rem}
+.step{display:flex;gap:1rem;align-items:flex-start}
+.step-num{width:26px;height:26px;background:var(--golddim);border:1px solid rgba(201,168,76,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.62rem;font-weight:500;color:var(--gold);flex-shrink:0;margin-top:1px}
+.step-body{font-size:.87rem;color:var(--ink2);line-height:1.7}
+.step-body strong{color:var(--ink);font-weight:500}
+
+/* Features */
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.5rem}
+.feat{background:var(--bg4);border:1px solid var(--line);border-radius:var(--r);padding:1rem 1.1rem;transition:border-color .2s}
+.feat:hover{border-color:rgba(201,168,76,.3)}
+.feat-icon{width:28px;height:28px;background:var(--golddim);border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:.6rem}
+.feat-icon svg{width:14px;height:14px;stroke:var(--gold);stroke-width:1.5;fill:none}
+.feat-title{font-size:.83rem;font-weight:500;color:var(--ink);margin-bottom:.3rem;line-height:1.3}
+.feat-body{font-size:.78rem;color:var(--muted);line-height:1.6}
+
+/* Browser frame */
+.bframe{border-radius:10px;overflow:hidden;box-shadow:0 16px 50px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.1);transition:transform .3s var(--ease),box-shadow .3s}
+.bframe:hover{transform:translateY(-4px) rotate(.2deg);box-shadow:0 24px 60px rgba(0,0,0,.7)}
+.bframe__bar{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.05);padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.07)}
+.bdot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.bdot.r{background:#ef4444}.bdot.y{background:#f59e0b}.bdot.g{background:#22c55e}
+.burl{flex:1;text-align:center;font-family:var(--mono);font-size:9.5px;color:rgba(255,255,255,.3);background:rgba(255,255,255,.05);border-radius:3px;padding:2px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bframe img{width:100%;display:block}
+.media-placeholder{min-height:260px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.45rem;padding:2rem;background:linear-gradient(135deg,rgba(201,168,76,.13),rgba(45,212,191,.08)),radial-gradient(circle at 30% 20%,rgba(96,165,250,.16),transparent 32%),var(--bg3);color:var(--ink);text-align:center}
+.media-placeholder strong{font-family:var(--serif);font-size:1.1rem;font-weight:600}
+.media-placeholder span{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+
+/* Modes */
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.5rem}
+.mode{background:var(--bg4);border:1px solid var(--line);border-radius:var(--r);padding:1rem 1.1rem;transition:border-color .2s}
+.mode:hover{border-color:rgba(96,165,250,.3)}
+.mode-n{font-family:var(--mono);font-size:.6rem;font-weight:600;color:var(--blue);margin-bottom:.35rem;letter-spacing:.04em}
+.mode-title{font-size:.85rem;font-weight:500;color:var(--ink);margin-bottom:.3rem}
+.mode-desc{font-size:.78rem;color:var(--muted);line-height:1.6}
+
+/* Performance */
+.perf{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}
+.perf-card{background:var(--bg3);border:1px solid var(--line);border-radius:var(--r);padding:1.5rem;text-align:center}
+.perf-label{font-family:var(--mono);font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.5rem}
+.perf-n{font-family:var(--serif);font-size:2.2rem;font-weight:700;line-height:1;margin-bottom:.35rem}
+.perf-sub{font-size:.8rem;color:var(--muted);line-height:1.5}
+.perf-card.bad .perf-n{color:var(--red)}
+.perf-card.good .perf-n{color:var(--green)}
+
+/* Architecture */
+.arch{background:var(--bg3);border:1px solid var(--line);border-radius:var(--r);padding:1.5rem 2rem;font-family:var(--mono);font-size:.78rem;color:var(--muted);line-height:2;overflow-x:auto}
+.arch span{color:var(--ink2)}
+.arch .arr{color:var(--gold);margin:0 .3rem}
+.arch .node{color:var(--teal)}
+.arch .highlight{color:var(--gold)}
+
+/* Reveal */
+[data-r]{opacity:0;transform:translateY(22px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+[data-r].on{opacity:1;transform:none}
+[data-r][data-d="1"]{transition-delay:.1s}
+[data-r][data-d="2"]{transition-delay:.2s}
+
+/* Badge */
+.badge{display:inline-block;font-family:var(--mono);font-size:.56rem;font-weight:500;letter-spacing:.08em;padding:.15rem .6rem;border-radius:3px}
+.badge-gold{background:rgba(201,168,76,.12);color:var(--gold);border:1px solid rgba(201,168,76,.25)}
+.badge-teal{background:rgba(45,212,191,.1);color:var(--teal);border:1px solid rgba(45,212,191,.2)}
+.badge-blue{background:rgba(96,165,250,.1);color:var(--blue);border:1px solid rgba(96,165,250,.2)}
+.badge-green{background:rgba(74,222,128,.1);color:var(--green);border:1px solid rgba(74,222,128,.2)}
+
+/* Footer */
+.footer{border-top:1px solid var(--line);padding:1.75rem 48px;max-width:var(--max);margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-brand{font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--ink)}
+.footer-brand em{font-style:italic;color:var(--gold)}
+.footer-sub{font-family:var(--mono);font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-top:.2rem}
+.footer-links{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;gap:1.25rem}
+.footer-links a:hover{color:var(--gold)}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .tool-split.left,.tool-split.right{grid-template-columns:1fr;gap:2rem}
+  .feat-grid,.modes{grid-template-columns:1fr}
+  .perf{grid-template-columns:1fr}
+  .metrics-row{grid-template-columns:1fr 1fr;padding:1.5rem 20px}
+}
+@media(max-width:768px){
+  .nav{padding:0 20px}
+  .nav__links,.nav__actions{display:none}
+  .nav__burger{display:flex}
+  .hero{padding:90px 20px 50px}
+  .sec{padding:56px 20px}
+  .footer{flex-direction:column;align-items:flex-start;padding:1.5rem 20px}
+  .metrics-row{grid-template-columns:1fr 1fr;padding:1rem 20px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav__logo">Tanay <em>Das</em></a>
+  <div class="nav__links">
+    <a href="index.html#about">About</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="tools.html" class="active">Tools</a>
+    <a href="publications.html">Publications</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+  <div class="nav__actions">
+    <a href="mailto:taanayd@gmail.com?subject=CV%20request" target="_blank" class="nav__cv">
+      <svg viewBox="0 0 24 24"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 20h16"/></svg>
+      CV / Resume
+    </a>
+  </div>
+  <button class="nav__burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="index.html">← Portfolio</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="publications.html">Publications</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="mailto:taanayd@gmail.com?subject=CV%20request" target="_blank" style="color:var(--gold)">⬇ CV</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__inner">
+    <a href="index.html" class="hero__back">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to Portfolio
+    </a>
+    <div class="hero__label">Vibe-Coded · AMD DSV Simulation Team · 2025–Present</div>
+    <h1 class="hero__title"><em>AI-assisted</em> tooling<br>built from scratch</h1>
+    <p class="hero__sub">Full-stack internal platforms engineered with Claude API, ChromaDB RAG, and Python — deployed and used daily to dramatically accelerate the AMD DSV verification workflow.</p>
+    <div class="hero__pills">
+      <a href="#platform" class="primary">RTL Verification Platform ↓</a>
+      <a href="#portal" class="secondary">CR Verification Portal ↓</a>
+    </div>
+    <p class="hero__meta">AMD DSV Simulation Team · <span>Hyderabad, India</span> · <span>Jul 2025 – Present</span></p>
+  </div>
+</section>
+
+<!-- METRICS -->
+<div class="metrics-row" data-r>
+  <div class="mcard"><div class="mcard__n">18×</div><div class="mcard__l">Faster verification</div></div>
+  <div class="mcard"><div class="mcard__n">4</div><div class="mcard__l">Simulators in parallel</div></div>
+  <div class="mcard"><div class="mcard__n">3</div><div class="mcard__l">IEEE LRMs covered</div></div>
+  <div class="mcard"><div class="mcard__n">2</div><div class="mcard__l">Platforms deployed</div></div>
+</div>
+
+<!-- TOOL 01 -->
+<section class="sec" id="platform">
+  <div class="wrap">
+    <div class="tool-block" data-r>
+      <div class="tool-split left">
+        <div>
+          <div class="tool-badge">Tool 01 · AMD DSV · v2.1 · April 2026</div>
+          <div class="tool-num">01</div>
+          <h2 class="tool-name">AI-Powered RTL<br>Verification Platform</h2>
+          <p class="tool-desc">Eliminates manual testcase authoring — generates complete VHDL/SystemVerilog suites grounded in IEEE LRMs via Claude Sonnet 4.6 + ChromaDB RAG, runs them in parallel across 4 industry simulators, and delivers instant cross-simulator divergence detection.</p>
+          <div class="tool-stack">
+            <span class="ts">Claude API (Sonnet 4.6)</span><span class="ts">ChromaDB</span><span class="ts">LlamaIndex</span>
+            <span class="ts">MCP SSE</span><span class="ts">FastAPI</span><span class="ts">WebSocket</span>
+            <span class="ts">Python 3.11</span><span class="ts">Jira REST API</span>
+          </div>
+          <a href="#platform-detail" class="tool-link">How it works ↓</a>
+        </div>
+        <div>
+          <div class="bframe">
+            <div class="bframe__bar">
+              <span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span>
+              <span class="burl">internal verification platform — RTL Verify · AI-Powered Testcase Generation &amp; Simulation</span>
+            </div>
+            <div class="media-placeholder" role="img" aria-label="RTL Verification Platform preview">
+              <strong>RTL Verification Platform</strong>
+              <span>All 4 simulators active</span>
+            </div>
+          </div>
+          <p style="font-family:var(--mono);font-size:.6rem;color:var(--muted);margin-top:.75rem;text-align:center">Live platform — all 4 simulators active (XSim · VCS · Questa · Riviera in green)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOL 01 DETAIL -->
+<section class="sec sec--alt" id="platform-detail">
+  <div class="wrap">
+    <div class="sh__eyebrow">How it works</div>
+    <h2 class="sh__title">Three core <em>capabilities</em></h2>
+    <div class="sh__bar"></div>
+
+    <div class="tool-split left" data-r>
+      <div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div class="step-body"><strong>Claude Sonnet 4.6 + ChromaDB RAG</strong> — every TC derives from actual IEEE standard text, not heuristics. LRM sections pinned verbatim into every generation prompt. Covers IEEE 1076-2008, 1076-2019, and 1800-2017.</div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div class="step-body"><strong>4 simulators run in parallel</strong> — XSim 2026.1, VCS X-2025.06-SP2, Questa 2025.2, Riviera-PRO 2024.10. Identical TC suite, instant cross-simulator divergence diff via WebSocket live streaming.</div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div class="step-body"><strong>5-round auto-fix loop</strong> — when a TC fails syntax check, Claude receives the compiler error and rewrites it automatically — up to 5 rounds. Bugs that take 20 min to debug resolve in seconds.</div>
+          </div>
+        </div>
+        <div class="feat-grid">
+          <div class="feat">
+            <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M9 12h6M9 16h6M17 21H7a2 2 0 01-2-2V5a2 2 0 012-2h7l5 5v11a2 2 0 01-2 2z"/></svg></div>
+            <div class="feat-title">7 TC categories</div>
+            <div class="feat-body">Sanity · Positive · Negative · Corner · Stress · Protocol · Custom</div>
+          </div>
+          <div class="feat">
+            <div class="feat-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <div class="feat-title">5 complexity levels</div>
+            <div class="feat-body">Basic → Advanced → Crash · slider-controlled</div>
+          </div>
+          <div class="feat">
+            <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+            <div class="feat-title">Jira integration</div>
+            <div class="feat-body">CR deep-fetch, context injection, one-click filing</div>
+          </div>
+          <div class="feat">
+            <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div class="feat-title">PDF / CSV export</div>
+            <div class="feat-body">Full test report with verdict diff across all simulators</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="bframe" style="margin-bottom:1.25rem">
+          <div class="bframe__bar">
+            <span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span>
+            <span class="burl">internal verification platform — Generate TCs · AI Agent</span>
+          </div>
+          <div class="media-placeholder" role="img" aria-label="Generate testcases preview">
+            <strong>Generate TCs</strong>
+            <span>Scope input · complexity · categories</span>
+          </div>
+        </div>
+        <div class="bframe">
+          <div class="bframe__bar">
+            <span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span>
+            <span class="burl">internal verification platform — Export &amp; Coverage</span>
+          </div>
+          <div class="media-placeholder" role="img" aria-label="Export and coverage preview">
+            <strong>Export &amp; Coverage</strong>
+            <span>CSV/PDF reports · snapshots</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:2rem" data-r>
+      <div class="sh__eyebrow" style="margin-top:0">Architecture</div>
+      <div class="arch">
+        <span class="node">IEEE LRM PDFs</span>
+        <span class="arr">→</span>
+        <span class="node">ChromaDB + LlamaIndex</span>
+        <span class="arr">→</span>
+        <span class="node">MCP SSE</span>
+        <span class="arr">→</span>
+        <span class="highlight">Claude Sonnet 4.6</span>
+        <span class="arr">→</span>
+        <span class="node">TC Suite</span>
+        <br>
+        <span class="node">TC Suite</span>
+        <span class="arr">→</span>
+        <span class="node">XSim · VCS · Questa · Riviera</span>
+        <span class="arr">→</span>
+        <span class="highlight">Verdict Diff</span>
+        <span class="arr">→</span>
+        <span class="node">Jira CR · PDF/CSV</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOL 02 -->
+<section class="sec" id="portal">
+  <div class="wrap">
+    <div class="tool-block" data-r>
+      <div class="tool-split right">
+        <div>
+          <div class="bframe">
+            <div class="bframe__bar">
+              <span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span>
+              <span class="burl">internal verification portal — CR Verification Portal · AMD</span>
+            </div>
+            <div class="media-placeholder" role="img" aria-label="CR Verification Portal preview">
+              <strong>CR Verification Portal</strong>
+              <span>JQL · AI status · live terminal</span>
+            </div>
+          </div>
+          <p style="font-family:var(--mono);font-size:.6rem;color:var(--muted);margin-top:.75rem;text-align:center">Live portal — CR input with JQL, AI indicator pill, LSF toggle, real-time terminal</p>
+        </div>
+        <div>
+          <div class="tool-badge">Tool 02 · AMD DSV · GUI for jira_verifier.py</div>
+          <div class="tool-num">02</div>
+          <h2 class="tool-name">CR Batch<br>Verification Portal</h2>
+          <p class="tool-desc">Web GUI that fetches Verifier Assigned CRs from Jira, uses AI to read Steps-to-Reproduce, auto-generates <code style="font-family:var(--mono);font-size:.82em;background:var(--bg4);border:1px solid var(--line);padding:1px 5px;border-radius:3px">produced_run.sh</code>, and submits to the LSF cluster — 18× faster than running locally.</p>
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">01</div>
+              <div class="step-body"><strong>AI reads Steps-to-Reproduce</strong> — Genie AI (or Claude fallback) interprets the Jira CR description and auto-generates the simulation script.</div>
+            </div>
+            <div class="step">
+              <div class="step-num">02</div>
+              <div class="step-body"><strong>LSF cluster submission</strong> — all CRs run in parallel on the farm. 32 GB RAM per CR. Job survives even if the browser closes.</div>
+            </div>
+            <div class="step">
+              <div class="step-num">03</div>
+              <div class="step-body"><strong>Live-streamed results</strong> — WebSocket streams every simulation log line to the browser terminal in real time. HTML + CSV report generated on completion.</div>
+            </div>
+          </div>
+          <div class="tool-stack">
+            <span class="ts">Jira REST API v2</span><span class="ts">Claude API</span><span class="ts">Genie AI (fallback)</span>
+            <span class="ts">FastAPI</span><span class="ts">Python 3.11</span>
+            <span class="ts">LSF bsub/bjobs</span><span class="ts">WebSocket</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOL 02 DETAIL -->
+<section class="sec sec--alt">
+  <div class="wrap">
+    <div class="sh__eyebrow">4 action modes</div>
+    <h2 class="sh__title">One portal, four <em>workflows</em></h2>
+    <div class="sh__bar"></div>
+
+    <div class="tool-split left" data-r>
+      <div>
+        <div class="modes">
+          <div class="mode">
+            <div class="mode-n">Mode 01</div>
+            <div class="mode-title">List CRs</div>
+            <div class="mode-desc">Queries Jira only — shows all Verifier Assigned CRs with title and status. No files touched. Safe for triage.</div>
+          </div>
+          <div class="mode">
+            <div class="mode-n">Mode 02</div>
+            <div class="mode-title">Setup (No-Run)</div>
+            <div class="mode-desc">Creates directories, copies bugcase files, generates <code style="font-family:var(--mono);font-size:.78em">produced_run.sh</code> via AI — but does not execute. Inspect before running.</div>
+          </div>
+          <div class="mode">
+            <div class="mode-n">Mode 03</div>
+            <div class="mode-title">Execute</div>
+            <div class="mode-desc">Full run: setup + execute. Submits to LSF or runs locally. Generates HTML + CSV report. Shortcut: <code style="font-family:var(--mono);font-size:.78em">Ctrl+Enter</code>.</div>
+          </div>
+          <div class="mode">
+            <div class="mode-n">Mode 04</div>
+            <div class="mode-title">Execute Live</div>
+            <div class="mode-desc">Same as Execute but streams every log line live via WebSocket. Ideal for debugging individual CR failures in real time.</div>
+          </div>
+        </div>
+
+        <div class="perf">
+          <div class="perf-card bad">
+            <div class="perf-label">Without Portal · Local</div>
+            <div class="perf-n">~3 hr</div>
+            <div class="perf-sub">Sequential · shared server CPU · manual script writing · one CR at a time</div>
+          </div>
+          <div class="perf-card good">
+            <div class="perf-label">With Portal · LSF Cluster</div>
+            <div class="perf-n">~10 min</div>
+            <div class="perf-sub">Parallel · 32 GB per CR · AI-generated scripts · 18 CRs simultaneously</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="bframe">
+          <div class="bframe__bar">
+            <span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span>
+            <span class="burl">internal verification portal/guide — Portal Guide</span>
+          </div>
+          <div class="media-placeholder" role="img" aria-label="CR Verification Portal guide preview">
+            <strong>Portal Guide</strong>
+            <span>4 modes · workflow · setup</span>
+          </div>
+        </div>
+        <p style="font-family:var(--mono);font-size:.6rem;color:var(--muted);margin-top:.75rem;text-align:center">Complete guide — setup, CR actions, Local vs LSF, troubleshooting, FAQ</p>
+
+        <div style="margin-top:1.5rem">
+          <div class="sh__eyebrow" style="margin:0 0 .5rem">End-to-end workflow</div>
+          <div class="arch" style="font-size:.72rem">
+            <span class="node">Jira API</span><span class="arr">→</span>
+            <span class="node">Fetch CRs + Bugcases</span><span class="arr">→</span>
+            <span class="highlight">AI reads STR</span>
+            <br>
+            <span class="arr" style="margin-left:0">→</span>
+            <span class="node">produced_run.sh</span><span class="arr">→</span>
+            <span class="node">LSF Cluster / Local</span><span class="arr">→</span>
+            <span class="node">XSim Runs</span>
+            <br>
+            <span class="arr" style="margin-left:0">→</span>
+            <span class="highlight">HTML + CSV Report</span><span class="arr">→</span>
+            <span class="node">Live Terminal Stream</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer">
+    <div>
+      <div class="footer-brand">Tanay <em>Das</em></div>
+      <div class="footer-sub">Silicon Design Engineer · AMD, Hyderabad · M.Tech IIT Gandhinagar 2025</div>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">← Portfolio</a>
+      <a href="publications.html">Publications</a>
+      <a href="mailto:taanayd@gmail.com?subject=CV%20request" target="_blank">CV</a>
+      <a href="index.html#contact">Contact</a>
+      <span>© 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20),{passive:true});
+document.getElementById('burger').addEventListener('click',()=>document.getElementById('mobileMenu').classList.toggle('open'));
+document.querySelectorAll('.nav__mobile a').forEach(a=>a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open')));
+const io = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});},{threshold:0.06,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('[data-r]').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

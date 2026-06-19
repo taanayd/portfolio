@@ -1,0 +1,1866 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tanay Das — Silicon Design Engineer · AMD</title>
+<meta name="description" content="Tanay Das — Silicon Design Engineer at AMD, M.Tech IIT Gandhinagar, 7 IEEE publications, AI-assisted EDA tooling."/>
+<meta property="og:title" content="Tanay Das — Silicon Design Engineer · AMD"/>
+<meta property="og:description" content="ESD Protection · Neuromorphic Computing · AI-Assisted EDA · 7 IEEE Publications"/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════ */
+:root {
+  --bg:      #07090f;
+  --bg2:     #0d1117;
+  --bg3:     #141b27;
+  --bg4:     #1a2438;
+  --surface: #1e2a3e;
+  --line:    rgba(255,255,255,0.07);
+  --line2:   rgba(255,255,255,0.12);
+  --ink:     #e8edf5;
+  --ink2:    #b0bace;
+  --muted:   #64748b;
+  --gold:    #c9a84c;
+  --gold2:   #e8c86a;
+  --golddim: rgba(201,168,76,0.12);
+  --teal:    #2dd4bf;
+  --blue:    #60a5fa;
+  --green:   #4ade80;
+  --red:     #f87171;
+  --navy:    #1a2742;
+
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans:  'Inter', system-ui, sans-serif;
+  --mono:  'JetBrains Mono', monospace;
+
+  --ease:  cubic-bezier(0.16, 1, 0.3, 1);
+  --r:     8px;
+  --max:   1120px;
+}
+
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; font-size:16px; -webkit-font-smoothing:antialiased; }
+body { background:var(--bg); color:var(--ink); font-family:var(--sans); line-height:1.65; overflow-x:hidden; }
+a { color:inherit; text-decoration:none; }
+ul { list-style:none; }
+img { display:block; max-width:100%; }
+
+/* scrollbar */
+::-webkit-scrollbar { width:3px; }
+::-webkit-scrollbar-track { background:var(--bg); }
+::-webkit-scrollbar-thumb { background:var(--bg4); border-radius:2px; }
+
+/* ═══════════════════════════════════
+   CANVAS HERO BACKGROUND
+═══════════════════════════════════ */
+#hero-canvas {
+  position:absolute; inset:0; z-index:0;
+  pointer-events:none;
+}
+
+/* ═══════════════════════════════════
+   NAV
+═══════════════════════════════════ */
+.nav {
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  height:60px;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 48px;
+  background:rgba(7,9,15,0.75);
+  backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s, box-shadow .3s;
+}
+.nav.scrolled { border-color:var(--line); box-shadow:0 1px 30px rgba(0,0,0,0.4); }
+.nav__logo {
+  font-family:var(--serif); font-size:1.1rem; font-weight:700;
+  color:var(--ink); letter-spacing:-.01em;
+  display:flex; align-items:baseline; gap:2px;
+}
+.nav__logo em { font-style:italic; color:var(--gold); }
+.nav__links { display:flex; gap:4px; align-items:center; }
+.nav__links a {
+  font-family:var(--mono); font-size:.65rem; font-weight:400;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted); padding:.4rem .75rem; border-radius:5px;
+  transition:color .2s, background .2s;
+}
+.nav__links a:hover, .nav__links a.active { color:var(--ink); background:rgba(255,255,255,0.06); }
+.nav__actions { display:flex; align-items:center; gap:10px; }
+.nav__cv {
+  font-family:var(--mono); font-size:.63rem; font-weight:500;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--gold); border:1px solid rgba(201,168,76,0.4);
+  padding:.38rem 1rem; border-radius:5px;
+  transition:background .2s, color .2s, border-color .2s;
+  display:flex; align-items:center; gap:6px; cursor:pointer;
+}
+.nav__cv:hover { background:var(--golddim); border-color:var(--gold); }
+.nav__cv svg { width:13px; height:13px; stroke:currentColor; stroke-width:2; fill:none; }
+
+/* mobile burger */
+.nav__burger {
+  display:none; flex-direction:column; gap:5px;
+  background:none; border:none; cursor:pointer; padding:4px;
+}
+.nav__burger span { display:block; width:20px; height:1.5px; background:var(--ink); border-radius:2px; transition:all .25s; }
+.nav__mobile {
+  display:none; flex-direction:column;
+  background:var(--bg2); border-top:1px solid var(--line);
+  padding:.75rem 1.5rem; gap:.25rem;
+}
+.nav__mobile.open { display:flex; }
+.nav__mobile a { font-size:.82rem; color:var(--muted); padding:.45rem 0; border-bottom:1px solid var(--line); }
+.nav__mobile a:last-child { border:none; }
+
+/* ═══════════════════════════════════
+   HERO
+═══════════════════════════════════ */
+.hero {
+  position:relative; min-height:100vh;
+  display:flex; align-items:center;
+  padding:100px 48px 60px;
+  overflow:hidden;
+}
+.hero::after {
+  content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.04) 0%, transparent 70%);
+}
+.hero__inner {
+  position:relative; z-index:2;
+  display:grid; grid-template-columns:1fr 420px;
+  gap:4rem; align-items:center;
+  max-width:var(--max); margin:0 auto; width:100%;
+}
+
+/* Left col */
+.hero__eyebrow {
+  display:inline-flex; align-items:center; gap:.6rem;
+  font-family:var(--mono); font-size:.62rem; font-weight:500;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--gold);
+  margin-bottom:1.25rem;
+  opacity:0; animation:slideUp .7s .1s var(--ease) forwards;
+}
+.hero__eyebrow::before {
+  content:''; display:block; width:24px; height:1px; background:var(--gold);
+}
+.hero__name {
+  font-family:var(--serif); font-size:clamp(2.8rem,6vw,4.5rem);
+  font-weight:700; line-height:1.05; letter-spacing:-.025em; color:var(--ink);
+  margin-bottom:1rem;
+  opacity:0; animation:slideUp .7s .2s var(--ease) forwards;
+}
+.hero__name em { font-style:italic; color:var(--gold); }
+.hero__role {
+  font-family:var(--mono); font-size:.7rem; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--muted); margin-bottom:1.5rem;
+  display:flex; align-items:center; gap:.5rem; flex-wrap:wrap;
+  opacity:0; animation:slideUp .7s .3s var(--ease) forwards;
+}
+.hero__role .sep { color:var(--line2); }
+.hero__role strong { color:var(--ink2); }
+.hero__tags {
+  display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:1.75rem;
+  opacity:0; animation:slideUp .7s .35s var(--ease) forwards;
+}
+.tag {
+  font-family:var(--mono); font-size:.62rem; font-weight:400; letter-spacing:.04em;
+  padding:.25rem .75rem; border-radius:100px;
+  border:1px solid var(--line2); color:var(--ink2);
+  background:rgba(255,255,255,0.03);
+  transition:border-color .2s, color .2s, background .2s;
+  cursor:default;
+}
+.tag:hover { border-color:var(--gold); color:var(--gold); background:var(--golddim); }
+.hero__quote {
+  font-family:var(--serif); font-style:italic; font-size:.97rem;
+  color:var(--ink2); border-left:2px solid var(--gold);
+  padding-left:1.1rem; line-height:1.65; margin-bottom:2rem;
+  opacity:0; animation:slideUp .7s .4s var(--ease) forwards;
+}
+.hero__actions {
+  display:flex; gap:.75rem; flex-wrap:wrap; margin-bottom:2.25rem;
+  opacity:0; animation:slideUp .7s .45s var(--ease) forwards;
+}
+.btn-primary {
+  font-family:var(--mono); font-size:.65rem; font-weight:500;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--bg); background:var(--gold);
+  padding:.65rem 1.5rem; border-radius:6px; border:none;
+  transition:background .2s, transform .15s; cursor:pointer;
+  display:inline-flex; align-items:center; gap:.5rem;
+}
+.btn-primary:hover { background:var(--gold2); transform:translateY(-2px); }
+.btn-outline {
+  font-family:var(--mono); font-size:.65rem; font-weight:500;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--ink); background:transparent;
+  border:1px solid var(--line2); padding:.65rem 1.5rem; border-radius:6px;
+  transition:border-color .2s, color .2s, transform .15s; cursor:pointer;
+  display:inline-flex; align-items:center; gap:.5rem;
+}
+.btn-outline:hover { border-color:var(--gold); color:var(--gold); transform:translateY(-2px); }
+.hero__socials {
+  display:flex; gap:1.25rem; flex-wrap:wrap;
+  font-family:var(--mono); font-size:.62rem; letter-spacing:.06em; color:var(--muted);
+  opacity:0; animation:slideUp .7s .5s var(--ease) forwards;
+}
+.hero__socials a { display:flex; align-items:center; gap:.3rem; transition:color .2s; }
+.hero__socials a:hover { color:var(--gold); }
+.hero__socials a svg { width:13px; height:13px; stroke:currentColor; stroke-width:1.8; fill:none; flex-shrink:0; }
+
+/* Right col */
+.hero__right {
+  display:flex; flex-direction:column; gap:1.5rem; align-items:center;
+  opacity:0; animation:fadeIn .9s .5s var(--ease) forwards;
+}
+/* Photo stack */
+.photo-stack { position:relative; width:100%; }
+.photo-main {
+  width:100%; border-radius:12px; border:1px solid var(--line2);
+  box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  display:flex; object-fit:cover;
+  transition:transform .3s var(--ease);
+}
+.photo-stack:hover .photo-main { transform:translateY(-4px); }
+.photo-badge {
+  position:absolute; bottom:-12px; left:16px;
+  background:var(--bg3); border:1px solid var(--line2);
+  border-radius:6px; padding:.5rem .9rem;
+  font-family:var(--mono); font-size:.58rem; letter-spacing:.1em;
+  color:var(--teal); box-shadow:0 4px 16px rgba(0,0,0,0.4);
+  display:flex; align-items:center; gap:.4rem;
+}
+.photo-badge::before { content:''; width:6px; height:6px; background:var(--teal); border-radius:50%; flex-shrink:0; box-shadow:0 0 6px rgba(45,212,191,.6); animation:pulse 2s ease-in-out infinite; }
+.photo-badge2 {
+  position:absolute; top:-12px; right:16px;
+  background:var(--golddim); border:1px solid rgba(201,168,76,0.3);
+  border-radius:6px; padding:.5rem .9rem;
+  font-family:var(--mono); font-size:.58rem; letter-spacing:.1em;
+  color:var(--gold); box-shadow:0 4px 16px rgba(0,0,0,0.4);
+}
+
+/* grad photo */
+.photo-grad {
+  width:100%; border-radius:10px; border:1px solid var(--line2);
+  box-shadow:0 12px 40px rgba(0,0,0,0.4);
+  display:flex; object-fit:cover; max-height:200px; object-position:top;
+  opacity:.9; transition:opacity .3s;
+}
+.photo-grad:hover { opacity:1; }
+.grad-caption {
+  font-family:var(--mono); font-size:.6rem; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--muted); text-align:center;
+  margin-top:.5rem;
+}
+
+/* Stats row */
+.stats-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:.75rem; width:100%;
+}
+.stat {
+  background:var(--bg3); border:1px solid var(--line);
+  border-radius:var(--r); padding:.9rem .75rem; text-align:center;
+  transition:border-color .2s, transform .2s;
+}
+.stat:hover { border-color:rgba(201,168,76,.3); transform:translateY(-2px); }
+.stat__n {
+  font-family:var(--serif); font-size:1.7rem; font-weight:700;
+  color:var(--ink); line-height:1; margin-bottom:.2rem; display:block;
+}
+.stat__l { font-family:var(--mono); font-size:.55rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); }
+
+/* ═══════════════════════════════════
+   SECTION BASE
+═══════════════════════════════════ */
+.sec { padding:80px 48px; border-top:1px solid var(--line); }
+.sec--dark { background:var(--bg2); }
+.sec--surface { background:var(--bg3); }
+.wrap { max-width:var(--max); margin:0 auto; }
+.sh { margin-bottom:3rem; }
+.sh--center { text-align:center; }
+.sh__eyebrow {
+  font-family:var(--mono); font-size:.6rem; font-weight:500;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--gold);
+  margin-bottom:.6rem; display:flex; align-items:center; gap:.6rem;
+}
+.sh__eyebrow::after { content:''; flex:1; max-width:36px; height:1px; background:rgba(201,168,76,.4); }
+.sh--center .sh__eyebrow { justify-content:center; }
+.sh--center .sh__eyebrow::after { display:none; }
+.sh__title {
+  font-family:var(--serif); font-size:clamp(1.8rem,3.5vw,2.5rem);
+  font-weight:700; line-height:1.1; letter-spacing:-.02em; color:var(--ink);
+  margin-bottom:.6rem;
+}
+.sh__title em { font-style:italic; color:var(--gold); font-weight:400; }
+.sh__bar { width:48px; height:2px; background:linear-gradient(90deg,var(--gold),var(--gold2)); border-radius:1px; margin-top:.6rem; }
+.sh--center .sh__bar { margin:0.6rem auto 0; }
+
+/* ═══════════════════════════════════
+   REVEAL
+═══════════════════════════════════ */
+[data-r] { opacity:0; transform:translateY(24px); transition:opacity .6s var(--ease), transform .6s var(--ease); }
+[data-r].on { opacity:1; transform:none; }
+[data-r][data-d="1"] { transition-delay:.1s; }
+[data-r][data-d="2"] { transition-delay:.2s; }
+[data-r][data-d="3"] { transition-delay:.3s; }
+[data-r][data-d="4"] { transition-delay:.4s; }
+
+/* ═══════════════════════════════════
+   ABOUT
+═══════════════════════════════════ */
+.about-grid { display:grid; grid-template-columns:1.1fr 1fr; gap:4rem; align-items:start; }
+.about-text p { font-size:.93rem; color:var(--ink2); margin-bottom:1.1rem; line-height:1.8; }
+.about-text p strong { color:var(--ink); font-weight:500; }
+.about-quote {
+  border-left:2px solid var(--gold); padding:.9rem 1.1rem;
+  background:var(--golddim); border-radius:0 6px 6px 0;
+  font-family:var(--serif); font-style:italic; font-size:.97rem;
+  color:var(--ink2); line-height:1.65; margin:1.5rem 0;
+}
+.chips { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:1.25rem; }
+.chip {
+  font-family:var(--mono); font-size:.6rem; letter-spacing:.06em;
+  padding:.25rem .8rem; border-radius:100px;
+  background:rgba(255,255,255,0.04); border:1px solid var(--line2); color:var(--ink2);
+  transition:all .2s; cursor:default;
+}
+.chip:hover { border-color:var(--gold); color:var(--gold); background:var(--golddim); }
+
+.meta-grid { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; }
+.mc {
+  background:var(--bg4); border:1px solid var(--line);
+  border-radius:var(--r); padding:1rem 1.1rem;
+  transition:border-color .2s;
+}
+.mc:hover { border-color:rgba(201,168,76,.3); }
+.mc__k { font-family:var(--mono); font-size:.55rem; text-transform:uppercase; letter-spacing:.14em; color:var(--muted); margin-bottom:.3rem; }
+.mc__v { font-size:.83rem; font-weight:500; color:var(--ink); line-height:1.4; }
+
+/* ═══════════════════════════════════
+   EDUCATION
+═══════════════════════════════════ */
+.edu-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:1.75rem; }
+.edu-card {
+  background:var(--bg3); border:1px solid var(--line);
+  border-radius:var(--r); padding:1.75rem; position:relative; overflow:hidden;
+  transition:border-color .25s, box-shadow .25s;
+}
+.edu-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg, var(--gold), var(--gold2));
+}
+.edu-card:hover { border-color:rgba(201,168,76,.3); box-shadow:0 8px 32px rgba(0,0,0,.3); }
+.edu-inst { font-family:var(--serif); font-size:1.15rem; font-weight:700; color:var(--ink); margin-bottom:.3rem; }
+.edu-deg { font-size:.83rem; color:var(--ink2); font-weight:400; margin-bottom:.3rem; }
+.edu-meta { font-family:var(--mono); font-size:.62rem; letter-spacing:.06em; color:var(--muted); margin-bottom:.9rem; }
+.edu-cpi { font-family:var(--serif); font-size:1.6rem; font-weight:700; color:var(--ink); margin-bottom:.6rem; }
+.edu-cpi span { font-size:.75rem; color:var(--muted); font-family:var(--sans); font-weight:400; }
+.edu-detail { font-size:.8rem; color:var(--muted); line-height:1.65; }
+.edu-detail strong { color:var(--ink2); font-weight:500; }
+.badge-sm {
+  display:inline-block; font-family:var(--mono); font-size:.56rem;
+  font-weight:500; letter-spacing:.08em; padding:.15rem .6rem; border-radius:3px;
+}
+.badge-gold { background:rgba(201,168,76,.12); color:var(--gold); border:1px solid rgba(201,168,76,.25); }
+.badge-teal { background:rgba(45,212,191,.1); color:var(--teal); border:1px solid rgba(45,212,191,.2); }
+.badge-red { background:rgba(248,113,113,.1); color:var(--red); border:1px solid rgba(248,113,113,.2); }
+.badge-blue { background:rgba(96,165,250,.1); color:var(--blue); border:1px solid rgba(96,165,250,.2); }
+
+/* thesis block */
+.thesis {
+  background:var(--bg4); border:1px solid var(--line); border-left:3px solid var(--gold);
+  border-radius:var(--r); padding:2rem 2rem 2rem 1.75rem;
+  position:relative; overflow:hidden;
+}
+.thesis__label { font-family:var(--mono); font-size:.6rem; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); margin-bottom:.75rem; }
+.thesis__title { font-family:var(--serif); font-size:1.25rem; font-weight:600; color:var(--ink); line-height:1.3; margin-bottom:1.25rem; }
+.thesis__metrics { display:flex; gap:2rem; flex-wrap:wrap; margin-bottom:1.25rem; }
+.tm .val { font-family:var(--serif); font-size:1.5rem; font-weight:700; color:var(--gold); line-height:1; }
+.tm .lbl { font-family:var(--mono); font-size:.58rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-top:.15rem; }
+.thesis__bullets { display:flex; flex-direction:column; gap:.5rem; }
+.thesis__bullets li { font-size:.85rem; color:var(--ink2); line-height:1.6; padding-left:1.1rem; position:relative; }
+.thesis__bullets li::before { content:'→'; position:absolute; left:0; color:var(--gold); font-size:.75rem; top:1px; }
+
+/* ═══════════════════════════════════
+   EXPERIENCE
+═══════════════════════════════════ */
+.timeline { position:relative; }
+.timeline::before {
+  content:''; position:absolute; left:7px; top:8px; bottom:8px;
+  width:1.5px; background:linear-gradient(to bottom, var(--gold), transparent);
+}
+.tl-item { display:flex; gap:2rem; margin-bottom:2.5rem; position:relative; }
+.tl-item:last-child { margin-bottom:0; }
+.tl-dot {
+  width:16px; height:16px; border-radius:50%; flex-shrink:0; margin-top:4px; z-index:1;
+  background:var(--bg); border:2px solid var(--muted);
+  transition:transform .2s, border-color .2s, background .2s;
+}
+.tl-item.active .tl-dot {
+  border-color:var(--gold); background:var(--gold);
+  box-shadow:0 0 0 4px rgba(201,168,76,.2);
+  animation:glow-dot 2s ease-in-out infinite;
+}
+.tl-item:hover .tl-dot { transform:scale(1.3); border-color:var(--gold); }
+.tl-body { flex:1; }
+.tl-head { display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; flex-wrap:wrap; margin-bottom:.3rem; }
+.tl-co { font-family:var(--serif); font-size:1.05rem; font-weight:700; color:var(--ink); }
+.tl-date { font-family:var(--mono); font-size:.62rem; letter-spacing:.06em; color:var(--muted); padding-top:3px; white-space:nowrap; }
+.tl-role { font-family:var(--mono); font-size:.65rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); margin-bottom:.75rem; }
+.tl-chips { display:flex; flex-wrap:wrap; gap:.35rem; margin-bottom:.85rem; }
+.chip-sm {
+  font-family:var(--mono); font-size:.58rem; letter-spacing:.04em;
+  padding:.18rem .6rem; border-radius:100px;
+}
+.chip-amd { background:rgba(248,113,113,.1); color:var(--red); border:1px solid rgba(248,113,113,.2); }
+.chip-navy { background:rgba(96,165,250,.1); color:var(--blue); border:1px solid rgba(96,165,250,.2); }
+.chip-teal { background:rgba(45,212,191,.1); color:var(--teal); border:1px solid rgba(45,212,191,.2); }
+.chip-gray { background:rgba(255,255,255,.05); color:var(--ink2); border:1px solid var(--line2); }
+.chip-green { background:rgba(74,222,128,.1); color:var(--green); border:1px solid rgba(74,222,128,.2); }
+.tl-bullets { padding:0; }
+.tl-bullets li { font-size:.85rem; color:var(--ink2); line-height:1.65; padding-left:1rem; position:relative; margin-bottom:.4rem; }
+.tl-bullets li::before { content:'·'; position:absolute; left:0; color:var(--gold); font-weight:700; }
+.tl-bullets li strong { color:var(--ink); font-weight:500; }
+.tl-link {
+  display:inline-flex; align-items:center; gap:.3rem; font-family:var(--mono);
+  font-size:.62rem; letter-spacing:.06em; color:var(--blue); margin-top:.75rem;
+  border-bottom:1px solid rgba(96,165,250,.3); padding-bottom:1px;
+  transition:color .2s, border-color .2s;
+}
+.tl-link:hover { color:var(--gold); border-color:var(--gold); }
+
+/* ═══════════════════════════════════
+   AI TOOLS
+═══════════════════════════════════ */
+.tools-header-note { font-size:.88rem; color:var(--muted); max-width:560px; margin-bottom:2.5rem; line-height:1.7; }
+.tool-card {
+  background:var(--bg3); border:1px solid var(--line);
+  border-radius:12px; overflow:hidden; margin-bottom:1.5rem;
+  transition:border-color .25s;
+}
+.tool-card:hover { border-color:rgba(201,168,76,.25); }
+.tool-inner { display:grid; align-items:start; gap:2.5rem; padding:2rem; }
+.tool-inner.normal { grid-template-columns:1fr 1.2fr; }
+.tool-inner.flip { grid-template-columns:1.2fr 1fr; }
+.tool-badge {
+  display:inline-block; font-family:var(--mono); font-size:.58rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--gold);
+  background:var(--golddim); border:1px solid rgba(201,168,76,.25);
+  padding:.2rem .75rem; border-radius:100px; margin-bottom:.85rem;
+}
+.tool-name { font-family:var(--serif); font-size:1.6rem; font-weight:700; color:var(--ink); line-height:1.15; margin-bottom:.75rem; }
+.tool-desc { font-size:.88rem; color:var(--ink2); line-height:1.75; margin-bottom:1.25rem; }
+.tool-feats { display:flex; flex-direction:column; gap:.5rem; margin-bottom:1.25rem; }
+.tf { display:flex; align-items:flex-start; gap:.55rem; font-size:.83rem; color:var(--ink2); line-height:1.5; }
+.tf::before { content:'✓'; color:var(--green); font-size:.75rem; flex-shrink:0; margin-top:2px; }
+.tool-stack { display:flex; flex-wrap:wrap; gap:.35rem; margin-bottom:1.1rem; }
+.ts {
+  font-family:var(--mono); font-size:.58rem; letter-spacing:.04em;
+  padding:.2rem .65rem; border-radius:100px;
+  background:rgba(255,255,255,.04); border:1px solid var(--line2); color:var(--muted);
+}
+.tool-cta {
+  display:inline-flex; align-items:center; gap:.4rem; font-family:var(--mono); font-size:.63rem;
+  letter-spacing:.08em; color:var(--ink); border-bottom:1.5px solid var(--gold);
+  padding-bottom:1px; transition:color .2s;
+}
+.tool-cta:hover { color:var(--gold); }
+
+/* browser frame */
+.bframe {
+  border-radius:10px; overflow:hidden;
+  box-shadow:0 16px 50px rgba(0,0,0,.5);
+  border:1px solid rgba(255,255,255,.1);
+  transition:transform .3s var(--ease), box-shadow .3s;
+}
+.bframe:hover { transform:translateY(-4px) rotate(.2deg); box-shadow:0 24px 60px rgba(0,0,0,.6); }
+.bframe__bar {
+  display:flex; align-items:center; gap:5px;
+  background:rgba(255,255,255,.06); padding:8px 12px;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+.bdot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+.bdot.r { background:#ef4444; } .bdot.y { background:#f59e0b; } .bdot.g { background:#22c55e; }
+.burl {
+  flex:1; text-align:center; font-family:var(--mono); font-size:9.5px;
+  color:rgba(255,255,255,.35); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  background:rgba(255,255,255,.06); border-radius:3px; padding:2px 10px;
+}
+.bframe img { width:100%; display:block; }
+.media-placeholder {
+  min-height:260px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:.45rem;
+  padding:2rem;
+  background:
+    linear-gradient(135deg, rgba(201,168,76,.13), rgba(45,212,191,.08)),
+    radial-gradient(circle at 30% 20%, rgba(96,165,250,.16), transparent 32%),
+    var(--bg3);
+  color:var(--ink);
+  text-align:center;
+}
+.media-placeholder strong {
+  font-family:var(--serif);
+  font-size:1.1rem;
+  font-weight:600;
+}
+.media-placeholder span {
+  font-family:var(--mono);
+  font-size:.62rem;
+  letter-spacing:.08em;
+  color:var(--muted);
+  text-transform:uppercase;
+}
+.photo-placeholder {
+  min-height:360px;
+  border-radius:12px;
+}
+.photo-grad.photo-placeholder {
+  min-height:180px;
+}
+
+/* ═══════════════════════════════════
+   TEACHING
+═══════════════════════════════════ */
+.teach-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+.teach-card {
+  background:var(--bg3); border:1px solid var(--line); border-radius:var(--r);
+  padding:1.25rem 1.5rem; display:flex; align-items:center; gap:1rem;
+  transition:border-color .2s, transform .2s;
+}
+.teach-card:hover { border-color:rgba(201,168,76,.3); transform:translateY(-2px); }
+.teach-icon {
+  width:40px; height:40px; background:var(--bg4); border-radius:8px;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.teach-icon svg { width:18px; height:18px; stroke:var(--gold); stroke-width:1.5; fill:none; }
+.teach-code { font-family:var(--mono); font-size:.62rem; letter-spacing:.08em; color:var(--gold); margin-bottom:.2rem; }
+.teach-name { font-size:.87rem; font-weight:500; color:var(--ink); margin-bottom:.2rem; }
+.teach-meta { font-family:var(--mono); font-size:.6rem; letter-spacing:.04em; color:var(--muted); }
+
+/* ═══════════════════════════════════
+   PUBLICATIONS (preview)
+═══════════════════════════════════ */
+.pub-head { display:flex; align-items:flex-end; justify-content:space-between; gap:1rem; flex-wrap:wrap; margin-bottom:1.5rem; }
+.pub-counts { display:flex; gap:1.5rem; }
+.pc { text-align:center; }
+.pc__n { font-family:var(--serif); font-size:1.5rem; font-weight:700; color:var(--ink); display:block; }
+.pc__l { font-family:var(--mono); font-size:.58rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); }
+.pub-filters { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:1.5rem; }
+.f-btn {
+  font-family:var(--mono); font-size:.6rem; letter-spacing:.1em; text-transform:uppercase;
+  padding:.45rem 1.1rem; border-radius:4px;
+  border:1px solid var(--line2); background:none; color:var(--muted);
+  cursor:pointer; transition:all .2s;
+}
+.f-btn.active, .f-btn:hover { border-color:var(--gold); color:var(--gold); background:var(--golddim); }
+.pub-list { border-top:1px solid var(--line); }
+.pub-item {
+  display:grid; grid-template-columns:40px 1fr auto;
+  gap:1.25rem; align-items:center; padding:1.25rem 0;
+  border-bottom:1px solid var(--line);
+  transition:background .15s; border-radius:var(--r);
+}
+.pub-item:last-child { border-bottom:none; }
+.pub-item:hover { background:rgba(255,255,255,.02); margin:0 -12px; padding:1.25rem 12px; }
+.pub-num { font-family:var(--serif); font-size:1.4rem; font-weight:700; color:var(--muted); text-align:right; line-height:1; }
+.pub-badges { margin-bottom:.4rem; display:flex; gap:.3rem; flex-wrap:wrap; }
+.pub-title { font-family:var(--serif); font-size:.9rem; font-weight:600; color:var(--ink); line-height:1.45; margin-bottom:.3rem; }
+.pub-authors { font-size:.79rem; color:var(--muted); }
+.pub-authors strong { color:var(--ink2); font-weight:500; }
+.pub-venue { font-style:italic; font-size:.79rem; color:var(--muted); margin-top:.15rem; }
+.pub-link {
+  font-family:var(--mono); font-size:.58rem; letter-spacing:.08em; color:var(--gold);
+  border:1px solid rgba(201,168,76,.3); padding:.35rem .75rem; border-radius:4px;
+  transition:all .2s; white-space:nowrap;
+}
+.pub-link:hover { background:var(--golddim); }
+.pub-more { text-align:center; margin-top:1.75rem; }
+
+/* ═══════════════════════════════════
+   PROJECTS
+═══════════════════════════════════ */
+.proj-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+.proj-card {
+  background:var(--bg3); border:1px solid var(--line); border-radius:var(--r);
+  padding:1.4rem; transition:border-color .25s, transform .25s;
+}
+.proj-card:hover { border-color:rgba(45,212,191,.3); transform:translateY(-3px); }
+.proj-num { font-family:var(--mono); font-size:.6rem; color:var(--gold); margin-bottom:.5rem; }
+.proj-title { font-family:var(--serif); font-size:.92rem; font-weight:600; color:var(--ink); line-height:1.3; margin-bottom:.35rem; }
+.proj-guide { font-size:.73rem; color:var(--muted); margin-bottom:.65rem; }
+.proj-desc { font-size:.8rem; color:var(--ink2); line-height:1.6; margin-bottom:.8rem; }
+.proj-desc strong { color:var(--teal); font-weight:500; }
+.proj-tags { display:flex; flex-wrap:wrap; gap:.3rem; }
+.ptag { font-family:var(--mono); font-size:.57rem; padding:.17rem .55rem; border-radius:100px; background:rgba(255,255,255,.04); border:1px solid var(--line2); color:var(--muted); }
+
+/* ═══════════════════════════════════
+   SKILLS
+═══════════════════════════════════ */
+.skills-rows { display:flex; flex-direction:column; gap:1.1rem; }
+.skill-row { display:grid; grid-template-columns:180px 1fr; gap:1.5rem; align-items:start; }
+.skill-cat { font-family:var(--mono); font-size:.62rem; font-weight:500; text-transform:uppercase; letter-spacing:.12em; color:var(--ink2); padding-top:.3rem; }
+.skill-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+.sk {
+  font-family:var(--mono); font-size:.72rem; color:var(--ink2);
+  background:var(--bg4); border:1px solid var(--line);
+  padding:.28rem .8rem; border-radius:100px;
+  transition:all .2s; cursor:default;
+}
+.sk:hover { background:var(--golddim); border-color:rgba(201,168,76,.4); color:var(--gold); }
+
+/* ═══════════════════════════════════
+   AWARDS
+═══════════════════════════════════ */
+.awards-list { display:flex; flex-direction:column; }
+.award {
+  display:flex; align-items:flex-start; justify-content:space-between; gap:1.5rem;
+  padding:1.1rem 0; border-bottom:1px solid var(--line);
+  transition:background .15s;
+}
+.award:last-child { border-bottom:none; }
+.award:hover { background:rgba(255,255,255,.02); margin:0 -12px; padding:1.1rem 12px; border-radius:var(--r); }
+.award__icon { width:32px; height:32px; background:var(--bg4); border-radius:6px; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+.award__icon svg { width:16px; height:16px; stroke:var(--gold); stroke-width:1.5; fill:none; }
+.award__body { flex:1; }
+.award__name { font-size:.88rem; font-weight:500; color:var(--ink); margin-bottom:.2rem; line-height:1.4; }
+.award__desc { font-size:.78rem; color:var(--muted); }
+.award__year { font-family:var(--serif); font-size:.95rem; font-weight:600; color:var(--muted); flex-shrink:0; padding-top:2px; }
+
+/* NEW award highlight */
+.award--new { border-left:2px solid var(--gold); padding-left:.75rem; }
+.award--new .award__name { color:var(--gold); }
+
+/* ═══════════════════════════════════
+   PHOTOGRAPHY
+═══════════════════════════════════ */
+.photo-section-inner { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; }
+.photo-copy__eyebrow { font-family:var(--mono); font-size:.6rem; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); margin-bottom:.6rem; display:block; }
+.photo-copy__title { font-family:var(--serif); font-size:clamp(1.7rem,3vw,2.2rem); color:var(--ink); line-height:1.2; margin-bottom:.9rem; }
+.photo-copy__body { font-size:.9rem; color:var(--ink2); line-height:1.8; margin-bottom:1.5rem; }
+.photo-tags { display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:1.75rem; }
+.ptag-light { font-size:.68rem; font-weight:400; padding:.22rem .75rem; border-radius:100px; background:rgba(255,255,255,.05); color:var(--muted); border:1px solid var(--line2); }
+.insta-card {
+  background:rgba(255,255,255,.04); border:1px solid var(--line2);
+  border-radius:12px; padding:1.25rem; margin-bottom:1.1rem;
+}
+.insta-head { display:flex; align-items:center; gap:.9rem; margin-bottom:.9rem; }
+.insta-avatar {
+  width:44px; height:44px; border-radius:50%; flex-shrink:0;
+  background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+  display:flex; align-items:center; justify-content:center;
+}
+.insta-avatar svg { width:20px; height:20px; stroke:#fff; stroke-width:1.5; fill:none; }
+.insta-handle { font-weight:600; color:var(--ink); font-size:.9rem; margin-bottom:.1rem; }
+.insta-sub { font-size:.72rem; color:var(--muted); }
+.insta-bio { font-size:.8rem; color:var(--ink2); line-height:1.6; margin-bottom:.9rem; }
+.insta-stats { display:flex; gap:1.75rem; }
+.is__n { font-family:var(--serif); font-size:1.05rem; font-weight:700; color:var(--ink); display:block; }
+.is__l { font-size:.65rem; color:var(--muted); }
+.insta-btn {
+  display:flex; align-items:center; justify-content:center; gap:.55rem; width:100%;
+  background:linear-gradient(135deg,#f09433,#dc2743,#bc1888);
+  color:#fff; font-family:var(--mono); font-size:.65rem; letter-spacing:.08em;
+  padding:.7rem 1.25rem; border-radius:8px; text-transform:uppercase;
+  transition:opacity .2s, transform .2s;
+}
+.insta-btn:hover { opacity:.88; transform:translateY(-2px); }
+.insta-btn svg { width:15px; height:15px; stroke:#fff; stroke-width:1.8; fill:none; }
+
+/* static photo grid */
+.photo-mosaic { display:grid; grid-template-columns:1fr 1fr 1fr; grid-template-rows:auto auto; gap:8px; }
+.pm-item { border-radius:8px; overflow:hidden; background:var(--bg4); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; aspect-ratio:1; cursor:pointer; transition:transform .25s, border-color .25s; }
+.pm-item:hover { transform:scale(1.02); border-color:rgba(201,168,76,.3); }
+.pm-item.wide { grid-column:span 2; aspect-ratio:2/1; }
+.pm-link {
+  display:flex; align-items:center; justify-content:center; flex-direction:column; gap:.4rem;
+  color:var(--muted); text-align:center; padding:1.5rem;
+}
+.pm-link svg { width:28px; height:28px; stroke:currentColor; stroke-width:1; fill:none; opacity:.4; }
+.pm-link span { font-family:var(--mono); font-size:.6rem; letter-spacing:.1em; text-transform:uppercase; opacity:.5; }
+
+/* ═══════════════════════════════════
+   CONTACT
+═══════════════════════════════════ */
+.contact-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; max-width:560px; margin:1.75rem auto 0; }
+.ccard {
+  background:rgba(255,255,255,.04); border:1px solid var(--line2);
+  border-radius:var(--r); padding:1.1rem 1.25rem; text-align:center;
+  transition:background .2s, transform .2s, border-color .2s;
+}
+.ccard:hover { background:rgba(255,255,255,.07); transform:translateY(-3px); border-color:rgba(201,168,76,.3); }
+.ccard__label { font-family:var(--mono); font-size:.58rem; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); margin-bottom:.35rem; }
+.ccard__val { font-size:.83rem; font-weight:400; color:var(--ink); }
+.ccard__val a:hover { color:var(--gold); }
+.contact-note { text-align:center; font-size:.87rem; color:var(--muted); margin-top:2.5rem; line-height:1.75; max-width:520px; margin-left:auto; margin-right:auto; }
+
+/* ═══════════════════════════════════
+   FOOTER
+═══════════════════════════════════ */
+.footer {
+  border-top:1px solid var(--line); padding:1.75rem 48px;
+  max-width:var(--max); margin:0 auto;
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;
+}
+.footer-brand { font-family:var(--serif); font-size:.95rem; font-weight:700; color:var(--ink); }
+.footer-brand em { font-style:italic; color:var(--gold); }
+.footer-sub { font-family:var(--mono); font-size:.58rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-top:.25rem; }
+.footer-links { font-family:var(--mono); font-size:.6rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); display:flex; gap:1.25rem; }
+.footer-links a:hover { color:var(--gold); }
+
+/* ═══════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════ */
+@keyframes slideUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
+@keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
+@keyframes pulse   { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.15)} }
+@keyframes glow-dot { 0%,100%{box-shadow:0 0 0 4px rgba(201,168,76,.2)} 50%{box-shadow:0 0 0 8px rgba(201,168,76,.05)} }
+
+/* ═══════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════ */
+@media (max-width:1024px) {
+  .hero__inner { grid-template-columns:1fr; }
+  .hero__right { flex-direction:row; align-items:flex-start; gap:1.5rem; order:-1; }
+  .photo-stack { width:160px; flex-shrink:0; }
+  .photo-grad,.grad-caption { display:none; }
+  .stats-grid { display:none; }
+  .about-grid { grid-template-columns:1fr; gap:2.5rem; }
+  .edu-grid { grid-template-columns:1fr; }
+  .tool-inner.normal, .tool-inner.flip { grid-template-columns:1fr; gap:1.75rem; }
+  .tool-inner.flip .tool-img-col { order:1; }
+  .tool-inner.flip .tool-copy-col { order:2; }
+  .teach-grid { grid-template-columns:1fr; }
+  .proj-grid { grid-template-columns:1fr 1fr; }
+  .skill-row { grid-template-columns:1fr; gap:.4rem; }
+  .photo-section-inner { grid-template-columns:1fr; gap:2.5rem; }
+}
+@media (max-width:768px) {
+  .nav { padding:0 20px; }
+  .nav__links, .nav__actions { display:none; }
+  .nav__burger { display:flex; }
+  .hero { padding:90px 20px 50px; }
+  .sec { padding:60px 20px; }
+  .hero__right { display:none; }
+  .proj-grid { grid-template-columns:1fr; }
+  .contact-grid { grid-template-columns:1fr; max-width:100%; }
+  .footer { flex-direction:column; align-items:flex-start; padding:1.5rem 20px; }
+  .footer-links { flex-direction:column; gap:.5rem; }
+  .photo-mosaic { grid-template-columns:1fr 1fr; }
+}
+@media (prefers-reduced-motion:reduce) {
+  *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     NAV
+══════════════════════════════════ -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav__logo">Tanay <em>Das</em></a>
+  <div class="nav__links">
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#experience">Experience</a>
+    <a href="#tools">Tools</a>
+    <a href="publications.html">Publications</a>
+    <a href="#photography">Travel</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav__actions">
+    <a href="mailto:taanayd@gmail.com?subject=CV%20request" target="_blank" class="nav__cv">
+      <svg viewBox="0 0 24 24"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 20h16"/></svg>
+      CV / Resume
+    </a>
+  </div>
+  <button class="nav__burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#experience">Experience</a>
+    <a href="#tools">AI Tools</a>
+    <a href="publications.html">Publications</a>
+    <a href="#photography">Travel</a>
+    <a href="#contact">Contact</a>
+    <a href="mailto:taanayd@gmail.com?subject=CV%20request" target="_blank" style="color:var(--gold)">⬇ CV</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<section class="hero" id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero__inner">
+
+    <!-- Left -->
+    <div>
+      <div class="hero__eyebrow">Silicon Design Engineer · AMD DSV, Hyderabad</div>
+      <h1 class="hero__name">Tanay<br><em>Das</em></h1>
+      <p class="hero__role">
+        <strong>M.Tech, IIT Gandhinagar</strong>
+        <span class="sep">·</span>
+        Microelectronics &amp; VLSI
+        <span class="sep">·</span>
+        CPI 9.06
+      </p>
+      <div class="hero__tags">
+        <span class="tag">ESD Protection</span>
+        <span class="tag">Neuromorphic</span>
+        <span class="tag">RTL Verification</span>
+        <span class="tag">AI-Assisted EDA</span>
+        <span class="tag">RRAM · ReRAM</span>
+        <span class="tag">Analog IC</span>
+      </div>
+      <blockquote class="hero__quote">
+        "Where circuits meet curiosity — I design silicon and explore the world in equal measure."
+      </blockquote>
+      <div class="hero__actions">
+        <a href="tools.html" class="btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          View AI Tools
+        </a>
+        <a href="publications.html" class="btn-outline">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6M9 16h6M17 21H7a2 2 0 01-2-2V5a2 2 0 012-2h7l5 5v11a2 2 0 01-2 2z"/></svg>
+          7 Publications
+        </a>
+        <a href="mailto:taanayd@gmail.com?subject=CV%20request" class="btn-outline" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 20h16"/></svg>
+          CV
+        </a>
+      </div>
+      <div class="hero__socials">
+        <a href="https://www.linkedin.com/in/dastanay/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 014 0v4M12 13v4"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://scholar.google.com/citations?user=6aBaFCcAAAAJ&hl=en" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17M5 13.18v4L12 21l7-3.82v-4"/></svg>
+          Google Scholar
+        </a>
+        <a href="https://github.com/taanayd" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          GitHub
+        </a>
+        <a href="mailto:taanayd@gmail.com">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email
+        </a>
+        <a href="https://www.instagram.com/_tanaydas_/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+          Instagram
+        </a>
+      </div>
+    </div>
+
+    <!-- Right -->
+    <div class="hero__right" data-r data-d="3">
+      <div class="photo-stack" style="width:100%">
+        <div class="photo-badge2">IIT Gandhinagar · Class of 2025</div>
+        <div class="photo-main photo-placeholder media-placeholder" role="img" aria-label="Tanay Das portrait placeholder">
+          <strong>Tanay Das</strong>
+          <span>Silicon Design Engineer</span>
+        </div>
+        <div class="photo-badge">AMD · Hyderabad · 2026</div>
+      </div>
+      <div style="width:100%">
+        <div class="photo-grad photo-placeholder media-placeholder" role="img" aria-label="IIT Gandhinagar convocation placeholder">
+          <strong>IIT Gandhinagar</strong>
+          <span>M.Tech Convocation · 2025</span>
+        </div>
+        <p class="grad-caption">M.Tech Convocation · IIT Gandhinagar · 2025</p>
+      </div>
+      <div class="stats-grid" style="width:100%">
+        <div class="stat">
+          <span class="stat__n" data-counter="7">0</span>
+          <span class="stat__l">IEEE Papers</span>
+        </div>
+        <div class="stat">
+          <span class="stat__n" data-counter="9.06" data-dec="2">0</span>
+          <span class="stat__l">M.Tech CPI</span>
+        </div>
+        <div class="stat">
+          <span class="stat__n" data-counter-text="18×">0</span>
+          <span class="stat__l">Faster Verify</span>
+        </div>
+        <div class="stat">
+          <span class="stat__n" data-counter="3">0</span>
+          <span class="stat__l">Internships</span>
+        </div>
+        <div class="stat">
+          <span class="stat__n" data-counter="4">0</span>
+          <span class="stat__l">Simulators</span>
+        </div>
+        <div class="stat">
+          <span class="stat__n" data-counter="9.7" data-dec="1">0</span>
+          <span class="stat__l">B.Tech CPI</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     ABOUT
+══════════════════════════════════ -->
+<section class="sec sec--dark" id="about">
+  <div class="wrap">
+    <div class="sh" data-r>
+      <div class="sh__eyebrow">01 · Profile</div>
+      <h2 class="sh__title">Silicon, Software &amp; <em>Curiosity</em></h2>
+      <div class="sh__bar"></div>
+    </div>
+    <div class="about-grid">
+      <div data-r>
+        <p>I am a <strong>Silicon Design Engineer at AMD, Hyderabad</strong>, working on cross-simulator RTL verification, LRM compliance testing across VHDL-2019, VHDL-2008, and SystemVerilog against IEEE 1076 and 1800 language standards. Beyond verification, I've built and deployed two AI-powered internal platforms using Claude API and ChromaDB RAG — cutting batch verification from 3 hours to 10 minutes.</p>
+        <p>My M.Tech at <strong>IIT Gandhinagar</strong> (CPI 9.06) under Prof. Sandip Lashkare focused on ESD Protection for Brain-Machine Interface SoCs — achieving sub-3Ω dynamic resistance for neurostimulator-grade protection in 65 nm &amp; 180 nm CMOS. The research spans 7 IEEE publications across JEDS, EDTM, ICEE, and VDAT.</p>
+        <blockquote class="about-quote">"Where circuits meet curiosity — I design silicon and explore the world in equal measure."</blockquote>
+        <p>When I step away from the lab, I travel — camera in hand, itinerary loose. Photography is my second language.</p>
+        <div class="chips">
+          <span class="chip">Neuromorphic Computing</span>
+          <span class="chip">RRAM &amp; ReRAM</span>
+          <span class="chip">ESD Protection</span>
+          <span class="chip">Analog &amp; Mixed-Signal IC</span>
+          <span class="chip">In-Memory Computing</span>
+          <span class="chip">High-Voltage CMOS</span>
+          <span class="chip">AI-Assisted EDA</span>
+          <span class="chip">RTL Verification</span>
+        </div>
+      </div>
+      <div data-r data-d="2">
+        <div class="meta-grid">
+          <div class="mc"><div class="mc__k">Location</div><div class="mc__v">Hyderabad, India</div></div>
+          <div class="mc"><div class="mc__k">Current Role</div><div class="mc__v">AMD — Silicon Design Eng.</div></div>
+          <div class="mc"><div class="mc__k">M.Tech CPI</div><div class="mc__v">9.06 / 10 · IIT Gandhinagar</div></div>
+          <div class="mc"><div class="mc__k">B.Tech CPI</div><div class="mc__v">9.7 / 10 · Gold Medalist</div></div>
+          <div class="mc"><div class="mc__k">IEEE Publications</div><div class="mc__v">7 papers · 1 Journal · 6 Conf.</div></div>
+          <div class="mc"><div class="mc__k">AI Tooling</div><div class="mc__v">18× speedup · 2 platforms deployed</div></div>
+          <div class="mc" style="grid-column:1/-1"><div class="mc__k">Research Focus</div><div class="mc__v" style="font-size:.78rem;font-weight:400;color:var(--ink2);margin-top:.2rem;line-height:1.6">ESD Protection · RRAM/ReRAM · Analog IC · Neuromorphic Computing · AI-Assisted EDA</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     EDUCATION
+══════════════════════════════════ -->
+<section class="sec" id="education">
+  <div class="wrap">
+    <div class="sh" data-r>
+      <div class="sh__eyebrow">02 · Academic</div>
+      <h2 class="sh__title"><em>Education</em></h2>
+      <div class="sh__bar"></div>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card" data-r>
+        <div class="edu-inst">IIT Gandhinagar</div>
+        <div class="edu-deg">M.Tech · Microelectronics &amp; VLSI, Electrical Engineering</div>
+        <div class="edu-meta">Gujarat, India &nbsp;·&nbsp; Jul 2023 – Jun 2025</div>
+        <div class="edu-cpi">9.06 <span>/ 10</span></div>
+        <div class="edu-detail">
+          <strong>Advisor:</strong> Prof. Sandip Lashkare (EDRL Lab)<br>
+          <strong>Thesis:</strong> ESD Protection / Clamping Circuits for Brain-Machine Interface (BMI)
+        </div>
+        <div style="margin-top:.75rem;display:flex;gap:.4rem;flex-wrap:wrap">
+          <span class="badge-sm badge-gold">EDRL Lab</span>
+          <span class="badge-sm badge-teal">CPI 9.06</span>
+        </div>
+      </div>
+      <div class="edu-card" data-r data-d="2">
+        <div class="edu-inst">Sikkim Manipal Institute of Technology</div>
+        <div class="edu-deg">B.Tech · Electronics &amp; Communication Engineering</div>
+        <div class="edu-meta">Sikkim, India &nbsp;·&nbsp; Jul 2019 – Jun 2023</div>
+        <div class="edu-cpi">9.7 <span>/ 10</span></div>
+        <div class="edu-detail">Certificate of Academic Excellence</div>
+        <div style="margin-top:.75rem;display:flex;gap:.4rem;flex-wrap:wrap">
+          <span class="badge-sm badge-gold">🥇 Gold Medal 2021</span>
+          <span class="badge-sm badge-gold">🥇 Gold Medal 2022</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="thesis" style="margin-top:1.75rem" data-r>
+      <div class="thesis__label">M.Tech Thesis · IIT Gandhinagar · Jan 2024 – Jun 2025</div>
+      <div class="thesis__title">ESD Protection / Clamping Circuits for<br>Brain-Machine Interface (BMI)</div>
+      <div class="thesis__metrics">
+        <div class="tm"><div class="val">Sub-3Ω</div><div class="lbl">Dynamic Resistance</div></div>
+        <div class="tm"><div class="val">10V</div><div class="lbl">Neurostimulator</div></div>
+        <div class="tm"><div class="val">IEC 61000-4-2</div><div class="lbl">Compliant</div></div>
+        <div class="tm"><div class="val">65nm &amp; 180nm</div><div class="lbl">CMOS Nodes</div></div>
+      </div>
+      <ul class="thesis__bullets">
+        <li>Designed ESD clamp circuits in 65 nm &amp; 180 nm CMOS; achieved sub-3Ω dynamic resistance supporting 10V neurostimulator operation, IEC 61000-4-2 compliant</li>
+        <li>Validated via TLP (Transmission Line Pulse) characterization; circuit-level and layout co-design across both technology nodes</li>
+        <li>Resulted in 1 IEEE journal paper (JEDS 2025) and 3 conference papers (EDTM 2025, ICEE 2025 ×2)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     EXPERIENCE
+══════════════════════════════════ -->
+<section class="sec sec--dark" id="experience">
+  <div class="wrap">
+    <div class="sh" data-r>
+      <div class="sh__eyebrow">03 · Career</div>
+      <h2 class="sh__title">Industry <em>Experience</em></h2>
+      <div class="sh__bar"></div>
+    </div>
+    <div class="timeline" data-r>
+
+      <div class="tl-item active">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-head">
+            <span class="tl-co">AMD — Advanced Micro Devices, Hyderabad</span>
+            <span class="tl-date">Jul 2025 – Present</span>
+          </div>
+          <div class="tl-role">Silicon Design Engineer — DSV Simulation Team</div>
+          <div class="tl-chips">
+            <span class="chip-sm chip-amd">AMD</span>
+            <span class="chip-sm chip-navy">LRM Compliance</span>
+            <span class="chip-sm chip-navy">RTL Verification</span>
+            <span class="chip-sm chip-teal">AI Tooling</span>
+          </div>
+          <ul class="tl-bullets">
+            <li><strong>VIVADO-22278 (VHDL-2019)</strong> — Built testplan and validated VHDL-2019 constructs: impure functions in port maps, generic subprograms, anonymous types; cross-simulator LRM compliance per IEEE 1076-2019</li>
+            <li><strong>VIVADO-22280 ($deposit)</strong> — Developed SystemVerilog $deposit signal-forcing flows for Verilog/CPM6 IP verification; multi-driver, packed-array, and hierarchical forcing scenarios</li>
+            <li><strong>VIVADO-19753 (VHDL-2008)</strong> — Built testplan and validated 16 VHDL-2008 constructs: external names, package declarations in protected types, conditional force assignment</li>
+            <li>Built and deployed 2 AI-assisted internal platforms (Claude API + ChromaDB RAG) — used daily by the team; 18× faster batch verification</li>
+          </ul>
+          <a href="tools.html" class="tl-link">View AI tools built for the team →</a>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-head">
+            <span class="tl-co">StarIC, Canada</span>
+            <span class="tl-date">May – Jul 2024</span>
+          </div>
+          <div class="tl-role">Photonics IC Design Intern</div>
+          <div class="tl-chips">
+            <span class="chip-sm chip-gray">Photonics IC</span>
+            <span class="chip-sm chip-gray">gdsfactory</span>
+            <span class="chip-sm chip-gray">Python</span>
+          </div>
+          <ul class="tl-bullets">
+            <li>Designed WDM electro-optic modulator (EOM) and dispersion-compensating fiber (DCF) models for a 4-bit photonic serial DAC</li>
+            <li>Implemented layout generation pipeline using gdsfactory and custom Python automation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-head">
+            <span class="tl-co">SAC, ISRO — Ahmedabad</span>
+            <span class="tl-date">Jan – May 2023</span>
+          </div>
+          <div class="tl-role">Research Intern</div>
+          <div class="tl-chips">
+            <span class="chip-sm chip-green">65nm CMOS</span>
+            <span class="chip-sm chip-gray">Radiation Hardening</span>
+            <span class="chip-sm chip-gray">EDAC</span>
+          </div>
+          <ul class="tl-bullets">
+            <li>Designed layout of radiation-hardened digital standard-cell library in 65 nm CMOS using Cadence Virtuoso for space-grade applications</li>
+            <li>Implemented EDAC logic — achieved ~90% reduction in single-event upset error rates</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     AI TOOLS
+══════════════════════════════════ -->
+<section class="sec" id="tools">
+  <div class="wrap">
+    <div class="sh sh--center" data-r>
+      <div class="sh__eyebrow">04 · AI-Assisted Tooling</div>
+      <h2 class="sh__title">Vibe-coded. Deployed. <em>Used daily.</em></h2>
+      <div class="sh__bar"></div>
+    </div>
+    <p class="tools-header-note" style="text-align:center;margin:0 auto 2.5rem">Full-stack internal platforms built with Claude API, ChromaDB RAG, FastAPI, and WebSocket — shipped fast, used daily by the AMD DSV Simulation Team.</p>
+
+    <!-- Tool 1 -->
+    <div class="tool-card" data-r>
+      <div class="tool-inner normal">
+        <div class="tool-copy-col">
+          <div class="tool-badge">Tool 01 · AMD DSV · v2.1 · April 2026</div>
+          <div class="tool-name">AI-Powered RTL<br>Verification Platform</div>
+          <p class="tool-desc">Eliminates manual testcase authoring — generates complete VHDL/SystemVerilog suites grounded in IEEE LRMs via Claude Sonnet 4.6 + ChromaDB RAG, runs them in parallel across 4 industry simulators, and delivers instant cross-simulator divergence detection.</p>
+          <div class="tool-feats">
+            <div class="tf">All 4 simulators live: XSim 2026.1 · VCS X-2025.06-SP2 · Questa 2025.2 · Riviera-PRO 2024.10</div>
+            <div class="tf">LRM-grounded generation: IEEE 1076-2008 · 1076-2019 · 1800-2017</div>
+            <div class="tf">7 TC categories · 5 complexity levels · 5-round auto-fix loop</div>
+            <div class="tf">Jira CR deep-fetch, one-click filing, WebSocket live streaming, PDF/CSV export</div>
+          </div>
+          <div class="tool-stack">
+            <span class="ts">Claude API</span><span class="ts">ChromaDB</span><span class="ts">LlamaIndex</span>
+            <span class="ts">MCP SSE</span><span class="ts">FastAPI</span><span class="ts">WebSocket</span><span class="ts">Python</span>
+          </div>
+          <a href="tools.html#platform" class="tool-cta">Full case study →</a>
+        </div>
+        <div class="tool-img-col">
+          <div class="bframe">
+            <div class="bframe__bar">
+              <span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span>
+              <span class="burl">internal verification platform — RTL Verify · AI-Powered Testcase Generation</span>
+            </div>
+            <div class="media-placeholder" role="img" aria-label="RTL Verification Platform preview">
+              <strong>RTL Verification Platform</strong>
+              <span>AI testcase generation · 4 simulators</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tool 2 -->
+    <div class="tool-card" data-r>
+      <div class="tool-inner flip">
+        <div class="tool-img-col">
+          <div class="bframe">
+            <div class="bframe__bar">
+              <span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span>
+              <span class="burl">internal verification portal — CR Verification Portal · AMD</span>
+            </div>
+            <div class="media-placeholder" role="img" aria-label="CR Verification Portal preview">
+              <strong>CR Verification Portal</strong>
+              <span>Batch verification · live status</span>
+            </div>
+          </div>
+        </div>
+        <div class="tool-copy-col">
+          <div class="tool-badge">Tool 02 · AMD DSV · GUI for jira_verifier.py</div>
+          <div class="tool-name">CR Batch<br>Verification Portal</div>
+          <p class="tool-desc">Web GUI that fetches Verifier Assigned CRs from Jira, uses AI to read Steps-to-Reproduce, auto-generates <code style="font-family:var(--mono);font-size:.8em;background:var(--bg4);border:1px solid var(--line);padding:1px 5px;border-radius:3px">produced_run.sh</code>, and runs on LSF cluster — 18× faster than running locally.</p>
+          <div class="tool-feats">
+            <div class="tf">18 CRs verified in ~10 min via LSF cluster (vs ~3 hr locally)</div>
+            <div class="tf">4 modes: List CRs · Setup · Execute · Execute Live (WebSocket streaming)</div>
+            <div class="tf">Claude primary / Genie AI fallback · 32 GB per CR on LSF</div>
+            <div class="tf">Per-CR status cards, live terminal, HTML + CSV report generation</div>
+          </div>
+          <div class="tool-stack">
+            <span class="ts">Jira REST API</span><span class="ts">Claude API</span><span class="ts">Genie AI</span>
+            <span class="ts">FastAPI</span><span class="ts">LSF</span><span class="ts">WebSocket</span><span class="ts">Python</span>
+          </div>
+          <a href="tools.html#portal" class="tool-cta">Full case study →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     TEACHING
+══════════════════════════════════ -->
+<section class="sec sec--dark" id="teaching">
+  <div class="wrap">
+    <div class="sh" data-r>
+      <div class="sh__eyebrow">05 · Teaching</div>
+      <h2 class="sh__title">Teaching at <em>IIT Gandhinagar</em></h2>
+      <div class="sh__bar"></div>
+    </div>
+    <div class="teach-grid" data-r>
+      <div class="teach-card">
+        <div class="teach-icon">
+          <svg viewBox="0 0 24 24"><path d="M2 20h20M4 20V10M20 20V10M12 4L2 10h20L12 4zM9 20v-5a3 3 0 016 0v5"/></svg>
+        </div>
+        <div>
+          <div class="teach-code">EE322</div>
+          <div class="teach-name">Analog and Mixed Signal Circuits</div>
+          <div class="teach-meta">IIT Gandhinagar · Tutor · 2024–25, Semester 1</div>
+        </div>
+      </div>
+      <div class="teach-card">
+        <div class="teach-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <div>
+          <div class="teach-code">ES204</div>
+          <div class="teach-name">Digital Systems</div>
+          <div class="teach-meta">IIT Gandhinagar · Tutor · 2023–24, Semester 2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     PUBLICATIONS (preview)
+══════════════════════════════════ -->
+<section class="sec" id="publications">
+  <div class="wrap">
+    <div class="pub-head" data-r>
+      <div>
+        <div class="sh__eyebrow">06 · Research Output</div>
+        <h2 class="sh__title" style="margin-bottom:0">Selected <em>Publications</em></h2>
+      </div>
+      <div class="pub-counts">
+        <div class="pc"><span class="pc__n">1</span><span class="pc__l">Journal</span></div>
+        <div class="pc"><span class="pc__n">6</span><span class="pc__l">Conference</span></div>
+        <div class="pc"><span class="pc__n">1</span><span class="pc__l">Best Paper</span></div>
+      </div>
+    </div>
+    <div class="pub-filters" data-r>
+      <button class="f-btn active" onclick="filterPubs('all',this)">All (7)</button>
+      <button class="f-btn" onclick="filterPubs('journal',this)">Journal (1)</button>
+      <button class="f-btn" onclick="filterPubs('conference',this)">Conference (6)</button>
+    </div>
+    <div class="pub-list" data-r id="pub-list">
+      <div class="pub-item" data-type="journal">
+        <div class="pub-num">J1</div>
+        <div>
+          <div class="pub-badges"><span class="badge-sm badge-teal">Journal</span>&nbsp;<span class="badge-sm badge-blue">IEEE JEDS 2025</span></div>
+          <div class="pub-title">ESD Protection with Sub-3Ω Dynamic Resistance for Neuromodulation System-on-Chip</div>
+          <div class="pub-authors"><strong>T. Das</strong>, N. Ahmad, L. Somappa, S. Lashkare</div>
+          <div class="pub-venue">IEEE Journal of the Electron Devices Society (JEDS), 2025</div>
+        </div>
+        <a href="https://ieeexplore.ieee.org/abstract/document/11391546" target="_blank" class="pub-link">IEEE ↗</a>
+      </div>
+      <div class="pub-item" data-type="conference">
+        <div class="pub-num">C1</div>
+        <div>
+          <div class="pub-badges"><span class="badge-sm badge-gold">Conf.</span>&nbsp;<span class="badge-sm badge-red">🏆 Best Paper</span>&nbsp;<span class="badge-sm badge-blue">ICEE 2025</span></div>
+          <div class="pub-title">Hybrid SW-FPGA RRAM-crossbar Array for In-Memory Computing with Bit-Slicing Architecture</div>
+          <div class="pub-authors">U. Singh, <strong>T. Das</strong> et al.</div>
+          <div class="pub-venue">International Conference on Emerging Electronics (ICEE), 2025</div>
+        </div>
+        <a href="https://ieeexplore.ieee.org/abstract/document/11409883" target="_blank" class="pub-link">IEEE ↗</a>
+      </div>
+      <div class="pub-item" data-type="conference">
+        <div class="pub-num">C2</div>
+        <div>
+          <div class="pub-badges"><span class="badge-sm badge-gold">Conf.</span>&nbsp;<span class="badge-sm badge-blue">ICEE 2025</span></div>
+          <div class="pub-title">ESD Protection with On-chip Diodes for 65nm CMOS High Voltage Neurostimulators</div>
+          <div class="pub-authors"><strong>T. Das</strong>, L. Somappa, S. Lashkare</div>
+          <div class="pub-venue">International Conference on Emerging Electronics (ICEE), 2025</div>
+        </div>
+        <a href="https://ieeexplore.ieee.org/abstract/document/11409724" target="_blank" class="pub-link">IEEE ↗</a>
+      </div>
+      <div class="pub-item" data-type="conference">
+        <div class="pub-num">C3</div>
+        <div>
+          <div class="pub-badges"><span class="badge-sm badge-gold">Conf.</span>&nbsp;<span class="badge-sm badge-blue">ICEE 2025</span></div>
+          <div class="pub-title">TCAD-Guided Design of a Compact ESD Protection Circuit for Neurostimulators in CMOS 65nm</div>
+          <div class="pub-authors">N. Maheshwari, <strong>T. Das</strong> et al.</div>
+          <div class="pub-venue">International Conference on Emerging Electronics (ICEE), 2025</div>
+        </div>
+        <a href="https://ieeexplore.ieee.org/abstract/document/11409969" target="_blank" class="pub-link">IEEE ↗</a>
+      </div>
+      <div class="pub-item" data-type="conference">
+        <div class="pub-num">C4</div>
+        <div>
+          <div class="pub-badges"><span class="badge-sm badge-gold">Conf.</span>&nbsp;<span class="badge-sm badge-blue">EDTM 2025</span></div>
+          <div class="pub-title">Enhanced ESD Protection Techniques for 10V Neurostimulator Circuits in 65nm CMOS Technology</div>
+          <div class="pub-authors"><strong>T. Das</strong>, N. Ahmad, L. Somappa, S. Lashkare</div>
+          <div class="pub-venue">IEEE Electronics Design, Test and Application (EDTM), 2025</div>
+        </div>
+        <a href="https://ieeexplore.ieee.org/abstract/document/11041318" target="_blank" class="pub-link">IEEE ↗</a>
+      </div>
+      <div class="pub-item" data-type="conference">
+        <div class="pub-num">C5</div>
+        <div>
+          <div class="pub-badges"><span class="badge-sm badge-gold">Conf.</span>&nbsp;<span class="badge-sm badge-blue">VDAT 2024</span></div>
+          <div class="pub-title">Dynamic Resistance Reduction Methods for Voltage Clamp Lowering to Enhance GGNMOS ESD Protection</div>
+          <div class="pub-authors"><strong>T. Das</strong>, M. Pathak, S. Lashkare</div>
+          <div class="pub-venue">VLSI Design and Test Symposium (VDAT), 2024</div>
+        </div>
+        <a href="https://ieeexplore.ieee.org/document/10705717/" target="_blank" class="pub-link">IEEE ↗</a>
+      </div>
+      <div class="pub-item" data-type="conference">
+        <div class="pub-num">C6</div>
+        <div>
+          <div class="pub-badges"><span class="badge-sm badge-gold">Conf.</span>&nbsp;<span class="badge-sm badge-blue">Materials Today 2022</span></div>
+          <div class="pub-title">Synthesis and Characterization of MXene from MAX Phase</div>
+          <div class="pub-authors">A. Ghosh, H. Pal, <strong>T. Das</strong>, S. Chatterjee, A. Das</div>
+          <div class="pub-venue">Materials Today: Proceedings, 2022</div>
+        </div>
+        <a href="https://doi.org/10.1016/j.matpr.2022.02.253" target="_blank" class="pub-link">View ↗</a>
+      </div>
+    </div>
+    <div class="pub-more" data-r>
+      <a href="publications.html" class="btn-outline">View all 7 publications →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     PROJECTS
+══════════════════════════════════ -->
+<section class="sec sec--dark" id="projects">
+  <div class="wrap">
+    <div class="sh" data-r>
+      <div class="sh__eyebrow">07 · Coursework</div>
+      <h2 class="sh__title">Academic <em>Projects</em></h2>
+      <div class="sh__bar"></div>
+    </div>
+    <div class="proj-grid" data-r>
+      <div class="proj-card">
+        <div class="proj-num">01</div>
+        <div class="proj-title">Non-Volatile SRAM / ReRAM</div>
+        <div class="proj-guide">Prof. Sandip Lashkare · Aug–Nov 2023</div>
+        <p class="proj-desc">Hybrid memory cell leveraging ReRAM for non-volatility with SRAM-level read/write speed; device modeling in Verilog-A.</p>
+        <div class="proj-tags"><span class="ptag">Verilog-A</span><span class="ptag">ReRAM</span><span class="ptag">SRAM Design</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-num">02</div>
+        <div class="proj-title">12-T Interlocked SRAM for IMC</div>
+        <div class="proj-guide">Prof. Joycee Mekie · Aug–Nov 2023</div>
+        <p class="proj-desc">12T SRAM cell with cross-coupled interlocking for enhanced read/write stability under in-memory computing workloads.</p>
+        <div class="proj-tags"><span class="ptag">12T SRAM</span><span class="ptag">IMC</span><span class="ptag">Cadence Virtuoso</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-num">03</div>
+        <div class="proj-title">2-Stage OPAMP (Miller Comp.)</div>
+        <div class="proj-guide">Prof. N.R. Mahapatra · Jan–Apr 2024</div>
+        <p class="proj-desc">Gain <strong>&gt;80dB</strong> · CMRR <strong>&gt;100dB</strong> · GBW <strong>&gt;10MHz</strong> · PM &gt;65° · Power &lt;0.5mW @ 1pF.</p>
+        <div class="proj-tags"><span class="ptag">Analog IC</span><span class="ptag">Miller Comp.</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-num">04</div>
+        <div class="proj-title">Folded Cascode OTA</div>
+        <div class="proj-guide">Prof. N.R. Mahapatra · Jan–Apr 2024</div>
+        <p class="proj-desc">Gain <strong>&gt;90dB</strong> · CMRR <strong>&gt;100dB</strong> · GBW <strong>&gt;10MHz</strong> · Power <strong>&lt;20μW</strong> · Swing 800mV.</p>
+        <div class="proj-tags"><span class="ptag">OTA</span><span class="ptag">Low-Power</span><span class="ptag">Cascode</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-num">05</div>
+        <div class="proj-title">Bandgap Reference Circuit</div>
+        <div class="proj-guide">Prof. N.R. Mahapatra · Jan–Apr 2024</div>
+        <p class="proj-desc">Temp. regulation <strong>≤10mV</strong> · Supply regulation <strong>≤10mV</strong> · Power budget <strong>&lt;50μW</strong>.</p>
+        <div class="proj-tags"><span class="ptag">BGR</span><span class="ptag">Analog Design</span><span class="ptag">Precision</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-num">06</div>
+        <div class="proj-title">1.5-Bit Pipeline ADC</div>
+        <div class="proj-guide">Prof. D.K. Sharma · Jul–Nov 2024</div>
+        <p class="proj-desc">Two-stage pipeline ADC at <strong>1.8V</strong> · 1V reference · stair-step input −0.6V verified in Cadence Virtuoso.</p>
+        <div class="proj-tags"><span class="ptag">Pipeline ADC</span><span class="ptag">Mixed-Signal</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     SKILLS
+══════════════════════════════════ -->
+<section class="sec" id="skills">
+  <div class="wrap">
+    <div class="sh" data-r>
+      <div class="sh__eyebrow">08 · Toolkit</div>
+      <h2 class="sh__title">Technical <em>Skills</em></h2>
+      <div class="sh__bar"></div>
+    </div>
+    <div class="skills-rows" data-r>
+      <div class="skill-row">
+        <div class="skill-cat">Analog Design</div>
+        <div class="skill-tags">
+          <span class="sk">Cadence Virtuoso</span><span class="sk">NGSpice</span>
+          <span class="sk">Magic VLSI</span><span class="sk">gdsfactory</span>
+          <span class="sk">Schematic / Layout / DRC / LVS</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Digital / HDL</div>
+        <div class="skill-tags">
+          <span class="sk">SystemVerilog</span><span class="sk">Verilog</span>
+          <span class="sk">VHDL</span><span class="sk">$deposit / Signal Forcing</span>
+          <span class="sk">LRM Compliance Testplanning</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Simulators</div>
+        <div class="skill-tags">
+          <span class="sk">Xilinx XSim</span><span class="sk">Cadence Xcelium</span>
+          <span class="sk">Mentor Questa</span><span class="sk">Aldec Riviera-PRO</span>
+          <span class="sk">Xilinx Vivado</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">AI / Backend</div>
+        <div class="skill-tags">
+          <span class="sk">Claude API (Sonnet 4.6)</span><span class="sk">ChromaDB</span>
+          <span class="sk">LlamaIndex</span><span class="sk">FastAPI</span>
+          <span class="sk">WebSocket</span><span class="sk">LSF cluster</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Programming</div>
+        <div class="skill-tags">
+          <span class="sk">Python</span><span class="sk">MATLAB</span><span class="sk">LaTeX</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Open-Source EDA</div>
+        <div class="skill-tags">
+          <span class="sk">Ngspice</span><span class="sk">SKY130 PDK</span>
+          <span class="sk">Xschem</span><span class="sk">KLayout</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     AWARDS
+══════════════════════════════════ -->
+<section class="sec sec--dark" id="awards">
+  <div class="wrap" style="max-width:760px">
+    <div class="sh" data-r>
+      <div class="sh__eyebrow">09 · Recognition</div>
+      <h2 class="sh__title">Awards &amp; <em>Honours</em></h2>
+      <div class="sh__bar"></div>
+    </div>
+    <div class="awards-list" data-r>
+
+      <div class="award award--new">
+        <div class="award__icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/></svg>
+        </div>
+        <div class="award__body">
+          <div class="award__name">IEEE SSCS Code-a-Chip Travel Grant Award</div>
+          <div class="award__desc">Power side-channel vulnerability analysis on analog IMC arrays · ESSERC 2026, Palma de Mallorca · Pearson ρ = 0.9979</div>
+        </div>
+        <div class="award__year">2025</div>
+      </div>
+
+      <div class="award">
+        <div class="award__icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+        </div>
+        <div class="award__body">
+          <div class="award__name">Best Paper Award — IEEE ICEE 2025</div>
+          <div class="award__desc">"Hybrid SW-FPGA RRAM-crossbar for In-Memory Computing with Bit-Slicing"</div>
+        </div>
+        <div class="award__year">2025</div>
+      </div>
+
+      <div class="award">
+        <div class="award__icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/></svg>
+        </div>
+        <div class="award__body">
+          <div class="award__name">URAM 2.0 Scholarship — Micron Technology</div>
+          <div class="award__desc">Awarded for academic and research excellence in semiconductor engineering</div>
+        </div>
+        <div class="award__year">2024</div>
+      </div>
+
+      <div class="award">
+        <div class="award__icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 3a4 4 0 110 8 4 4 0 010-8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div class="award__body">
+          <div class="award__name">Winner — Capture The Bug Hackathon</div>
+          <div class="award__desc">Design Verification Hackathon · NIELIT</div>
+        </div>
+        <div class="award__year">2022</div>
+      </div>
+
+      <div class="award">
+        <div class="award__icon">
+          <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+        </div>
+        <div class="award__body">
+          <div class="award__name">Winner — Sky 130 Mixed-Signal Design Marathon</div>
+          <div class="award__desc">FOSSEE · IIT Bombay</div>
+        </div>
+        <div class="award__year">2022</div>
+      </div>
+
+      <div class="award">
+        <div class="award__icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+        </div>
+        <div class="award__body">
+          <div class="award__name">Gold Medalist · Academic Excellence</div>
+          <div class="award__desc">Certificate of Academic Excellence · Sikkim Manipal Institute of Technology</div>
+        </div>
+        <div class="award__year">2021 &amp; 2022</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     PHOTOGRAPHY
+══════════════════════════════════ -->
+<section class="sec" id="photography" style="background:#050810">
+  <div class="wrap">
+    <div class="photo-section-inner">
+      <div data-r>
+        <span class="photo-copy__eyebrow">Beyond the Lab</span>
+        <h2 class="photo-copy__title">Travel &amp;<br>Photography</h2>
+        <p class="photo-copy__body">When I'm not designing circuits or building verification tools, I'm out exploring — Northeast India, high Himalayan passes, coastal landscapes, and wherever curiosity leads. Photography is how I see the world with the same precision I bring to engineering.</p>
+        <div class="photo-tags">
+          <span class="ptag-light">Northeast India</span>
+          <span class="ptag-light">Himalayan Passes</span>
+          <span class="ptag-light">Coastal</span>
+          <span class="ptag-light">Street</span>
+          <span class="ptag-light">Golden Hour</span>
+        </div>
+        <div class="insta-card">
+          <div class="insta-head">
+            <div class="insta-avatar">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="white" stroke="none"/></svg>
+            </div>
+            <div>
+              <div class="insta-handle">@_tanaydas_</div>
+              <div class="insta-sub">Instagram · Travel &amp; Photography</div>
+            </div>
+          </div>
+          <p class="insta-bio">Silicon engineer by day, wanderer by light. Capturing the world one frame at a time — from high passes to coastal blues.</p>
+          <div class="insta-stats">
+            <div><span class="is__n">7+</span><span class="is__l">IEEE Papers</span></div>
+            <div><span class="is__n">∞</span><span class="is__l">Miles Explored</span></div>
+          </div>
+        </div>
+        <a href="https://www.instagram.com/_tanaydas_/" target="_blank" rel="noopener" class="insta-btn">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="white" stroke="none"/></svg>
+          View Gallery on Instagram
+        </a>
+      </div>
+      <div data-r data-d="2">
+        <div class="photo-mosaic">
+          <a href="https://www.instagram.com/p/DULqIENEjpP/" target="_blank" rel="noopener" class="pm-item wide">
+            <div class="pm-link">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/></svg>
+              <span>View on Instagram</span>
+            </div>
+          </a>
+          <a href="https://www.instagram.com/p/DTjo50Sksws/" target="_blank" rel="noopener" class="pm-item">
+            <div class="pm-link"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/></svg></div>
+          </a>
+          <a href="https://www.instagram.com/p/DS0AARjku64/" target="_blank" rel="noopener" class="pm-item">
+            <div class="pm-link"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/></svg></div>
+          </a>
+          <a href="https://www.instagram.com/p/DN-_ViFkltr/" target="_blank" rel="noopener" class="pm-item">
+            <div class="pm-link"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/></svg></div>
+          </a>
+          <a href="https://www.instagram.com/p/DMm2K2FyyzJ/" target="_blank" rel="noopener" class="pm-item wide">
+            <div class="pm-link">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/></svg>
+              <span>@_tanaydas_</span>
+            </div>
+          </a>
+        </div>
+        <p style="font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:1rem">
+          Photography · Travel · Curiosity &nbsp;·&nbsp;
+          <a href="https://www.instagram.com/_tanaydas_/" target="_blank" style="color:var(--gold)" rel="noopener">@_tanaydas_</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     CONTACT
+══════════════════════════════════ -->
+<section class="sec sec--dark" id="contact">
+  <div class="wrap">
+    <div class="sh sh--center" data-r>
+      <div class="sh__eyebrow" style="justify-content:center">10 · Connect</div>
+      <h2 class="sh__title">Let's <em>Connect</em></h2>
+      <div class="sh__bar"></div>
+    </div>
+    <p style="text-align:center;font-size:.9rem;color:var(--muted);max-width:500px;margin:.75rem auto 0;line-height:1.75" data-r>
+      Open to research collaborations, academic discussions, and conversations about ESD design, neuromorphic computing, or AI-assisted EDA tooling.
+    </p>
+    <div class="contact-grid" data-r>
+      <div class="ccard">
+        <div class="ccard__label">Email</div>
+        <div class="ccard__val"><a href="mailto:taanayd@gmail.com">taanayd@gmail.com</a></div>
+      </div>
+      <div class="ccard">
+        <div class="ccard__label">LinkedIn</div>
+        <div class="ccard__val"><a href="https://www.linkedin.com/in/dastanay/" target="_blank" rel="noopener">linkedin.com/in/dastanay</a></div>
+      </div>
+      <div class="ccard">
+        <div class="ccard__label">Google Scholar</div>
+        <div class="ccard__val"><a href="https://scholar.google.com/citations?user=6aBaFCcAAAAJ&hl=en" target="_blank" rel="noopener">View Research Profile</a></div>
+      </div>
+      <div class="ccard">
+        <div class="ccard__label">GitHub</div>
+        <div class="ccard__val"><a href="https://github.com/taanayd" target="_blank" rel="noopener">github.com/taanayd</a></div>
+      </div>
+      <div class="ccard">
+        <div class="ccard__label">Instagram</div>
+        <div class="ccard__val"><a href="https://www.instagram.com/_tanaydas_/" target="_blank" rel="noopener">@_tanaydas_</a></div>
+      </div>
+      <div class="ccard" style="cursor:pointer" onclick="window.location.href='mailto:taanayd@gmail.com?subject=CV%20request'">
+        <div class="ccard__label">Résumé / CV</div>
+        <div class="ccard__val" style="color:var(--gold)">Download PDF ↓</div>
+      </div>
+    </div>
+    <p class="contact-note" data-r>
+      Based in Hyderabad, India · Available for remote research collaborations &amp; academic opportunities globally.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     FOOTER
+══════════════════════════════════ -->
+<footer>
+  <div class="footer" style="border-top:none">
+    <div>
+      <div class="footer-brand">Tanay <em>Das</em></div>
+      <div class="footer-sub">Silicon Design Engineer · AMD, Hyderabad · M.Tech IIT Gandhinagar 2025</div>
+    </div>
+    <div class="footer-links">
+      <a href="tools.html">Tools</a>
+      <a href="publications.html">Publications</a>
+      <a href="mailto:taanayd@gmail.com?subject=CV%20request" target="_blank">CV</a>
+      <a href="#hero">↑ Top</a>
+      <span>© 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Nav scroll + active ──────────────────────────────
+const nav = document.getElementById('nav');
+const secs = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav__links a');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', scrollY > 20);
+  let cur = '';
+  secs.forEach(s => { if (scrollY >= s.offsetTop - 100) cur = s.id; });
+  navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+}, { passive: true });
+
+// ── Mobile burger ────────────────────────────────────
+document.getElementById('burger').addEventListener('click', function() {
+  const m = document.getElementById('mobileMenu');
+  m.classList.toggle('open');
+});
+document.querySelectorAll('.nav__mobile a').forEach(a => a.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
+
+// ── Scroll reveal ────────────────────────────────────
+const revealIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('on'); revealIO.unobserve(e.target); }
+  });
+}, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('[data-r]').forEach(el => revealIO.observe(el));
+
+// ── Counter animation ────────────────────────────────
+function animCounter(el) {
+  if (el._done) return; el._done = true;
+  if (el.dataset.counterText) {
+    let f = 0; const tick = () => { f++; el.textContent = Math.floor(Math.random()*20)+'×'; if (f < 40) requestAnimationFrame(tick); else el.textContent = el.dataset.counterText; }; requestAnimationFrame(tick); return;
+  }
+  const target = parseFloat(el.dataset.counter), dec = parseInt(el.dataset.dec||'0'), dur = 1200, start = performance.now();
+  const ease = t => 1 - Math.pow(1-t, 3);
+  const tick = now => { const t = Math.min((now-start)/dur, 1); const v = target * ease(t); el.textContent = dec > 0 ? v.toFixed(dec) : Math.floor(v); if (t < 1) requestAnimationFrame(tick); else el.textContent = dec > 0 ? target.toFixed(dec) : target; };
+  requestAnimationFrame(tick);
+}
+const cio = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.querySelectorAll('[data-counter],[data-counter-text]').forEach(animCounter); }); }, { threshold: 0.3 });
+document.querySelectorAll('.stats-grid').forEach(el => cio.observe(el));
+
+// ── Publication filter ───────────────────────────────
+function filterPubs(type, btn) {
+  document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.pub-item').forEach(item => {
+    item.style.display = (type === 'all' || item.dataset.type === type) ? 'grid' : 'none';
+  });
+}
+
+// ── HERO CANVAS — VLSI/Analog/Memory themed 3D ──────
+(function() {
+  const canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, nodes = [], traces = [], cells = [], particles = [];
+  const GOLD = 'rgba(201,168,76,';
+  const TEAL = 'rgba(45,212,191,';
+  const BLUE = 'rgba(96,165,250,';
+  const WHITE = 'rgba(255,255,255,';
+
+  function resize() {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+    init();
+  }
+
+  function init() {
+    nodes = []; traces = []; cells = []; particles = [];
+    // Circuit traces — orthogonal paths (VLSI style)
+    for (let i = 0; i < 18; i++) {
+      traces.push({
+        x: Math.random() * W, y: Math.random() * H,
+        len: 80 + Math.random() * 180,
+        dir: Math.random() < 0.5 ? 'h' : 'v',
+        color: Math.random() < 0.5 ? GOLD : BLUE,
+        opacity: 0.04 + Math.random() * 0.06,
+        signal: Math.random() < 0.3,
+        signalPos: Math.random(),
+        signalSpeed: 0.002 + Math.random() * 0.003,
+        signalColor: Math.random() < 0.5 ? GOLD : TEAL,
+      });
+    }
+    // Via/junction nodes
+    for (let i = 0; i < 25; i++) {
+      nodes.push({
+        x: Math.random() * W, y: Math.random() * H,
+        r: 1.5 + Math.random() * 2.5,
+        color: Math.random() < 0.5 ? GOLD : TEAL,
+        opacity: 0.1 + Math.random() * 0.15,
+        pulse: Math.random() * Math.PI * 2,
+        pulseSpeed: 0.02 + Math.random() * 0.03,
+      });
+    }
+    // RRAM crossbar cells (grid-like, representing memory array)
+    const cx = W * 0.72, cy = H * 0.35;
+    for (let i = 0; i < 5; i++) {
+      for (let j = 0; j < 5; j++) {
+        cells.push({
+          x: cx + (i - 2) * 28, y: cy + (j - 2) * 28,
+          state: Math.random() < 0.4 ? 1 : 0,
+          flash: 0, flashTimer: Math.random() * 300,
+        });
+      }
+    }
+    // Analog waveform particles
+    for (let i = 0; i < 8; i++) {
+      particles.push({ x: Math.random() * W * 0.4, y: H * 0.6 + Math.random() * H * 0.3, vx: 0.3 + Math.random() * 0.5, vy: 0, amp: 8 + Math.random() * 20, freq: 0.02 + Math.random() * 0.03, phase: Math.random() * Math.PI * 2, opacity: 0.06 + Math.random() * 0.08, trail: [] });
+    }
+  }
+
+  let t = 0;
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    t++;
+
+    // Waveform lines (analog signal traces)
+    particles.forEach(p => {
+      p.phase += 0.025;
+      p.x += p.vx;
+      if (p.x > W * 0.6) { p.x = Math.random() * 50; p.trail = []; }
+      p.y = p.y + Math.sin(p.phase) * 0.1;
+      p.trail.push({ x: p.x, y: p.y });
+      if (p.trail.length > 60) p.trail.shift();
+      if (p.trail.length > 1) {
+        ctx.beginPath();
+        ctx.moveTo(p.trail[0].x, p.trail[0].y);
+        for (let i = 1; i < p.trail.length; i++) {
+          const px = p.trail[i].x, py = p.trail[i - 1].y + Math.sin(p.phase - (p.trail.length - i) * p.freq) * p.amp;
+          ctx.lineTo(px, py);
+        }
+        ctx.strokeStyle = GOLD + p.opacity + ')';
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      }
+    });
+
+    // Circuit traces
+    traces.forEach(tr => {
+      ctx.beginPath();
+      if (tr.dir === 'h') { ctx.moveTo(tr.x, tr.y); ctx.lineTo(tr.x + tr.len, tr.y); }
+      else { ctx.moveTo(tr.x, tr.y); ctx.lineTo(tr.x, tr.y + tr.len); }
+      ctx.strokeStyle = tr.color + tr.opacity + ')';
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+      // Signal traveling along trace
+      if (tr.signal) {
+        tr.signalPos += tr.signalSpeed;
+        if (tr.signalPos > 1) tr.signalPos = 0;
+        const sx = tr.dir === 'h' ? tr.x + tr.len * tr.signalPos : tr.x;
+        const sy = tr.dir === 'v' ? tr.y + tr.len * tr.signalPos : tr.y;
+        ctx.beginPath(); ctx.arc(sx, sy, 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = tr.signalColor + '0.7)';
+        ctx.fill();
+        // Glow
+        ctx.beginPath(); ctx.arc(sx, sy, 5, 0, Math.PI * 2);
+        ctx.fillStyle = tr.signalColor + '0.15)';
+        ctx.fill();
+      }
+    });
+
+    // Via nodes
+    nodes.forEach(n => {
+      n.pulse += n.pulseSpeed;
+      const osc = 0.5 + 0.5 * Math.sin(n.pulse);
+      ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = n.color + (n.opacity * osc) + ')';
+      ctx.fill();
+    });
+
+    // RRAM crossbar — word lines (horizontal)
+    const cx = W * 0.72, cy = H * 0.35;
+    for (let i = 0; i < 5; i++) {
+      ctx.beginPath();
+      ctx.moveTo(cx - 2 * 28 - 15, cy + (i - 2) * 28);
+      ctx.lineTo(cx + 2 * 28 + 15, cy + (i - 2) * 28);
+      ctx.strokeStyle = GOLD + '0.08)';
+      ctx.lineWidth = 0.7; ctx.stroke();
+      // Bit lines (vertical)
+      ctx.beginPath();
+      ctx.moveTo(cx + (i - 2) * 28, cy - 2 * 28 - 15);
+      ctx.lineTo(cx + (i - 2) * 28, cy + 2 * 28 + 15);
+      ctx.strokeStyle = TEAL + '0.06)';
+      ctx.lineWidth = 0.7; ctx.stroke();
+    }
+    // Cells
+    cells.forEach(cell => {
+      cell.flashTimer--;
+      if (cell.flashTimer <= 0) { cell.flash = 15; cell.flashTimer = 150 + Math.random() * 200; cell.state = cell.state ? 0 : 1; }
+      if (cell.flash > 0) cell.flash--;
+      const glow = cell.flash / 15;
+      const col = cell.state ? GOLD : TEAL;
+      ctx.beginPath(); ctx.arc(cell.x, cell.y, 4, 0, Math.PI * 2);
+      ctx.fillStyle = col + (0.12 + glow * 0.35) + ')';
+      ctx.fill();
+      if (glow > 0) {
+        ctx.beginPath(); ctx.arc(cell.x, cell.y, 8, 0, Math.PI * 2);
+        ctx.fillStyle = col + (glow * 0.15) + ')';
+        ctx.fill();
+      }
+    });
+
+    // Crossbar label
+    ctx.font = '9px JetBrains Mono, monospace';
+    ctx.fillStyle = GOLD + '0.18)';
+    ctx.fillText('RRAM 5×5', cx - 28, cy - 2 * 28 - 22);
+    ctx.fillStyle = TEAL + '0.12)';
+    ctx.fillText('1T1R', cx - 28, cy - 2 * 28 - 12);
+
+    requestAnimationFrame(draw);
+  }
+
+  const ro = new ResizeObserver(resize);
+  ro.observe(canvas.parentElement);
+  resize();
+  draw();
+})();
+</script>
+</body>
+</html>
