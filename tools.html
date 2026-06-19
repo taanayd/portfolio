@@ -124,10 +124,6 @@ img{display:block;max-width:100%}
 .bdot.r{background:#ef4444}.bdot.y{background:#f59e0b}.bdot.g{background:#22c55e}
 .burl{flex:1;text-align:center;font-family:var(--mono);font-size:9.5px;color:rgba(255,255,255,.3);background:rgba(255,255,255,.05);border-radius:3px;padding:2px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .bframe img{width:100%;display:block}
-.media-placeholder{min-height:260px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.45rem;padding:2rem;background:linear-gradient(135deg,rgba(201,168,76,.13),rgba(45,212,191,.08)),radial-gradient(circle at 30% 20%,rgba(96,165,250,.16),transparent 32%),var(--bg3);color:var(--ink);text-align:center}
-.media-placeholder strong{font-family:var(--serif);font-size:1.1rem;font-weight:600}
-.media-placeholder span{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
-
 /* Modes */
 .modes{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.5rem}
 .mode{background:var(--bg4);border:1px solid var(--line);border-radius:var(--r);padding:1rem 1.1rem;transition:border-color .2s}
@@ -205,7 +201,7 @@ img{display:block;max-width:100%}
     <a href="index.html#contact">Contact</a>
   </div>
   <div class="nav__actions">
-    <a href="mailto:taanayd@gmail.com?subject=CV%20request" target="_blank" class="nav__cv">
+    <a href="Tanay_CV_PhD.pdf" target="_blank" class="nav__cv" download>
       <svg viewBox="0 0 24 24"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 20h16"/></svg>
       CV / Resume
     </a>
@@ -218,7 +214,7 @@ img{display:block;max-width:100%}
     <a href="index.html#experience">Experience</a>
     <a href="publications.html">Publications</a>
     <a href="index.html#contact">Contact</a>
-    <a href="mailto:taanayd@gmail.com?subject=CV%20request" target="_blank" style="color:var(--gold)">⬇ CV</a>
+    <a href="Tanay_CV_PhD.pdf" target="_blank" style="color:var(--gold)" download>⬇ CV</a>
   </div>
 </nav>
 
@@ -271,10 +267,7 @@ img{display:block;max-width:100%}
               <span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span>
               <span class="burl">internal verification platform — RTL Verify · AI-Powered Testcase Generation &amp; Simulation</span>
             </div>
-            <div class="media-placeholder" role="img" aria-label="RTL Verification Platform preview">
-              <strong>RTL Verification Platform</strong>
-              <span>All 4 simulators active</span>
-            </div>
+            <img src="images/platform-live.png" alt="RTL Verification Platform — all 4 simulators active"/>
           </div>
           <p style="font-family:var(--mono);font-size:.6rem;color:var(--muted);margin-top:.75rem;text-align:center">Live platform — all 4 simulators active (XSim · VCS · Questa · Riviera in green)</p>
         </div>
@@ -335,20 +328,14 @@ img{display:block;max-width:100%}
             <span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span>
             <span class="burl">internal verification platform — Generate TCs · AI Agent</span>
           </div>
-          <div class="media-placeholder" role="img" aria-label="Generate testcases preview">
-            <strong>Generate TCs</strong>
-            <span>Scope input · complexity · categories</span>
-          </div>
+          <img src="images/platform-ui-generate.png" alt="Generate TCs section — scope input, complexity slider, TC categories"/>
         </div>
         <div class="bframe">
           <div class="bframe__bar">
             <span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span>
             <span class="burl">internal verification platform — Export &amp; Coverage</span>
           </div>
-          <div class="media-placeholder" role="img" aria-label="Export and coverage preview">
-            <strong>Export &amp; Coverage</strong>
-            <span>CSV/PDF reports · snapshots</span>
-          </div>
+          <img src="images/platform-ui-results.png" alt="Export and Coverage section — CSV/PDF export, Snapshots"/>
         </div>
       </div>
     </div>
@@ -389,10 +376,7 @@ img{display:block;max-width:100%}
               <span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span>
               <span class="burl">internal verification portal — CR Verification Portal · AMD</span>
             </div>
-            <div class="media-placeholder" role="img" aria-label="CR Verification Portal preview">
-              <strong>CR Verification Portal</strong>
-              <span>JQL · AI status · live terminal</span>
-            </div>
+            <img src="images/tool-portal.png" alt="CR Verification Portal"/>
           </div>
           <p style="font-family:var(--mono);font-size:.6rem;color:var(--muted);margin-top:.75rem;text-align:center">Live portal — CR input with JQL, AI indicator pill, LSF toggle, real-time terminal</p>
         </div>
@@ -478,10 +462,7 @@ img{display:block;max-width:100%}
             <span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span>
             <span class="burl">internal verification portal/guide — Portal Guide</span>
           </div>
-          <div class="media-placeholder" role="img" aria-label="CR Verification Portal guide preview">
-            <strong>Portal Guide</strong>
-            <span>4 modes · workflow · setup</span>
-          </div>
+          <img src="images/portal-guide-full.png" alt="CR Verification Portal Guide — 4 action modes, workflow diagram, first-time setup"/>
         </div>
         <p style="font-family:var(--mono);font-size:.6rem;color:var(--muted);margin-top:.75rem;text-align:center">Complete guide — setup, CR actions, Local vs LSF, troubleshooting, FAQ</p>
 
@@ -517,7 +498,7 @@ img{display:block;max-width:100%}
     <div class="footer-links">
       <a href="index.html">← Portfolio</a>
       <a href="publications.html">Publications</a>
-      <a href="mailto:taanayd@gmail.com?subject=CV%20request" target="_blank">CV</a>
+      <a href="Tanay_CV_PhD.pdf" target="_blank" download>CV</a>
       <a href="index.html#contact">Contact</a>
       <span>© 2026</span>
     </div>

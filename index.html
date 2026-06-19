@@ -495,41 +495,6 @@ img { display:block; max-width:100%; }
   background:rgba(255,255,255,.06); border-radius:3px; padding:2px 10px;
 }
 .bframe img { width:100%; display:block; }
-.media-placeholder {
-  min-height:260px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:.45rem;
-  padding:2rem;
-  background:
-    linear-gradient(135deg, rgba(201,168,76,.13), rgba(45,212,191,.08)),
-    radial-gradient(circle at 30% 20%, rgba(96,165,250,.16), transparent 32%),
-    var(--bg3);
-  color:var(--ink);
-  text-align:center;
-}
-.media-placeholder strong {
-  font-family:var(--serif);
-  font-size:1.1rem;
-  font-weight:600;
-}
-.media-placeholder span {
-  font-family:var(--mono);
-  font-size:.62rem;
-  letter-spacing:.08em;
-  color:var(--muted);
-  text-transform:uppercase;
-}
-.photo-placeholder {
-  min-height:360px;
-  border-radius:12px;
-}
-.photo-grad.photo-placeholder {
-  min-height:180px;
-}
-
 /* ═══════════════════════════════════
    TEACHING
 ═══════════════════════════════════ */
@@ -781,7 +746,7 @@ img { display:block; max-width:100%; }
     <a href="#contact">Contact</a>
   </div>
   <div class="nav__actions">
-    <a href="mailto:taanayd@gmail.com?subject=CV%20request" target="_blank" class="nav__cv">
+    <a href="Tanay_CV_PhD.pdf" target="_blank" class="nav__cv" download>
       <svg viewBox="0 0 24 24"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 20h16"/></svg>
       CV / Resume
     </a>
@@ -797,7 +762,7 @@ img { display:block; max-width:100%; }
     <a href="publications.html">Publications</a>
     <a href="#photography">Travel</a>
     <a href="#contact">Contact</a>
-    <a href="mailto:taanayd@gmail.com?subject=CV%20request" target="_blank" style="color:var(--gold)">⬇ CV</a>
+    <a href="Tanay_CV_PhD.pdf" target="_blank" style="color:var(--gold)" download>⬇ CV</a>
   </div>
 </nav>
 
@@ -839,7 +804,7 @@ img { display:block; max-width:100%; }
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6M9 16h6M17 21H7a2 2 0 01-2-2V5a2 2 0 012-2h7l5 5v11a2 2 0 01-2 2z"/></svg>
           7 Publications
         </a>
-        <a href="mailto:taanayd@gmail.com?subject=CV%20request" class="btn-outline" target="_blank">
+        <a href="Tanay_CV_PhD.pdf" class="btn-outline" target="_blank" download>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 20h16"/></svg>
           CV
         </a>
@@ -872,17 +837,11 @@ img { display:block; max-width:100%; }
     <div class="hero__right" data-r data-d="3">
       <div class="photo-stack" style="width:100%">
         <div class="photo-badge2">IIT Gandhinagar · Class of 2025</div>
-        <div class="photo-main photo-placeholder media-placeholder" role="img" aria-label="Tanay Das portrait placeholder">
-          <strong>Tanay Das</strong>
-          <span>Silicon Design Engineer</span>
-        </div>
+        <img src="tanay-portrait.jpg" alt="Tanay Das" class="photo-main"/>
         <div class="photo-badge">AMD · Hyderabad · 2026</div>
       </div>
       <div style="width:100%">
-        <div class="photo-grad photo-placeholder media-placeholder" role="img" aria-label="IIT Gandhinagar convocation placeholder">
-          <strong>IIT Gandhinagar</strong>
-          <span>M.Tech Convocation · 2025</span>
-        </div>
+        <img src="tanay-convocation.jpg" alt="Tanay Das — IIT Gandhinagar M.Tech Convocation 2025" class="photo-grad"/>
         <p class="grad-caption">M.Tech Convocation · IIT Gandhinagar · 2025</p>
       </div>
       <div class="stats-grid" style="width:100%">
@@ -1131,10 +1090,7 @@ img { display:block; max-width:100%; }
               <span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span>
               <span class="burl">internal verification platform — RTL Verify · AI-Powered Testcase Generation</span>
             </div>
-            <div class="media-placeholder" role="img" aria-label="RTL Verification Platform preview">
-              <strong>RTL Verification Platform</strong>
-              <span>AI testcase generation · 4 simulators</span>
-            </div>
+            <img src="images/platform-live.png" alt="RTL Verification Platform"/>
           </div>
         </div>
       </div>
@@ -1149,10 +1105,7 @@ img { display:block; max-width:100%; }
               <span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span>
               <span class="burl">internal verification portal — CR Verification Portal · AMD</span>
             </div>
-            <div class="media-placeholder" role="img" aria-label="CR Verification Portal preview">
-              <strong>CR Verification Portal</strong>
-              <span>Batch verification · live status</span>
-            </div>
+            <img src="images/tool-portal.png" alt="CR Verification Portal"/>
           </div>
         </div>
         <div class="tool-copy-col">
@@ -1614,7 +1567,7 @@ img { display:block; max-width:100%; }
         <div class="ccard__label">Instagram</div>
         <div class="ccard__val"><a href="https://www.instagram.com/_tanaydas_/" target="_blank" rel="noopener">@_tanaydas_</a></div>
       </div>
-      <div class="ccard" style="cursor:pointer" onclick="window.location.href='mailto:taanayd@gmail.com?subject=CV%20request'">
+      <div class="ccard" style="cursor:pointer" onclick="window.open('Tanay_CV_PhD.pdf','_blank')">
         <div class="ccard__label">Résumé / CV</div>
         <div class="ccard__val" style="color:var(--gold)">Download PDF ↓</div>
       </div>
@@ -1637,7 +1590,7 @@ img { display:block; max-width:100%; }
     <div class="footer-links">
       <a href="tools.html">Tools</a>
       <a href="publications.html">Publications</a>
-      <a href="mailto:taanayd@gmail.com?subject=CV%20request" target="_blank">CV</a>
+      <a href="Tanay_CV_PhD.pdf" target="_blank" download>CV</a>
       <a href="#hero">↑ Top</a>
       <span>© 2026</span>
     </div>
