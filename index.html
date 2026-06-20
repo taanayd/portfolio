@@ -378,19 +378,18 @@ body::before{content:'';position:fixed;inset:0;z-index:1000;pointer-events:none;
 .insta-embed blockquote.instagram-media{margin:0!important;min-width:unset!important;max-width:100%!important;border:0!important;box-shadow:none!important}
 
 /* ── INSTAGRAM CAROUSEL ──────────────────────── */
-.insta-carousel{position:relative;width:100%}
-.ic-track{display:flex;overflow:hidden;border-radius:12px;aspect-ratio:1/1;background:var(--cream3)}
-.ic-slide{flex:0 0 100%;position:relative;overflow:hidden;transition:transform .5s var(--ease);display:block}
-.ic-slide img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s var(--ease)}
-.ic-slide:hover img{transform:scale(1.04)}
-.ic-overlay{position:absolute;top:10px;right:10px;width:32px;height:32px;background:rgba(0,0,0,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s}
-.ic-slide:hover .ic-overlay{opacity:1}
-.ic-controls{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:.85rem}
-.ic-btn{background:var(--cream2);border:1px solid var(--border);color:var(--ink);width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .2s}
-.ic-btn:hover{background:var(--golddim);border-color:var(--gold);color:var(--goldd)}
-.ic-dots{display:flex;gap:.4rem}
-.ic-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);transition:all .2s;cursor:pointer}
-.ic-dot.active{background:var(--goldd);width:18px;border-radius:3px}
+.insta-carousel{width:100%}
+.ic-wrapper{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:1/1;background:var(--cream3)}
+.ic-track{display:flex;width:500%;height:100%;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.ic-slide{flex:0 0 20%;height:100%;display:block;overflow:hidden}
+.ic-slide img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.ic-slide:hover img{transform:scale(1.03)}
+.ic-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(250,248,244,.85);border:1px solid var(--border);color:var(--ink);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:10;backdrop-filter:blur(8px)}
+.ic-arrow:hover{background:var(--cream);border-color:var(--gold);color:var(--goldd)}
+.ic-prev{left:10px}.ic-next{right:10px}
+.ic-dots{display:flex;justify-content:center;gap:.4rem;margin-top:.75rem}
+.ic-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);transition:all .25s;cursor:pointer;border:none;padding:0}
+.ic-dot.active{background:var(--goldd);width:20px;border-radius:3px}
 @media(max-width:1024px){
   .hero__inner{grid-template-columns:1fr}
   .recog-grid{grid-template-columns:1fr 1fr}
@@ -1007,356 +1006,22 @@ body::before{content:'';position:fixed;inset:0;z-index:1000;pointer-events:none;
         </a>
       </div>
       <div class="reveal" data-d="2">
-        <!-- Instagram Carousel -->
         <div class="insta-carousel">
-          <div class="ic-track" id="icTrack">
-            <a href="https://www.instagram.com/p/DZUnbTmDUan/" target="_blank" rel="noopener" class="ic-slide">
-              <img src="https://instagram.com/p/DZUnbTmDUan/media/?size=l" alt="Travel photo by Tanay Das" loading="lazy" onerror="this.parentElement.style.display='none'"/>
-              <div class="ic-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="white" stroke="none"/></svg></div>
-            </a>
-            <a href="https://www.instagram.com/reel/DZA2eCNShTb/" target="_blank" rel="noopener" class="ic-slide">
-              <img src="https://instagram.com/reel/DZA2eCNShTb/media/?size=l" alt="Travel photo by Tanay Das" loading="lazy" onerror="this.parentElement.style.display='none'"/>
-              <div class="ic-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="white" stroke="none"/></svg></div>
-            </a>
-            <a href="https://www.instagram.com/p/DVXfLtQEvX6/" target="_blank" rel="noopener" class="ic-slide">
-              <img src="https://instagram.com/p/DVXfLtQEvX6/media/?size=l" alt="Travel photo by Tanay Das" loading="lazy" onerror="this.parentElement.style.display='none'"/>
-              <div class="ic-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="white" stroke="none"/></svg></div>
-            </a>
-            <a href="https://www.instagram.com/p/DUr_o9jEp4u/" target="_blank" rel="noopener" class="ic-slide">
-              <img src="https://instagram.com/p/DUr_o9jEp4u/media/?size=l" alt="Travel photo by Tanay Das" loading="lazy" onerror="this.parentElement.style.display='none'"/>
-              <div class="ic-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="white" stroke="none"/></svg></div>
-            </a>
-            <a href="https://www.instagram.com/p/DXooapvkoFi/" target="_blank" rel="noopener" class="ic-slide">
-              <img src="https://instagram.com/p/DXooapvkoFi/media/?size=l" alt="Travel photo by Tanay Das" loading="lazy" onerror="this.parentElement.style.display='none'"/>
-              <div class="ic-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="white" stroke="none"/></svg></div>
-            </a>
+          <div class="ic-wrapper">
+            <div class="ic-track" id="icTrack">
+              <a href="https://www.instagram.com/p/DZUnbTmDUan/" target="_blank" rel="noopener" class="ic-slide"><img src="images/insta1.jpg" alt="Travel · @_tanaydas_"/></a>
+              <a href="https://www.instagram.com/reel/DZA2eCNShTb/" target="_blank" rel="noopener" class="ic-slide"><img src="images/insta2.jpg" alt="Travel · @_tanaydas_"/></a>
+              <a href="https://www.instagram.com/p/DVXfLtQEvX6/" target="_blank" rel="noopener" class="ic-slide"><img src="images/insta3.jpg" alt="Travel · @_tanaydas_"/></a>
+              <a href="https://www.instagram.com/p/DUr_o9jEp4u/" target="_blank" rel="noopener" class="ic-slide"><img src="images/insta4.jpg" alt="Travel · @_tanaydas_"/></a>
+              <a href="https://www.instagram.com/p/DXooapvkoFi/" target="_blank" rel="noopener" class="ic-slide"><img src="images/insta5.jpg" alt="Travel · @_tanaydas_"/></a>
+            </div>
+            <button class="ic-arrow ic-prev" onclick="moveCarousel(-1)">&#8592;</button>
+            <button class="ic-arrow ic-next" onclick="moveCarousel(1)">&#8594;</button>
           </div>
-          <div class="ic-controls">
-            <button class="ic-btn" onclick="moveCarousel(-1)" aria-label="Previous">&#8592;</button>
-            <div class="ic-dots" id="icDots"></div>
-            <button class="ic-btn" onclick="moveCarousel(1)" aria-label="Next">&#8594;</button>
-          </div>
+          <div class="ic-dots" id="icDots"></div>
         </div>
         <p style="font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--light);text-align:center;margin-top:.85rem">
           Photography &middot; Travel &middot; Curiosity &nbsp;&middot;&nbsp;
           <a href="https://www.instagram.com/_tanaydas_/" target="_blank" rel="noopener" style="color:var(--goldd)">@_tanaydas_</a>
         </p>
       </div>
-    </div>
-  </div>
-</section>
-
-<div class="marquee-sec">
-  <div class="marquee-track" id="marqueeTrack"></div>
-</div>
-
-<!-- ══════════════════════════════════
-     CONTACT
-══════════════════════════════════ -->
-<section class="sec contact-sec" id="contact">
-  <div class="wrap">
-    <div class="contact-inner">
-      <div class="reveal">
-        <div class="lbl lbl-gold" style="margin-bottom:1.5rem;display:block">09 · Contact</div>
-        <div class="contact-script">Let's build something</div>
-        <div class="contact-script">meaningful.</div>
-        <hr class="hr" style="margin:2rem 0"/>
-      </div>
-
-      <p class="contact-desc reveal" data-d="1">
-        Open to research collaborations, PhD opportunities, and conversations about ESD design, neuromorphic computing, AI-assisted EDA, or just a good engineering problem.
-      </p>
-
-      <div class="contact-grid reveal" data-d="2">
-        <a href="mailto:taanayd@gmail.com" class="cc">
-          <div class="cc__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-          <div><div class="cc__k">Email</div><div class="cc__v">taanayd@gmail.com</div></div>
-          <svg class="cc__arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/in/dastanay/" target="_blank" rel="noopener" class="cc">
-          <div class="cc__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 014 0v4M12 13v4"/></svg></div>
-          <div><div class="cc__k">LinkedIn</div><div class="cc__v">linkedin.com/in/dastanay</div></div>
-          <svg class="cc__arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="https://scholar.google.com/citations?user=6aBaFCcAAAAJ" target="_blank" rel="noopener" class="cc">
-          <div class="cc__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3L1 9l11 6 9-4.91V17M5 13.18v4L12 21l7-3.82v-4"/></svg></div>
-          <div><div class="cc__k">Google Scholar</div><div class="cc__v">Research Profile</div></div>
-          <svg class="cc__arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="https://github.com/taanayd" target="_blank" rel="noopener" class="cc">
-          <div class="cc__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></div>
-          <div><div class="cc__k">GitHub</div><div class="cc__v">github.com/taanayd</div></div>
-          <svg class="cc__arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="https://www.instagram.com/_tanaydas_/" target="_blank" rel="noopener" class="cc">
-          <div class="cc__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></div>
-          <div><div class="cc__k">Instagram</div><div class="cc__v">@_tanaydas_</div></div>
-          <svg class="cc__arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="https://taanayd.github.io/portfolio/Tanay_CV_PhD.pdf" target="_blank" download class="cc cc--gold">
-          <div class="cc__icon" style="color:var(--goldd)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 20h16"/></svg></div>
-          <div><div class="cc__k">Résumé / CV</div><div class="cc__v">Download PDF</div></div>
-          <svg class="cc__arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/></svg>
-        </a>
-      </div>
-
-      <p class="lbl" style="color:var(--light);margin-top:1.5rem;display:block" class="reveal">Based in Hyderabad, India · Open to global research collaborations & PhD opportunities</p>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <div class="fi">TD</div>
-      <div>
-        <div class="fn">Tanay Das</div>
-        <div class="fs">Silicon Design Engineer · AMD, Hyderabad · M.Tech IIT Gandhinagar 2025</div>
-      </div>
-    </div>
-    <div class="footer-links">
-      <a href="tools.html">Tools</a>
-      <a href="publications.html">Publications</a>
-      <a href="#awards">Awards</a>
-      <a href="#photography">Travel</a>
-      <a href="https://taanayd.github.io/portfolio/Tanay_CV_PhD.pdf" download>CV</a>
-      <a href="#hero">↑ Top</a>
-      <span style="color:var(--light)">© 2026</span>
-    </div>
-  </div>
-</footer>
-
-<script>
-// ── MOUSE GLOW ───────────────────────────────────────
-const glow = document.getElementById('glow')
-window.addEventListener('mousemove', e => {
-  glow.style.left = e.clientX + 'px'
-  glow.style.top = e.clientY + 'px'
-}, { passive: true })
-
-// ── NAV ──────────────────────────────────────────────
-const nav = document.getElementById('nav')
-const sections = document.querySelectorAll('section[id]')
-const navAs = document.querySelectorAll('.nav__links a')
-let burgerOpen = false
-
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('solid', scrollY > 40)
-  let cur = ''
-  sections.forEach(s => { if (scrollY >= s.offsetTop - 120) cur = s.id })
-  navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur))
-}, { passive: true })
-
-const burger = document.getElementById('burger')
-const mob = document.getElementById('mobMenu')
-burger.addEventListener('click', () => {
-  burgerOpen = !burgerOpen
-  mob.classList.toggle('open', burgerOpen)
-  const b1 = document.getElementById('b1'), b2 = document.getElementById('b2'), b3 = document.getElementById('b3')
-  b1.style.transform = burgerOpen ? 'rotate(45deg) translateY(6.5px)' : ''
-  b2.style.opacity = burgerOpen ? '0' : '1'
-  b3.style.transform = burgerOpen ? 'rotate(-45deg) translateY(-6.5px)' : ''
-})
-function closeMob() { burgerOpen = false; mob.classList.remove('open') }
-
-// ── HERO NAME REVEAL ─────────────────────────────────
-setTimeout(() => {
-  const n1 = document.getElementById('heroName1')
-  const n2 = document.getElementById('heroName2')
-  n1.style.transition = 'opacity .8s .3s cubic-bezier(.16,1,.3,1), transform .8s .3s cubic-bezier(.16,1,.3,1)'
-  n1.style.opacity = '1'; n1.style.transform = 'translateY(0)'
-  n2.style.transition = 'opacity .8s .55s cubic-bezier(.16,1,.3,1), transform .8s .55s cubic-bezier(.16,1,.3,1)'
-  n2.style.opacity = '1'; n2.style.transform = 'translateY(0)'
-}, 100)
-
-// ── SCROLL REVEAL ────────────────────────────────────
-const rio = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('on'); rio.unobserve(e.target) }
-  })
-}, { threshold: 0.06, rootMargin: '0px 0px -50px 0px' })
-document.querySelectorAll('.reveal').forEach(el => rio.observe(el))
-
-// ── COUNTER ──────────────────────────────────────────
-function runCounter(el) {
-  if (el._done) return; el._done = true
-  if (el.dataset.countText) {
-    let f = 0
-    const t = () => { f++; el.textContent = Math.floor(Math.random() * 20) + '×'; if (f < 35) requestAnimationFrame(t); else el.textContent = el.dataset.countText }
-    requestAnimationFrame(t); return
-  }
-  const target = parseFloat(el.dataset.count)
-  const dec = parseInt(el.dataset.dec || '0')
-  const dur = 1300, start = performance.now()
-  const ease = t => 1 - Math.pow(1 - t, 3)
-  const tick = now => {
-    const t = Math.min((now - start) / dur, 1)
-    const v = target * ease(t)
-    el.textContent = dec > 0 ? v.toFixed(dec) : Math.floor(v)
-    if (t < 1) requestAnimationFrame(tick)
-    else el.textContent = dec > 0 ? target.toFixed(dec) : target
-  }
-  requestAnimationFrame(tick)
-}
-const cio = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.querySelectorAll('[data-count],[data-count-text]').forEach(runCounter) })
-}, { threshold: 0.3 })
-document.querySelectorAll('.hero__stats,.proj-metrics').forEach(el => cio.observe(el))
-
-// ── SKILL GALAXY ─────────────────────────────────────
-const skills = [
-  { label: 'VLSI Design', angle: 0,   r: 140, size: 62, detail: 'Cadence Virtuoso · DRC/LVS · Layout' },
-  { label: 'Analog IC', angle: 45,  r: 140, size: 62, detail: 'OPAMP · OTA · BGR · ADC · 65nm/180nm' },
-  { label: 'ESD Protection', angle: 90,  r: 140, size: 62, detail: 'Sub-3Ω · TLP · IEC 61000-4-2' },
-  { label: 'RRAM/ReRAM', angle: 135, r: 140, size: 62, detail: 'IMC · Crossbar · Device Modeling' },
-  { label: 'RTL Verify', angle: 180, r: 140, size: 62, detail: 'XSim · Xcelium · Questa · Riviera-PRO' },
-  { label: 'AI / Backend', angle: 225, r: 140, size: 62, detail: 'Claude API · ChromaDB · FastAPI · RAG' },
-  { label: 'HDL Design', angle: 270, r: 140, size: 62, detail: 'SystemVerilog · VHDL · Verilog · LRM' },
-  { label: 'Python', angle: 315, r: 140, size: 62, detail: 'Automation · REST APIs · Data Analysis' },
-  { label: 'Cadence', angle: 22,  r: 220, size: 46, detail: 'Schematic · Layout · DRC/LVS' },
-  { label: 'Vivado', angle: 68,  r: 220, size: 46, detail: 'XSim · Constraints · IPs' },
-  { label: 'Ngspice', angle: 112, r: 220, size: 46, detail: 'Open-source SPICE simulation' },
-  { label: 'SKY130 PDK', angle: 158, r: 220, size: 46, detail: 'Open-source 130nm process' },
-  { label: 'gdsfactory', angle: 202, r: 220, size: 46, detail: 'Photonic IC layout · Python' },
-  { label: 'KiCad', angle: 248, r: 220, size: 46, detail: 'PCB design · RRAM boards' },
-  { label: 'LaTeX', angle: 292, r: 220, size: 46, detail: 'Technical writing · IEEE papers' },
-  { label: 'MATLAB', angle: 338, r: 220, size: 46, detail: 'Signal processing · Simulation' },
-]
-const galaxy = document.getElementById('galaxy')
-const cx = 270, cy = 270
-skills.forEach(s => {
-  const rad = (s.angle - 90) * Math.PI / 180
-  const x = cx + Math.cos(rad) * s.r
-  const y = cy + Math.sin(rad) * s.r
-  const node = document.createElement('div')
-  node.className = 'skill-node'
-  node.style.cssText = `left:${x}px;top:${y}px`
-  node.innerHTML = `
-    <div class="skill-bubble" style="width:${s.size}px;height:${s.size}px">
-      <span style="font-size:${s.r===140?'.55rem':'.46rem'};padding:0 .2rem">${s.label}</span>
-    </div>
-    <div class="skill-tooltip">${s.label}<br><span style="color:#9CA3AF;font-size:.56rem">${s.detail}</span></div>
-  `
-  galaxy.appendChild(node)
-})
-
-// ── BOOKSHELF ─────────────────────────────────────────
-const books = [
-  { id:'★', color:'#C8A97E', tc:'#2C1810', label:'SSCS Code-a-Chip Award · ESSERC 2026', year:'2026', title:'Power Side-Channel Vulnerability on Analog IMC Arrays', abs:'Power side-channel attack on RRAM 1T1R crossbar. ρ=0.9979 HW leakage, ρ=0.9998 weight extraction. IEEE SSCS Travel Grant.', link:'#' },
-  { id:'J1', color:'#A8B5A2', tc:'#1A2410', label:'IEEE JEDS', year:'2025', title:'ESD Sub-3Ω Dynamic Resistance for Neuromodulation SoC', abs:'Sub-3Ω ESD protection in 65nm CMOS. IEC 61000-4-2 compliant for 10V neurostimulator.', link:'https://ieeexplore.ieee.org/abstract/document/11391546' },
-  { id:'C1', color:'#D4C9B8', tc:'#2C2410', label:'IEEE ICEE · Best Paper 🏆', year:'2025', title:'Hybrid SW-FPGA RRAM-crossbar IMC with Bit-Slicing', abs:'RRAM crossbar + bit-slicing for in-memory computing. Best Paper Award ICEE 2025.', link:'https://ieeexplore.ieee.org/abstract/document/11409883' },
-  { id:'C2', color:'#C8A97E', tc:'#2C1810', label:'IEEE ICEE', year:'2025', title:'ESD On-chip Diodes for 65nm Neurostimulators', abs:'On-chip diode ESD protection for high-voltage neurostimulators in 65nm CMOS.', link:'https://ieeexplore.ieee.org/abstract/document/11409724' },
-  { id:'C3', color:'#A8B5A2', tc:'#1A2410', label:'IEEE ICEE', year:'2025', title:'TCAD-Guided Compact ESD for 65nm Neurostimulators', abs:'TCAD-guided ESD protection design for 65nm neurostimulator applications.', link:'https://ieeexplore.ieee.org/abstract/document/11409969' },
-  { id:'C4', color:'#E7DFD4', tc:'#2C2410', label:'IEEE EDTM', year:'2025', title:'Enhanced ESD for 10V Neurostimulators in 65nm', abs:'Enhanced ESD enabling 10V operation in 65nm CMOS neurostimulator circuits.', link:'https://ieeexplore.ieee.org/abstract/document/11041318' },
-  { id:'C5', color:'#C8A97E', tc:'#2C1810', label:'VDAT', year:'2024', title:'Dynamic Resistance Reduction for GGNMOS ESD', abs:'Circuit-level methods to reduce GGNMOS dynamic resistance for lower clamping voltage.', link:'https://ieeexplore.ieee.org/document/10705717/' },
-  { id:'C6', color:'#A8B5A2', tc:'#1A2410', label:'IEEE ESSERC', year:'2026', title:'STDP PCMO RRAM (16×3 Crossbar) · Accepted', abs:'Neuromorphic STDP in PCMO RRAM 16×3 crossbar, 180nm TSMC. 92.6% Iris accuracy.', link:'#' },
-  { id:'M1', color:'#D4C9B8', tc:'#2C2410', label:'Materials Today', year:'2022', title:'MXene from MAX Phase', abs:'Synthesis and structural characterisation of MXene 2D materials from MAX phase precursors.', link:'https://doi.org/10.1016/j.matpr.2022.02.253' },
-]
-const booksRow = document.getElementById('booksRow')
-books.forEach(b => {
-  const el = document.createElement('div')
-  el.className = 'book'
-  if(b.link !== '#'){
-    el.style.cursor = 'pointer'
-    el.addEventListener('click', () => window.open(b.link, '_blank'))
-  }
-  el.innerHTML = `
-    <div class="book-spine" style="background:${b.color};color:${b.tc}">
-      <span class="book-year" style="color:${b.tc}">${b.year}</span>
-      <span class="book-label" style="color:${b.tc}">${b.title.substring(0,42)}</span>
-      <span class="book-id" style="color:${b.tc}">${b.id}</span>
-    </div>
-    <div class="book-popup">
-      <div style="font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;color:var(--muted);margin-bottom:.5rem">${b.label} · ${b.year}</div>
-      <h4>${b.title}</h4>
-      <p>${b.abs}</p>
-      ${b.link !== '#' ? `<a href="${b.link}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Read paper →</a>` : '<span style="font-family:var(--mono);font-size:.58rem;color:var(--gold)">In Press / Accepted</span>'}
-    </div>
-  `
-  booksRow.appendChild(el)
-})
-
-// ── MARQUEE ───────────────────────────────────────────
-const achievements = [
-  { text: 'IEEE SSCS Code-a-Chip Travel Grant', sub: 'ESSERC 2026 · Palma de Mallorca', col: '#C8A97E' },
-  { text: 'Best Paper Award', sub: 'IEEE ICEE 2025', col: '#A8B5A2' },
-  { text: 'URAM 2.0 Scholarship', sub: 'Micron Technology 2024', col: '#C8A97E' },
-  { text: 'Capture The Bug Winner', sub: 'NIELIT Design Verification Hackathon 2022', col: '#A8B5A2' },
-  { text: 'Sky130 Mixed-Signal Marathon', sub: 'FOSSEE · IIT Bombay 2022', col: '#C8A97E' },
-  { text: 'Gold Medalist', sub: 'SMIT 2021 & 2022', col: '#A8B5A2' },
-  { text: '9 IEEE Publications', sub: 'JEDS · EDTM · ICEE · VDAT · ESSERC', col: '#C8A97E' },
-  { text: '18× Faster Verification', sub: 'AMD CR Batch Portal · 2026', col: '#A8B5A2' },
-  { text: 'M.Tech CPI 9.06', sub: 'IIT Gandhinagar · Class of 2025', col: '#C8A97E' },
-  { text: 'B.Tech CPI 9.7', sub: 'Gold Medalist · SMIT', col: '#A8B5A2' },
-  { text: 'Pearson ρ = 0.9979', sub: 'Side-Channel IMC Analysis · SSCS', col: '#C8A97E' },
-  { text: '92.6% Iris Accuracy', sub: 'PCMO RRAM Neuromorphic · No Backprop', col: '#A8B5A2' },
-]
-const track = document.getElementById('marqueeTrack')
-const all = [...achievements, ...achievements]
-all.forEach(a => {
-  const el = document.createElement('div')
-  el.className = 'marquee-item'
-  el.innerHTML = `
-    <div class="dot-acc" style="background:${a.col}"></div>
-    <div>
-      <div class="mi-text">${a.text}</div>
-      <div class="mi-sub">${a.sub}</div>
-    </div>
-  `
-  track.appendChild(el)
-})
-
-// ── GSAP (optional enhancement) ──────────────────────
-if (window.gsap && window.ScrollTrigger) {
-  gsap.registerPlugin(ScrollTrigger)
-  gsap.utils.toArray('.paper-card').forEach((card, i) => {
-    gsap.fromTo(card, { y: 32, opacity: 0 },
-      { y: 0, opacity: 1, duration: .8, delay: i * .12, ease: 'power3.out',
-        scrollTrigger: { trigger: card, start: 'top 90%', once: true } })
-  })
-  gsap.utils.toArray('.proj-item').forEach((item, i) => {
-    gsap.fromTo(item, { x: i % 2 === 0 ? -32 : 32, opacity: 0 },
-      { x: 0, opacity: 1, duration: .9, ease: 'power3.out',
-        scrollTrigger: { trigger: item, start: 'top 85%', once: true } })
-  })
-}
-// ── Instagram Carousel ──────────────────────────────────
-(function(){
-  const track = document.getElementById('icTrack')
-  if(!track) return
-  const slides = track.querySelectorAll('.ic-slide')
-  const dotsC = document.getElementById('icDots')
-  let cur = 0
-  const total = slides.length
-
-  // Build dots
-  slides.forEach((_,i) => {
-    const d = document.createElement('div')
-    d.className = 'ic-dot' + (i===0?' active':'')
-    d.addEventListener('click', () => goTo(i))
-    dotsC.appendChild(d)
-  })
-
-  function goTo(n){
-    cur = (n + total) % total
-    track.style.transform = `translateX(-${cur * 100}%)`
-    track.style.transition = 'transform .5s cubic-bezier(.16,1,.3,1)'
-    track.style.display = 'flex'
-    document.querySelectorAll('.ic-dot').forEach((d,i) => d.classList.toggle('active', i===cur))
-  }
-
-  // Make track a flex container that slides
-  track.style.display = 'flex'
-  track.style.width = `${total * 100}%`
-  slides.forEach(s => s.style.flex = `0 0 ${100/total}%`)
-
-  window.moveCarousel = function(dir){ goTo(cur + dir) }
-
-  // Auto-advance every 4s
-  setInterval(() => goTo(cur + 1), 4000)
-})()
-
-</script>
-</body>
-</html>
