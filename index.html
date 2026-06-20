@@ -314,7 +314,63 @@ body::before{content:'';position:fixed;inset:0;z-index:1000;pointer-events:none;
 .cc__arr{margin-left:auto;color:var(--border2);flex-shrink:0;transition:color .2s,transform .2s}
 .cc:hover .cc__arr{color:var(--goldd);transform:translateX(3px)}
 
-/* ── FOOTER ──────────────────────── */
+/* ── TEACHING ────────────────────── */
+.teach-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.teach-card{background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.4rem;display:flex;align-items:center;gap:1rem;transition:border-color .25s,transform .2s}
+.teach-card:hover{border-color:rgba(200,169,126,.3);transform:translateY(-2px)}
+.teach-ico{width:38px;height:38px;background:var(--cream2);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.teach-ico svg{width:17px;height:17px;stroke:var(--goldd);stroke-width:1.5;fill:none}
+.teach-code{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;color:var(--goldd);margin-bottom:.15rem}
+.teach-name{font-size:.88rem;font-weight:500;color:var(--ink);margin-bottom:.15rem}
+.teach-meta{font-family:var(--mono);font-size:.58rem;letter-spacing:.04em;color:var(--muted)}
+
+/* ── AWARDS ──────────────────────── */
+.awards-logo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.5rem}
+@media(max-width:640px){.awards-logo-grid{grid-template-columns:1fr 1fr}}
+.award-logo-card{background:var(--cream);border:1px solid var(--border);border-radius:12px;padding:1.5rem 1.25rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.85rem;transition:border-color .25s,transform .25s,box-shadow .25s;cursor:default}
+.award-logo-card:hover{border-color:rgba(200,169,126,.35);transform:translateY(-3px);box-shadow:0 4px 20px rgba(200,169,126,.1)}
+.award-logo-card.featured{border-color:rgba(200,169,126,.3);background:linear-gradient(135deg,var(--cream),rgba(200,169,126,.04))}
+.award-logo-img{width:56px;height:56px;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--cream2);border:1px solid var(--border)}
+.award-logo-img img{width:100%;height:100%;object-fit:contain}
+.award-logo-kicker{font-family:var(--mono);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.award-logo-name{font-family:var(--display);font-size:.88rem;font-weight:600;color:var(--ink);line-height:1.3;text-align:center}
+.award-logo-card.featured .award-logo-name{color:var(--goldd)}
+
+.awards-list-section{display:flex;flex-direction:column}
+.award-row{display:flex;align-items:flex-start;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--border);transition:background .15s}
+.award-row:last-child{border-bottom:none}
+.award-row:hover{background:rgba(200,169,126,.03);margin:0 -12px;padding:1rem 12px;border-radius:8px}
+.award-row.hl{border-left:2px solid var(--gold);padding-left:.85rem}
+.award-row.hl .award-row-name{color:var(--goldd)}
+.award-row-logo{width:36px;height:36px;background:var(--cream2);border-radius:7px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;border:1px solid var(--border)}
+.award-row-logo img{width:100%;height:100%;object-fit:contain}
+.award-row-body{flex:1}
+.award-row-name{font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:.2rem;line-height:1.35}
+.award-row-desc{font-size:.78rem;color:var(--muted)}
+.award-row-year{font-family:var(--display);font-size:1rem;font-weight:700;color:var(--muted);flex-shrink:0;padding-top:1px}
+
+/* ── PHOTOGRAPHY ─────────────────── */
+.photo-split{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+@media(max-width:768px){.photo-split{grid-template-columns:1fr;gap:2.5rem}}
+.photo-pre{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.5rem}
+.photo-h{font-family:var(--display);font-size:clamp(1.9rem,3.5vw,2.6rem);font-weight:300;color:var(--ink);line-height:1.15;margin-bottom:.85rem}
+.photo-h em{font-style:italic;font-weight:500;color:var(--goldd)}
+.photo-body{font-size:.92rem;color:var(--muted);line-height:1.85;margin-bottom:1.4rem}
+.photo-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.75rem}
+.photo-ptag{font-size:.68rem;padding:.22rem .75rem;border-radius:4px;background:rgba(255,255,255,.6);color:var(--muted);border:1px solid var(--border)}
+.insta-profile{background:var(--cream);border:1px solid var(--border);border-radius:12px;padding:1.25rem;margin-bottom:1.1rem}
+.insta-head{display:flex;align-items:center;gap:.85rem;margin-bottom:.85rem}
+.insta-av{width:42px;height:42px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);display:flex;align-items:center;justify-content:center}
+.insta-av svg{width:18px;height:18px;stroke:#fff;stroke-width:1.5;fill:none}
+.insta-handle{font-weight:600;color:var(--ink);font-size:.9rem}
+.insta-sub-t{font-size:.7rem;color:var(--muted)}
+.insta-bio{font-size:.82rem;color:var(--muted);line-height:1.65;margin-bottom:.85rem}
+.insta-btn{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;background:linear-gradient(135deg,#f09433,#dc2743,#bc1888);color:#fff;font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;padding:.65rem 1.25rem;border-radius:8px;text-transform:uppercase;transition:opacity .2s,transform .2s;cursor:pointer}
+.insta-btn:hover{opacity:.88;transform:translateY(-2px)}
+.insta-btn svg{width:14px;height:14px;stroke:#fff;stroke-width:1.8;fill:none}
+.insta-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.insta-embed-wrap{border-radius:10px;overflow:hidden;background:var(--cream2);border:1px solid var(--border)}
+.insta-embed-wrap blockquote{margin:0!important;min-width:unset!important;max-width:100%!important;background:#fff!important;border:none!important;box-shadow:none!important}
 .footer{background:var(--cream2);border-top:1px solid var(--border);padding:1.75rem clamp(1.5rem,5vw,4rem)}
 .footer-inner{max-width:var(--max);margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
 .footer-brand{display:flex;align-items:center;gap:.75rem}
@@ -333,67 +389,8 @@ body::before{content:'';position:fixed;inset:0;z-index:1000;pointer-events:none;
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
 /* ── RESPONSIVE ──────────────────── */
-
-/* ── AWARDS ──────────────────────── */
-.recog-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.5rem}
-.recog-card{background:var(--cream2);border:1px solid var(--border);border-radius:12px;padding:1.5rem 1.25rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.85rem;transition:border-color .3s,transform .3s,box-shadow .3s;cursor:default}
-.recog-card:hover{border-color:rgba(200,169,126,.4);transform:translateY(-3px);box-shadow:0 6px 24px rgba(200,169,126,.1)}
-.recog-card.featured{border-color:rgba(200,169,126,.3);background:linear-gradient(135deg,var(--cream2),rgba(200,169,126,.04))}
-.recog-logo{width:56px;height:56px;border-radius:8px;overflow:hidden;background:var(--cream);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.recog-logo img{width:100%;height:100%;object-fit:contain;padding:4px}
-.recog-kicker{font-family:var(--mono);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--light)}
-.recog-name{font-family:var(--display);font-size:.88rem;font-weight:600;color:var(--ink);line-height:1.35}
-.recog-card.featured .recog-name{color:var(--goldd)}
-.award-list{display:flex;flex-direction:column;border-top:1px solid var(--border)}
-.award-row{display:flex;align-items:center;gap:1rem;padding:1.1rem 0;border-bottom:1px solid var(--border);transition:background .15s;border-radius:7px}
-.award-row:last-child{border-bottom:none}
-.award-row:hover{background:rgba(200,169,126,.04);margin:0 -12px;padding:1.1rem 12px}
-.award-row.new-award{border-left:2px solid var(--gold);padding-left:.85rem}
-.award-logo{width:36px;height:36px;background:var(--cream2);border:1px solid var(--border);border-radius:7px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
-.award-logo img{width:100%;height:100%;object-fit:contain;padding:3px}
-.award-body{flex:1}
-.award-name{font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:.2rem;line-height:1.4}
-.award-row.new-award .award-name{color:var(--goldd)}
-.award-desc{font-size:.78rem;color:var(--muted)}
-.award-year{font-family:var(--display);font-size:1rem;font-weight:600;color:var(--light);flex-shrink:0}
-/* ── PHOTOGRAPHY ─────────────────── */
-.photo-split{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
-.photo-pre{font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.5rem}
-.photo-h{font-family:var(--display);font-size:clamp(1.7rem,3vw,2.3rem);font-weight:400;color:var(--ink);line-height:1.15;margin-bottom:.9rem}
-.photo-p{font-size:.92rem;color:var(--muted);line-height:1.85;margin-bottom:1.5rem}
-.photo-ptags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.75rem}
-.ptag-l{font-size:.7rem;padding:.22rem .75rem;border-radius:4px;background:rgba(255,255,255,.6);color:var(--muted);border:1px solid var(--border)}
-.insta-profile{background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:1.25rem;margin-bottom:1.25rem}
-.insta-head{display:flex;align-items:center;gap:.85rem;margin-bottom:.85rem}
-.insta-av{width:42px;height:42px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);display:flex;align-items:center;justify-content:center}
-.insta-av svg{width:18px;height:18px;stroke:#fff;stroke-width:1.5;fill:none}
-.insta-handle{font-weight:600;color:var(--ink);font-size:.9rem;margin-bottom:.1rem}
-.insta-sub{font-size:.7rem;color:var(--muted)}
-.insta-bio{font-size:.82rem;color:var(--muted);line-height:1.65;margin-bottom:.85rem}
-.insta-btn{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;background:linear-gradient(135deg,#f09433,#dc2743,#bc1888);color:#fff;font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;padding:.65rem 1.25rem;border-radius:7px;text-transform:uppercase;transition:opacity .2s,transform .2s;border:none;cursor:pointer;text-decoration:none}
-.insta-btn:hover{opacity:.88;transform:translateY(-2px)}
-.insta-btn svg{width:14px;height:14px;stroke:#fff;stroke-width:1.8;fill:none}
-.insta-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.insta-embed{border-radius:10px;overflow:hidden;background:var(--cream);border:1px solid var(--border);min-height:240px}
-.insta-embed blockquote.instagram-media{margin:0!important;min-width:unset!important;max-width:100%!important;border:0!important;box-shadow:none!important}
-
-/* ── INSTAGRAM CAROUSEL ──────────────────────── */
-.insta-carousel{width:100%}
-.ic-wrapper{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:1/1;background:var(--cream3)}
-.ic-track{display:flex;width:500%;height:100%;transition:transform .5s cubic-bezier(.16,1,.3,1)}
-.ic-slide{flex:0 0 20%;height:100%;display:block;overflow:hidden}
-.ic-slide img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
-.ic-slide:hover img{transform:scale(1.03)}
-.ic-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(250,248,244,.85);border:1px solid var(--border);color:var(--ink);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:10;backdrop-filter:blur(8px)}
-.ic-arrow:hover{background:var(--cream);border-color:var(--gold);color:var(--goldd)}
-.ic-prev{left:10px}.ic-next{right:10px}
-.ic-dots{display:flex;justify-content:center;gap:.4rem;margin-top:.75rem}
-.ic-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);transition:all .25s;cursor:pointer;border:none;padding:0}
-.ic-dot.active{background:var(--goldd);width:20px;border-radius:3px}
 @media(max-width:1024px){
   .hero__inner{grid-template-columns:1fr}
-  .recog-grid{grid-template-columns:1fr 1fr}
-  .photo-split{grid-template-columns:1fr;gap:2.5rem}
   .hero__right{display:none}
   .about-grid{grid-template-columns:1fr;gap:3rem}
   .proj-item,.proj-item.flip{grid-template-columns:1fr}
@@ -403,8 +400,6 @@ body::before{content:'';position:fixed;inset:0;z-index:1000;pointer-events:none;
   .nav__links,.nav__actions-d{display:none}
   .nav__burger{display:flex}
   .sec{padding:3.5rem 1.25rem}
-  .recog-grid{grid-template-columns:1fr 1fr}
-  .insta-grid{grid-template-columns:1fr}
   .contact-grid{grid-template-columns:1fr}
   .galaxy-wrap{width:340px;height:340px}
   .footer-inner{flex-direction:column;align-items:flex-start;gap:.75rem}
@@ -548,7 +543,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1000;pointer-events:none;
         <div class="hero__photo-back1"></div>
         <div class="hero__photo-back2"></div>
         <div class="hero__badge hero__badge1">IIT Gandhinagar · Class of 2025</div>
-        <img src="Tanay.jpg" alt="Tanay Das" class="hero__photo"/>
+        <img src="tanay.jpg" alt="Tanay Das" class="hero__photo"/>
         <div class="hero__badge hero__badge2">AMD · Hyderabad · 2026</div>
       </div>
       <div class="hero__signature" style="opacity:0;animation:fadeIn 1s 1.8s forwards">
@@ -723,6 +718,18 @@ body::before{content:'';position:fixed;inset:0;z-index:1000;pointer-events:none;
         <a href="https://ieeexplore.ieee.org/abstract/document/11409883" target="_blank" class="paper-link">Read on IEEE ↗</a>
       </div>
 
+      <div class="paper-card reveal">
+        <div style="display:flex;gap:.4rem;flex-wrap:wrap">
+          <span class="paper-badge badge-sage">Accepted · ESSERC 2026</span>
+          <span class="paper-badge" style="background:var(--cream2);border:1px solid var(--border2);color:var(--muted)">Neuromorphic</span>
+        </div>
+        <div class="paper-title">Frequency-Encoded STDP Learning Using 3-Terminal PCMO RRAM (16×3 Crossbar)</div>
+        <div class="paper-meta"><span>T. Das, U. Singh et al.</span><span class="paper-dot"></span><span>IEEE ESSERC 2026</span></div>
+        <p class="paper-abstract">Neuromorphic STDP learning using 3-terminal PCMO RRAM synapses in a 16×3 crossbar in 180nm TSMC. Achieves 92.6% Iris classification accuracy without backpropagation.</p>
+        <div class="paper-result">92.6% Iris accuracy · No backpropagation · 180nm TSMC</div>
+        <div class="paper-stack"><span class="ptag">PCMO RRAM</span><span class="ptag">180nm TSMC</span><span class="ptag">STDP</span><span class="ptag">Neuromorphic</span><span class="ptag">Cadence Virtuoso</span></div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -785,6 +792,55 @@ body::before{content:'';position:fixed;inset:0;z-index:1000;pointer-events:none;
         </div>
       </div>
 
+      <!-- P3 -->
+      <div class="proj-item reveal">
+        <div>
+          <div class="proj-img-wrap">
+            <div class="proj-img-placeholder" style="background:linear-gradient(135deg,var(--cream2),var(--cream3))">
+              <div class="big-num">03</div>
+              <span class="lbl">Hardware · PCB · RRAM</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="proj-num-label"><span class="pn">03</span><span style="width:24px;height:1px;background:var(--border2);display:inline-block"></span><span class="proj-cat">Hardware · PCB · RRAM</span></div>
+          <h3 class="proj-title">RRAM Crossbar PCB Platform</h3>
+          <p class="proj-desc">Designed 4×4, 8×2, and 8×8 RRAM crossbar PCBs in KiCad with TL072/OPA2134 TIA stages and MCP3008 ADC. Implemented FPGA-based MNIST digit recognition on Basys-3 using bit-sliced MAC with zero DSP blocks.</p>
+          <div class="proj-metrics">
+            <div class="pm"><div class="pm-n">8×8</div><div class="pm-l">Max Array</div></div>
+            <div class="pm"><div class="pm-n">0</div><div class="pm-l">DSP Blocks</div></div>
+            <div class="pm"><div class="pm-n">3</div><div class="pm-l">PCB Variants</div></div>
+          </div>
+          <div class="proj-stack">
+            <span class="ptag">KiCad</span><span class="ptag">Verilog</span><span class="ptag">Vivado</span><span class="ptag">Basys-3</span><span class="ptag">TL072</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- P4 -->
+      <div class="proj-item flip reveal">
+        <div>
+          <div class="proj-img-wrap">
+            <div class="proj-img-placeholder" style="background:linear-gradient(135deg,var(--cream3),var(--cream2))">
+              <div class="big-num">04</div>
+              <span class="lbl">Memory · Device</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="proj-num-label"><span class="pn">04</span><span style="width:24px;height:1px;background:var(--border2);display:inline-block"></span><span class="proj-cat">Memory · Device Modeling</span></div>
+          <h3 class="proj-title">Non-Volatile SRAM / ReRAM Cell</h3>
+          <p class="proj-desc">Hybrid memory cell leveraging ReRAM for non-volatility with SRAM-level read/write speed. Device modeling in Verilog-A. Also designed a 12T interlocked SRAM for enhanced IMC stability under Cadence Virtuoso.</p>
+          <div class="proj-metrics">
+            <div class="pm"><div class="pm-n">12T</div><div class="pm-l">SRAM Variant</div></div>
+            <div class="pm"><div class="pm-n">2</div><div class="pm-l">Cell Designs</div></div>
+            <div class="pm"><div class="pm-n">180nm</div><div class="pm-l">Tech Node</div></div>
+          </div>
+          <div class="proj-stack">
+            <span class="ptag">Verilog-A</span><span class="ptag">Cadence Virtuoso</span><span class="ptag">Spectre</span><span class="ptag">SPICE</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -899,129 +955,497 @@ body::before{content:'';position:fixed;inset:0;z-index:1000;pointer-events:none;
 <!-- ══════════════════════════════════
      ACHIEVEMENTS MARQUEE
 ══════════════════════════════════ -->
-<!-- AWARDS -->
-<section class="sec" id="awards" style="background:var(--cream)">
-  <div class="wrap" style="max-width:960px">
+<div class="marquee-sec">
+  <div class="marquee-track" id="marqueeTrack"></div>
+</div>
+
+<!-- ══════════════════════════════════
+     TEACHING
+══════════════════════════════════ -->
+<section class="sec" id="teaching">
+  <div class="wrap">
     <div class="sec__hd reveal">
-      <div class="lbl lbl-gold" style="margin-bottom:.75rem">08 &middot; Recognition</div>
-      <h2 class="sec__title">Awards &amp; <em>Honours</em></h2>
+      <div class="lbl lbl-gold" style="margin-bottom:.75rem">06 · Teaching</div>
+      <h2 class="sec__title">Teaching at <em>IIT Gandhinagar</em></h2>
       <div class="sec__bar"></div>
     </div>
-    <div class="recog-grid reveal">
-      <div class="recog-card featured">
-        <div class="recog-logo"><img src="images/sscs.jpg" alt="IEEE SSCS"/></div>
-        <div><div class="recog-kicker">Travel Grant &middot; 2025</div><div class="recog-name">IEEE SSCS Code-a-Chip Award</div></div>
-      </div>
-      <div class="recog-card featured">
-        <div class="recog-logo"><img src="images/icee-logo-dark.png" alt="IEEE ICEE"/></div>
-        <div><div class="recog-kicker">Best Paper &middot; 2025</div><div class="recog-name">IEEE ICEE 2025 Best Paper Award</div></div>
-      </div>
-      <div class="recog-card">
-        <div class="recog-logo"><img src="images/uram.jfif" alt="Micron URAM"/></div>
-        <div><div class="recog-kicker">Scholarship &middot; 2024</div><div class="recog-name">URAM 2.0 Scholarship &middot; Micron</div></div>
-      </div>
-      <div class="recog-card">
-        <div class="recog-logo"><img src="images/iitb.png" alt="IIT Bombay FOSSEE"/></div>
-        <div><div class="recog-kicker">Winner &middot; 2022</div><div class="recog-name">Sky130 Marathon &middot; FOSSEE IIT Bombay</div></div>
-      </div>
-    </div>
-    <div class="award-list reveal">
-      <div class="award-row new-award">
-        <div class="award-logo"><img src="images/sscs.jpg" alt="SSCS"/></div>
-        <div class="award-body">
-          <div class="award-name">IEEE SSCS Code-a-Chip Travel Grant Award</div>
-          <div class="award-desc">Power side-channel vulnerability on analog IMC arrays &middot; ESSERC 2026, Palma de Mallorca &middot; Pearson &rho; = 0.9979</div>
+    <div class="teach-grid reveal">
+      <div class="teach-card">
+        <div class="teach-ico">
+          <svg viewBox="0 0 24 24"><path d="M2 20h20M4 20V10M20 20V10M12 4L2 10h20L12 4zM9 20v-5a3 3 0 016 0v5"/></svg>
         </div>
-        <div class="award-year">2025</div>
-      </div>
-      <div class="award-row new-award">
-        <div class="award-logo"><img src="images/icee-logo-dark.png" alt="ICEE"/></div>
-        <div class="award-body">
-          <div class="award-name">Best Paper Award &mdash; IEEE ICEE 2025</div>
-          <div class="award-desc">"Hybrid SW-FPGA RRAM-crossbar for In-Memory Computing with Bit-Slicing"</div>
+        <div>
+          <div class="teach-code">EE322</div>
+          <div class="teach-name">Analog and Mixed Signal Circuits</div>
+          <div class="teach-meta">IIT Gandhinagar · Tutor · 2024–25, Semester 1</div>
         </div>
-        <div class="award-year">2025</div>
       </div>
-      <div class="award-row">
-        <div class="award-logo"><img src="images/uram.jfif" alt="URAM"/></div>
-        <div class="award-body">
-          <div class="award-name">URAM 2.0 Scholarship &mdash; Micron Technology</div>
-          <div class="award-desc">Awarded for academic and research excellence in semiconductor engineering</div>
+      <div class="teach-card">
+        <div class="teach-ico">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
         </div>
-        <div class="award-year">2024</div>
-      </div>
-      <div class="award-row">
-        <div class="award-logo">&#x1F41B;</div>
-        <div class="award-body">
-          <div class="award-name">Winner &mdash; Capture The Bug Hackathon</div>
-          <div class="award-desc">Design Verification Hackathon &middot; NIELIT</div>
+        <div>
+          <div class="teach-code">ES204</div>
+          <div class="teach-name">Digital Systems</div>
+          <div class="teach-meta">IIT Gandhinagar · Tutor · 2023–24, Semester 2</div>
         </div>
-        <div class="award-year">2022</div>
-      </div>
-      <div class="award-row">
-        <div class="award-logo"><img src="images/iitb.png" alt="IIT Bombay"/></div>
-        <div class="award-body">
-          <div class="award-name">Winner &mdash; Sky130 Mixed-Signal Design Marathon</div>
-          <div class="award-desc">FOSSEE &middot; IIT Bombay</div>
-        </div>
-        <div class="award-year">2022</div>
-      </div>
-      <div class="award-row">
-        <div class="award-logo">&#x1F947;</div>
-        <div class="award-body">
-          <div class="award-name">Gold Medalist &middot; Certificate of Academic Excellence</div>
-          <div class="award-desc">Sikkim Manipal Institute of Technology</div>
-        </div>
-        <div class="award-year">2021 &amp; 2022</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PHOTOGRAPHY -->
-<section class="sec sec--alt" id="photography">
+<!-- ══════════════════════════════════
+     AWARDS
+══════════════════════════════════ -->
+<section class="sec sec--alt" id="awards">
+  <div class="wrap" style="max-width:900px">
+    <div class="sec__hd reveal">
+      <div class="lbl lbl-gold" style="margin-bottom:.75rem">08 · Recognition</div>
+      <h2 class="sec__title">Awards &amp; <em>Honours</em></h2>
+      <div class="sec__bar"></div>
+    </div>
+
+    <!-- Logo cards -->
+    <div class="awards-logo-grid reveal">
+      <div class="award-logo-card featured">
+        <div class="award-logo-img"><img src="images/sscs.jpg" alt="IEEE SSCS"/></div>
+        <div>
+          <div class="award-logo-kicker">Travel Grant · 2025</div>
+          <div class="award-logo-name">IEEE SSCS Code-a-Chip Award · ESSERC 2026</div>
+        </div>
+      </div>
+      <div class="award-logo-card featured">
+        <div class="award-logo-img"><img src="images/icee-logo-dark.png" alt="IEEE ICEE"/></div>
+        <div>
+          <div class="award-logo-kicker">Best Paper · 2025</div>
+          <div class="award-logo-name">IEEE ICEE 2025 Best Paper Award</div>
+        </div>
+      </div>
+      <div class="award-logo-card">
+        <div class="award-logo-img"><img src="images/uram.jfif" alt="Micron URAM"/></div>
+        <div>
+          <div class="award-logo-kicker">Scholarship · 2024</div>
+          <div class="award-logo-name">URAM 2.0 Scholarship · Micron Technology</div>
+        </div>
+      </div>
+      <div class="award-logo-card">
+        <div class="award-logo-img"><img src="images/iitb.png" alt="IIT Bombay FOSSEE"/></div>
+        <div>
+          <div class="award-logo-kicker">Winner · 2022</div>
+          <div class="award-logo-name">Sky130 Mixed-Signal Marathon · FOSSEE IIT Bombay</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- List -->
+    <div class="awards-list-section reveal" data-d="2">
+      <div class="award-row hl">
+        <div class="award-row-logo"><img src="images/sscs.jpg" alt="SSCS"/></div>
+        <div class="award-row-body">
+          <div class="award-row-name">IEEE SSCS Code-a-Chip Travel Grant Award</div>
+          <div class="award-row-desc">Power side-channel vulnerability on analog IMC arrays · ESSERC 2026, Palma de Mallorca · Pearson ρ = 0.9979</div>
+        </div>
+        <div class="award-row-year">2025</div>
+      </div>
+      <div class="award-row hl">
+        <div class="award-row-logo"><img src="images/icee-logo-dark.png" alt="ICEE"/></div>
+        <div class="award-row-body">
+          <div class="award-row-name">Best Paper Award — IEEE ICEE 2025</div>
+          <div class="award-row-desc">"Hybrid SW-FPGA RRAM-crossbar for In-Memory Computing with Bit-Slicing"</div>
+        </div>
+        <div class="award-row-year">2025</div>
+      </div>
+      <div class="award-row">
+        <div class="award-row-logo"><img src="images/uram.jfif" alt="URAM"/></div>
+        <div class="award-row-body">
+          <div class="award-row-name">URAM 2.0 Scholarship — Micron Technology</div>
+          <div class="award-row-desc">Awarded for academic and research excellence in semiconductor engineering</div>
+        </div>
+        <div class="award-row-year">2024</div>
+      </div>
+      <div class="award-row">
+        <div class="award-row-logo" style="background:var(--cream2)">
+          <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--goldd);stroke-width:1.5;fill:none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 3a4 4 0 110 8 4 4 0 010-8z"/></svg>
+        </div>
+        <div class="award-row-body">
+          <div class="award-row-name">Winner — Capture The Bug Hackathon</div>
+          <div class="award-row-desc">Design Verification Hackathon · NIELIT</div>
+        </div>
+        <div class="award-row-year">2022</div>
+      </div>
+      <div class="award-row">
+        <div class="award-row-logo"><img src="images/iitb.png" alt="IIT Bombay"/></div>
+        <div class="award-row-body">
+          <div class="award-row-name">Winner — Sky130 Mixed-Signal Design Marathon</div>
+          <div class="award-row-desc">FOSSEE · IIT Bombay</div>
+        </div>
+        <div class="award-row-year">2022</div>
+      </div>
+      <div class="award-row">
+        <div class="award-row-logo" style="background:var(--cream2)">
+          <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--goldd);stroke-width:1.5;fill:none"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+        </div>
+        <div class="award-row-body">
+          <div class="award-row-name">Gold Medalist · Certificate of Academic Excellence</div>
+          <div class="award-row-desc">Sikkim Manipal Institute of Technology</div>
+        </div>
+        <div class="award-row-year">2021 &amp; 2022</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     PHOTOGRAPHY / TRAVEL
+══════════════════════════════════ -->
+<section class="sec" id="photography" style="background:#FAF8F4">
   <div class="wrap">
     <div class="photo-split">
       <div class="reveal">
         <span class="photo-pre">Beyond the Lab</span>
-        <h2 class="photo-h">Photography &amp;<br>Travel</h2>
-        <p class="photo-p">When I'm not designing circuits or building verification tools, I'm out exploring &mdash; Northeast India, Himalayan passes, coastal landscapes, wherever curiosity leads. Photography is how I see the world with the same precision I bring to engineering.</p>
-        <div class="photo-ptags">
-          <span class="ptag-l">Northeast India</span>
-          <span class="ptag-l">Himalayan Passes</span>
-          <span class="ptag-l">Coastal</span>
-          <span class="ptag-l">Street</span>
-          <span class="ptag-l">Golden Hour</span>
+        <h2 class="photo-h">Photography &amp;<br><em>Field Notes</em></h2>
+        <p class="photo-body">When I'm not designing circuits or building verification tools, I'm out exploring — Northeast India, Himalayan passes, coastal landscapes, wherever curiosity leads. Photography is how I see the world with the same precision I bring to silicon design.</p>
+        <div class="photo-tags">
+          <span class="photo-ptag">Northeast India</span>
+          <span class="photo-ptag">Himalayan Passes</span>
+          <span class="photo-ptag">Coastal</span>
+          <span class="photo-ptag">Street</span>
+          <span class="photo-ptag">Golden Hour</span>
         </div>
         <div class="insta-profile">
           <div class="insta-head">
-            <div class="insta-av"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="white" stroke="none"/></svg></div>
-            <div><div class="insta-handle">@_tanaydas_</div><div class="insta-sub">Instagram &middot; Travel &amp; Photography</div></div>
+            <div class="insta-av">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="white" stroke="none"/></svg>
+            </div>
+            <div>
+              <div class="insta-handle">@_tanaydas_</div>
+              <div class="insta-sub-t">Instagram · Travel &amp; Photography</div>
+            </div>
           </div>
-          <p class="insta-bio">Silicon engineer by day, wanderer by light. Capturing the world one frame at a time &mdash; from high passes to coastal blues.</p>
+          <p class="insta-bio">Silicon engineer by day, wanderer by light. Capturing the world one frame at a time — from high Himalayan passes to coastal blues.</p>
         </div>
         <a href="https://www.instagram.com/_tanaydas_/" target="_blank" rel="noopener" class="insta-btn">
           <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="white" stroke="none"/></svg>
-          View Full Gallery on Instagram
+          View Gallery on Instagram
         </a>
       </div>
+
+      <!-- Real Instagram embeds - 4 posts -->
       <div class="reveal" data-d="2">
-        <div class="insta-carousel">
+        <!-- Carousel CSS -->
+        <style>
+        .ic-wrapper{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:1/1;background:var(--cream3)}
+        .ic-track{display:flex;width:500%;height:100%;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+        .ic-slide{flex:0 0 20%;height:100%;display:block;overflow:hidden}
+        .ic-slide img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+        .ic-slide:hover img{transform:scale(1.03)}
+        .ic-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(250,248,244,.88);border:1px solid var(--border);color:var(--ink);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1.1rem;line-height:1;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:10}
+        .ic-arrow:hover{background:var(--cream);border-color:var(--gold);color:var(--goldd)}
+        .ic-prev{left:10px}.ic-next{right:10px}
+        .ic-dots{display:flex;justify-content:center;gap:.4rem;margin-top:.75rem}
+        .ic-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);transition:all .25s;cursor:pointer;border:none;padding:0}
+        .ic-dot.active{background:var(--goldd);width:20px;border-radius:3px}
+        </style>
+        <div style="width:100%">
           <div class="ic-wrapper">
             <div class="ic-track" id="icTrack">
-              <a href="https://www.instagram.com/p/DZUnbTmDUan/" target="_blank" rel="noopener" class="ic-slide"><img src="images/insta1.jpg" alt="Travel · @_tanaydas_"/></a>
-              <a href="https://www.instagram.com/reel/DZA2eCNShTb/" target="_blank" rel="noopener" class="ic-slide"><img src="images/insta2.jpg" alt="Travel · @_tanaydas_"/></a>
-              <a href="https://www.instagram.com/p/DVXfLtQEvX6/" target="_blank" rel="noopener" class="ic-slide"><img src="images/insta3.jpg" alt="Travel · @_tanaydas_"/></a>
-              <a href="https://www.instagram.com/p/DUr_o9jEp4u/" target="_blank" rel="noopener" class="ic-slide"><img src="images/insta4.jpg" alt="Travel · @_tanaydas_"/></a>
-              <a href="https://www.instagram.com/p/DXooapvkoFi/" target="_blank" rel="noopener" class="ic-slide"><img src="images/insta5.jpg" alt="Travel · @_tanaydas_"/></a>
+              <a href="https://www.instagram.com/p/DZUnbTmDUan/" target="_blank" rel="noopener" class="ic-slide"><img src="images/insta1.jpg" alt="Travel by Tanay Das"/></a>
+              <a href="https://www.instagram.com/reel/DZA2eCNShTb/" target="_blank" rel="noopener" class="ic-slide"><img src="images/insta2.jpg" alt="Travel by Tanay Das"/></a>
+              <a href="https://www.instagram.com/p/DVXfLtQEvX6/" target="_blank" rel="noopener" class="ic-slide"><img src="images/insta3.jpg" alt="Travel by Tanay Das"/></a>
+              <a href="https://www.instagram.com/p/DUr_o9jEp4u/" target="_blank" rel="noopener" class="ic-slide"><img src="images/insta4.jpg" alt="Travel by Tanay Das"/></a>
+              <a href="https://www.instagram.com/p/DXooapvkoFi/" target="_blank" rel="noopener" class="ic-slide"><img src="images/insta5.jpg" alt="Travel by Tanay Das"/></a>
             </div>
             <button class="ic-arrow ic-prev" onclick="moveCarousel(-1)">&#8592;</button>
             <button class="ic-arrow ic-next" onclick="moveCarousel(1)">&#8594;</button>
           </div>
           <div class="ic-dots" id="icDots"></div>
         </div>
-        <p style="font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--light);text-align:center;margin-top:.85rem">
-          Photography &middot; Travel &middot; Curiosity &nbsp;&middot;&nbsp;
-          <a href="https://www.instagram.com/_tanaydas_/" target="_blank" rel="noopener" style="color:var(--goldd)">@_tanaydas_</a>
-        </p>
+        <p style="font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--light);text-align:center;margin-top:.85rem">Photography &middot; Travel &middot; Curiosity &nbsp;&middot;&nbsp; <a href="https://www.instagram.com/_tanaydas_/" target="_blank" rel="noopener" style="color:var(--goldd)">@_tanaydas_</a></p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     CONTACT
+══════════════════════════════════ -->
+<section class="sec contact-sec" id="contact">
+  <div class="wrap">
+    <div class="contact-inner">
+      <div class="reveal">
+        <div class="lbl lbl-gold" style="margin-bottom:1.5rem;display:block">09 · Contact</div>
+        <div class="contact-script">Let's build something</div>
+        <div class="contact-script">meaningful.</div>
+        <hr class="hr" style="margin:2rem 0"/>
+      </div>
+
+      <p class="contact-desc reveal" data-d="1">
+        Open to research collaborations, PhD opportunities, and conversations about ESD design, neuromorphic computing, AI-assisted EDA, or just a good engineering problem.
+      </p>
+
+      <div class="contact-grid reveal" data-d="2">
+        <a href="mailto:taanayd@gmail.com" class="cc">
+          <div class="cc__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div><div class="cc__k">Email</div><div class="cc__v">taanayd@gmail.com</div></div>
+          <svg class="cc__arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/dastanay/" target="_blank" rel="noopener" class="cc">
+          <div class="cc__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 014 0v4M12 13v4"/></svg></div>
+          <div><div class="cc__k">LinkedIn</div><div class="cc__v">linkedin.com/in/dastanay</div></div>
+          <svg class="cc__arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://scholar.google.com/citations?user=6aBaFCcAAAAJ" target="_blank" rel="noopener" class="cc">
+          <div class="cc__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3L1 9l11 6 9-4.91V17M5 13.18v4L12 21l7-3.82v-4"/></svg></div>
+          <div><div class="cc__k">Google Scholar</div><div class="cc__v">Research Profile</div></div>
+          <svg class="cc__arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://github.com/taanayd" target="_blank" rel="noopener" class="cc">
+          <div class="cc__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></div>
+          <div><div class="cc__k">GitHub</div><div class="cc__v">github.com/taanayd</div></div>
+          <svg class="cc__arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://www.instagram.com/_tanaydas_/" target="_blank" rel="noopener" class="cc">
+          <div class="cc__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></div>
+          <div><div class="cc__k">Instagram</div><div class="cc__v">@_tanaydas_</div></div>
+          <svg class="cc__arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://taanayd.github.io/portfolio/Tanay_CV_PhD.pdf" target="_blank" download class="cc cc--gold">
+          <div class="cc__icon" style="color:var(--goldd)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 20h16"/></svg></div>
+          <div><div class="cc__k">Résumé / CV</div><div class="cc__v">Download PDF</div></div>
+          <svg class="cc__arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/></svg>
+        </a>
+      </div>
+
+      <p class="lbl" style="color:var(--light);margin-top:1.5rem;display:block" class="reveal">Based in Hyderabad, India · Open to global research collaborations & PhD opportunities</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="fi">TD</div>
+      <div>
+        <div class="fn">Tanay Das</div>
+        <div class="fs">Silicon Design Engineer · AMD, Hyderabad · M.Tech IIT Gandhinagar 2025</div>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a href="tools.html">Tools</a>
+      <a href="publications.html">Publications</a>
+      <a href="#awards">Awards</a>
+      <a href="#photography">Travel</a>
+      <a href="https://taanayd.github.io/portfolio/Tanay_CV_PhD.pdf" download>CV</a>
+      <a href="#hero">↑ Top</a>
+      <span style="color:var(--light)">© 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── MOUSE GLOW ───────────────────────────────────────
+const glow = document.getElementById('glow')
+window.addEventListener('mousemove', e => {
+  glow.style.left = e.clientX + 'px'
+  glow.style.top = e.clientY + 'px'
+}, { passive: true })
+
+// ── NAV ──────────────────────────────────────────────
+const nav = document.getElementById('nav')
+const sections = document.querySelectorAll('section[id]')
+const navAs = document.querySelectorAll('.nav__links a')
+let burgerOpen = false
+
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('solid', scrollY > 40)
+  let cur = ''
+  sections.forEach(s => { if (scrollY >= s.offsetTop - 120) cur = s.id })
+  navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur))
+}, { passive: true })
+
+const burger = document.getElementById('burger')
+const mob = document.getElementById('mobMenu')
+burger.addEventListener('click', () => {
+  burgerOpen = !burgerOpen
+  mob.classList.toggle('open', burgerOpen)
+  const b1 = document.getElementById('b1'), b2 = document.getElementById('b2'), b3 = document.getElementById('b3')
+  b1.style.transform = burgerOpen ? 'rotate(45deg) translateY(6.5px)' : ''
+  b2.style.opacity = burgerOpen ? '0' : '1'
+  b3.style.transform = burgerOpen ? 'rotate(-45deg) translateY(-6.5px)' : ''
+})
+function closeMob() { burgerOpen = false; mob.classList.remove('open') }
+
+// ── HERO NAME REVEAL ─────────────────────────────────
+setTimeout(() => {
+  const n1 = document.getElementById('heroName1')
+  const n2 = document.getElementById('heroName2')
+  n1.style.transition = 'opacity .8s .3s cubic-bezier(.16,1,.3,1), transform .8s .3s cubic-bezier(.16,1,.3,1)'
+  n1.style.opacity = '1'; n1.style.transform = 'translateY(0)'
+  n2.style.transition = 'opacity .8s .55s cubic-bezier(.16,1,.3,1), transform .8s .55s cubic-bezier(.16,1,.3,1)'
+  n2.style.opacity = '1'; n2.style.transform = 'translateY(0)'
+}, 100)
+
+// ── SCROLL REVEAL ────────────────────────────────────
+const rio = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('on'); rio.unobserve(e.target) }
+  })
+}, { threshold: 0.06, rootMargin: '0px 0px -50px 0px' })
+document.querySelectorAll('.reveal').forEach(el => rio.observe(el))
+
+// ── COUNTER ──────────────────────────────────────────
+function runCounter(el) {
+  if (el._done) return; el._done = true
+  if (el.dataset.countText) {
+    let f = 0
+    const t = () => { f++; el.textContent = Math.floor(Math.random() * 20) + '×'; if (f < 35) requestAnimationFrame(t); else el.textContent = el.dataset.countText }
+    requestAnimationFrame(t); return
+  }
+  const target = parseFloat(el.dataset.count)
+  const dec = parseInt(el.dataset.dec || '0')
+  const dur = 1300, start = performance.now()
+  const ease = t => 1 - Math.pow(1 - t, 3)
+  const tick = now => {
+    const t = Math.min((now - start) / dur, 1)
+    const v = target * ease(t)
+    el.textContent = dec > 0 ? v.toFixed(dec) : Math.floor(v)
+    if (t < 1) requestAnimationFrame(tick)
+    else el.textContent = dec > 0 ? target.toFixed(dec) : target
+  }
+  requestAnimationFrame(tick)
+}
+const cio = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.querySelectorAll('[data-count],[data-count-text]').forEach(runCounter) })
+}, { threshold: 0.3 })
+document.querySelectorAll('.hero__stats,.proj-metrics').forEach(el => cio.observe(el))
+
+// ── SKILL GALAXY ─────────────────────────────────────
+const skills = [
+  { label: 'VLSI Design', angle: 0,   r: 140, size: 62, detail: 'Cadence Virtuoso · DRC/LVS · Layout' },
+  { label: 'Analog IC', angle: 45,  r: 140, size: 62, detail: 'OPAMP · OTA · BGR · ADC · 65nm/180nm' },
+  { label: 'ESD Protection', angle: 90,  r: 140, size: 62, detail: 'Sub-3Ω · TLP · IEC 61000-4-2' },
+  { label: 'RRAM/ReRAM', angle: 135, r: 140, size: 62, detail: 'IMC · Crossbar · Device Modeling' },
+  { label: 'RTL Verify', angle: 180, r: 140, size: 62, detail: 'XSim · Xcelium · Questa · Riviera-PRO' },
+  { label: 'AI / Backend', angle: 225, r: 140, size: 62, detail: 'Claude API · ChromaDB · FastAPI · RAG' },
+  { label: 'HDL Design', angle: 270, r: 140, size: 62, detail: 'SystemVerilog · VHDL · Verilog · LRM' },
+  { label: 'Python', angle: 315, r: 140, size: 62, detail: 'Automation · REST APIs · Data Analysis' },
+  { label: 'Cadence', angle: 22,  r: 220, size: 46, detail: 'Schematic · Layout · DRC/LVS' },
+  { label: 'Vivado', angle: 68,  r: 220, size: 46, detail: 'XSim · Constraints · IPs' },
+  { label: 'Ngspice', angle: 112, r: 220, size: 46, detail: 'Open-source SPICE simulation' },
+  { label: 'SKY130 PDK', angle: 158, r: 220, size: 46, detail: 'Open-source 130nm process' },
+  { label: 'gdsfactory', angle: 202, r: 220, size: 46, detail: 'Photonic IC layout · Python' },
+  { label: 'KiCad', angle: 248, r: 220, size: 46, detail: 'PCB design · RRAM boards' },
+  { label: 'LaTeX', angle: 292, r: 220, size: 46, detail: 'Technical writing · IEEE papers' },
+  { label: 'MATLAB', angle: 338, r: 220, size: 46, detail: 'Signal processing · Simulation' },
+]
+const galaxy = document.getElementById('galaxy')
+const cx = 270, cy = 270
+skills.forEach(s => {
+  const rad = (s.angle - 90) * Math.PI / 180
+  const x = cx + Math.cos(rad) * s.r
+  const y = cy + Math.sin(rad) * s.r
+  const node = document.createElement('div')
+  node.className = 'skill-node'
+  node.style.cssText = `left:${x}px;top:${y}px`
+  node.innerHTML = `
+    <div class="skill-bubble" style="width:${s.size}px;height:${s.size}px">
+      <span style="font-size:${s.r===140?'.55rem':'.46rem'};padding:0 .2rem">${s.label}</span>
+    </div>
+    <div class="skill-tooltip">${s.label}<br><span style="color:#9CA3AF;font-size:.56rem">${s.detail}</span></div>
+  `
+  galaxy.appendChild(node)
+})
+
+// ── BOOKSHELF ─────────────────────────────────────────
+const books = [
+  { id:'★', color:'#C8A97E', tc:'#2C1810', label:'SSCS Code-a-Chip Award · ESSERC 2026', year:'2026', title:'Power Side-Channel Vulnerability on Analog IMC Arrays', abs:'Power side-channel attack on RRAM 1T1R crossbar. ρ=0.9979 HW leakage, ρ=0.9998 weight extraction. IEEE SSCS Travel Grant.', link:'#' },
+  { id:'J1', color:'#A8B5A2', tc:'#1A2410', label:'IEEE JEDS', year:'2025', title:'ESD Sub-3Ω Dynamic Resistance for Neuromodulation SoC', abs:'Sub-3Ω ESD protection in 65nm CMOS. IEC 61000-4-2 compliant for 10V neurostimulator.', link:'https://ieeexplore.ieee.org/abstract/document/11391546' },
+  { id:'C1', color:'#D4C9B8', tc:'#2C2410', label:'IEEE ICEE · Best Paper 🏆', year:'2025', title:'Hybrid SW-FPGA RRAM-crossbar IMC with Bit-Slicing', abs:'RRAM crossbar + bit-slicing for in-memory computing. Best Paper Award ICEE 2025.', link:'https://ieeexplore.ieee.org/abstract/document/11409883' },
+  { id:'C2', color:'#C8A97E', tc:'#2C1810', label:'IEEE ICEE', year:'2025', title:'ESD On-chip Diodes for 65nm Neurostimulators', abs:'On-chip diode ESD protection for high-voltage neurostimulators in 65nm CMOS.', link:'https://ieeexplore.ieee.org/abstract/document/11409724' },
+  { id:'C3', color:'#A8B5A2', tc:'#1A2410', label:'IEEE ICEE', year:'2025', title:'TCAD-Guided Compact ESD for 65nm Neurostimulators', abs:'TCAD-guided ESD protection design for 65nm neurostimulator applications.', link:'https://ieeexplore.ieee.org/abstract/document/11409969' },
+  { id:'C4', color:'#E7DFD4', tc:'#2C2410', label:'IEEE EDTM', year:'2025', title:'Enhanced ESD for 10V Neurostimulators in 65nm', abs:'Enhanced ESD enabling 10V operation in 65nm CMOS neurostimulator circuits.', link:'https://ieeexplore.ieee.org/abstract/document/11041318' },
+  { id:'C5', color:'#C8A97E', tc:'#2C1810', label:'VDAT', year:'2024', title:'Dynamic Resistance Reduction for GGNMOS ESD', abs:'Circuit-level methods to reduce GGNMOS dynamic resistance for lower clamping voltage.', link:'https://ieeexplore.ieee.org/document/10705717/' },
+  { id:'C6', color:'#A8B5A2', tc:'#1A2410', label:'IEEE ESSERC', year:'2026', title:'STDP PCMO RRAM (16×3 Crossbar) · Accepted', abs:'Neuromorphic STDP in PCMO RRAM 16×3 crossbar, 180nm TSMC. 92.6% Iris accuracy.', link:'#' },
+  { id:'M1', color:'#D4C9B8', tc:'#2C2410', label:'Materials Today', year:'2022', title:'MXene from MAX Phase', abs:'Synthesis and structural characterisation of MXene 2D materials from MAX phase precursors.', link:'https://doi.org/10.1016/j.matpr.2022.02.253' },
+]
+const booksRow = document.getElementById('booksRow')
+books.forEach(b => {
+  const el = document.createElement('div')
+  el.className = 'book'
+  el.innerHTML = `
+    <div class="book-spine" style="background:${b.color};color:${b.tc}">
+      <span class="book-year" style="color:${b.tc}">${b.year}</span>
+      <span class="book-label" style="color:${b.tc}">${b.title.substring(0,42)}</span>
+      <span class="book-id" style="color:${b.tc}">${b.id}</span>
+    </div>
+    <div class="book-popup">
+      <div style="font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;color:var(--muted);margin-bottom:.5rem">${b.label} · ${b.year}</div>
+      <h4>${b.title}</h4>
+      <p>${b.abs}</p>
+      ${b.link !== '#' ? `<a href="${b.link}" target="_blank" rel="noopener">Read paper →</a>` : '<span style="font-family:var(--mono);font-size:.58rem;color:var(--gold)">In Press / Accepted</span>'}
+    </div>
+  `
+  booksRow.appendChild(el)
+})
+
+// ── MARQUEE ───────────────────────────────────────────
+const achievements = [
+  { text: 'IEEE SSCS Code-a-Chip Travel Grant', sub: 'ESSERC 2026 · Palma de Mallorca', col: '#C8A97E' },
+  { text: 'Best Paper Award', sub: 'IEEE ICEE 2025', col: '#A8B5A2' },
+  { text: 'URAM 2.0 Scholarship', sub: 'Micron Technology 2024', col: '#C8A97E' },
+  { text: 'Capture The Bug Winner', sub: 'NIELIT Design Verification Hackathon 2022', col: '#A8B5A2' },
+  { text: 'Sky130 Mixed-Signal Marathon', sub: 'FOSSEE · IIT Bombay 2022', col: '#C8A97E' },
+  { text: 'Gold Medalist', sub: 'SMIT 2021 & 2022', col: '#A8B5A2' },
+  { text: '9 IEEE Publications', sub: 'JEDS · EDTM · ICEE · VDAT · ESSERC', col: '#C8A97E' },
+  { text: '18× Faster Verification', sub: 'AMD CR Batch Portal · 2026', col: '#A8B5A2' },
+  { text: 'M.Tech CPI 9.06', sub: 'IIT Gandhinagar · Class of 2025', col: '#C8A97E' },
+  { text: 'B.Tech CPI 9.7', sub: 'Gold Medalist · SMIT', col: '#A8B5A2' },
+  { text: 'Pearson ρ = 0.9979', sub: 'Side-Channel IMC Analysis · SSCS', col: '#C8A97E' },
+  { text: '92.6% Iris Accuracy', sub: 'PCMO RRAM Neuromorphic · No Backprop', col: '#A8B5A2' },
+]
+const track = document.getElementById('marqueeTrack')
+const all = [...achievements, ...achievements]
+all.forEach(a => {
+  const el = document.createElement('div')
+  el.className = 'marquee-item'
+  el.innerHTML = `
+    <div class="dot-acc" style="background:${a.col}"></div>
+    <div>
+      <div class="mi-text">${a.text}</div>
+      <div class="mi-sub">${a.sub}</div>
+    </div>
+  `
+  track.appendChild(el)
+})
+
+// ── GSAP (optional enhancement) ──────────────────────
+if (window.gsap && window.ScrollTrigger) {
+  gsap.registerPlugin(ScrollTrigger)
+  gsap.utils.toArray('.paper-card').forEach((card, i) => {
+    gsap.fromTo(card, { y: 32, opacity: 0 },
+      { y: 0, opacity: 1, duration: .8, delay: i * .12, ease: 'power3.out',
+        scrollTrigger: { trigger: card, start: 'top 90%', once: true } })
+  })
+  gsap.utils.toArray('.proj-item').forEach((item, i) => {
+    gsap.fromTo(item, { x: i % 2 === 0 ? -32 : 32, opacity: 0 },
+      { x: 0, opacity: 1, duration: .9, ease: 'power3.out',
+        scrollTrigger: { trigger: item, start: 'top 85%', once: true } })
+  })
+}
+
+// Carousel
+(function(){
+  const track=document.getElementById('icTrack')
+  if(!track)return
+  const dotsC=document.getElementById('icDots')
+  let cur=0,total=5,timer
+  for(let i=0;i<total;i++){const d=document.createElement('button');d.className='ic-dot'+(i===0?' active':'');d.addEventListener('click',()=>goTo(i));dotsC.appendChild(d)}
+  function goTo(n){cur=(n+total)%total;track.style.transform=`translateX(-${cur*(100/total)}%)`;document.querySelectorAll('.ic-dot').forEach((d,i)=>d.classList.toggle('active',i===cur));clearInterval(timer);timer=setInterval(()=>goTo(cur+1),4000)}
+  window.moveCarousel=function(dir){goTo(cur+dir)}
+  timer=setInterval(()=>goTo(cur+1),4000)
+  let sx=0;track.parentElement.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});track.parentElement.addEventListener('touchend',e=>{const d=sx-e.changedTouches[0].clientX;if(Math.abs(d)>40)goTo(cur+(d>0?1:-1))},{passive:true})
+})()
+</script>
+</body>
+</html>
