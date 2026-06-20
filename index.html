@@ -376,6 +376,21 @@ body::before{content:'';position:fixed;inset:0;z-index:1000;pointer-events:none;
 .insta-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .insta-embed{border-radius:10px;overflow:hidden;background:var(--cream);border:1px solid var(--border);min-height:240px}
 .insta-embed blockquote.instagram-media{margin:0!important;min-width:unset!important;max-width:100%!important;border:0!important;box-shadow:none!important}
+
+/* ── INSTAGRAM CAROUSEL ──────────────────────── */
+.insta-carousel{position:relative;width:100%}
+.ic-track{display:flex;overflow:hidden;border-radius:12px;aspect-ratio:1/1;background:var(--cream3)}
+.ic-slide{flex:0 0 100%;position:relative;overflow:hidden;transition:transform .5s var(--ease);display:block}
+.ic-slide img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s var(--ease)}
+.ic-slide:hover img{transform:scale(1.04)}
+.ic-overlay{position:absolute;top:10px;right:10px;width:32px;height:32px;background:rgba(0,0,0,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s}
+.ic-slide:hover .ic-overlay{opacity:1}
+.ic-controls{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:.85rem}
+.ic-btn{background:var(--cream2);border:1px solid var(--border);color:var(--ink);width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.ic-btn:hover{background:var(--golddim);border-color:var(--gold);color:var(--goldd)}
+.ic-dots{display:flex;gap:.4rem}
+.ic-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);transition:all .2s;cursor:pointer}
+.ic-dot.active{background:var(--goldd);width:18px;border-radius:3px}
 @media(max-width:1024px){
   .hero__inner{grid-template-columns:1fr}
   .recog-grid{grid-template-columns:1fr 1fr}
@@ -424,7 +439,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1000;pointer-events:none;
     <a href="#contact">Contact</a>
   </div>
   <div class="nav__actions-d" style="display:flex;align-items:center;gap:10px">
-    <a href="Tanay_CV_PhD.pdf" target="_blank" download class="nav__cta">
+    <a href="https://taanayd.github.io/portfolio/Tanay_CV_PhD.pdf" target="_blank" download class="nav__cta">
       <svg viewBox="0 0 24 24"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 20h16"/></svg>
       CV
     </a>
@@ -442,7 +457,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1000;pointer-events:none;
     <a href="#awards" onclick="closeMob()">Awards</a>
     <a href="#photography" onclick="closeMob()">Travel</a>
     <a href="#contact" onclick="closeMob()">Contact</a>
-    <a href="Tanay_CV_PhD.pdf" download onclick="closeMob()" style="color:var(--goldd)">⬇ Download CV</a>
+    <a href="https://taanayd.github.io/portfolio/Tanay_CV_PhD.pdf" download onclick="closeMob()" style="color:var(--goldd)">⬇ Download CV</a>
   </div>
 </nav>
 
@@ -499,7 +514,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1000;pointer-events:none;
           <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           View Research
         </a>
-        <a href="Tanay_CV_PhD.pdf" target="_blank" download class="btn-outline">
+        <a href="https://taanayd.github.io/portfolio/Tanay_CV_PhD.pdf" target="_blank" download class="btn-outline">
           <svg viewBox="0 0 24 24"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 20h16"/></svg>
           Download CV
         </a>
@@ -534,7 +549,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1000;pointer-events:none;
         <div class="hero__photo-back1"></div>
         <div class="hero__photo-back2"></div>
         <div class="hero__badge hero__badge1">IIT Gandhinagar · Class of 2025</div>
-        <img src="tanay.jpg" alt="Tanay Das" class="hero__photo"/>
+        <img src="Tanay.jpg" alt="Tanay Das" class="hero__photo"/>
         <div class="hero__badge hero__badge2">AMD · Hyderabad · 2026</div>
       </div>
       <div class="hero__signature" style="opacity:0;animation:fadeIn 1s 1.8s forwards">
@@ -992,13 +1007,36 @@ body::before{content:'';position:fixed;inset:0;z-index:1000;pointer-events:none;
         </a>
       </div>
       <div class="reveal" data-d="2">
-        <div class="insta-grid">
-          <div class="insta-embed"><blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DZUnbTmDUan/?utm_source=ig_embed&utm_campaign=loading" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:0;margin:0;max-width:100%;min-width:unset;padding:0;width:100%"></blockquote></div>
-          <div class="insta-embed"><blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DZA2eCNShTb/?utm_source=ig_embed&utm_campaign=loading" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:0;margin:0;max-width:100%;min-width:unset;padding:0;width:100%"></blockquote></div>
-          <div class="insta-embed"><blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DVXfLtQEvX6/?utm_source=ig_embed&utm_campaign=loading" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:0;margin:0;max-width:100%;min-width:unset;padding:0;width:100%"></blockquote></div>
-          <div class="insta-embed"><blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DUr_o9jEp4u/?utm_source=ig_embed&utm_campaign=loading" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:0;margin:0;max-width:100%;min-width:unset;padding:0;width:100%"></blockquote></div>
+        <!-- Instagram Carousel -->
+        <div class="insta-carousel">
+          <div class="ic-track" id="icTrack">
+            <a href="https://www.instagram.com/p/DZUnbTmDUan/" target="_blank" rel="noopener" class="ic-slide">
+              <img src="https://instagram.com/p/DZUnbTmDUan/media/?size=l" alt="Travel photo by Tanay Das" loading="lazy" onerror="this.parentElement.style.display='none'"/>
+              <div class="ic-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="white" stroke="none"/></svg></div>
+            </a>
+            <a href="https://www.instagram.com/reel/DZA2eCNShTb/" target="_blank" rel="noopener" class="ic-slide">
+              <img src="https://instagram.com/reel/DZA2eCNShTb/media/?size=l" alt="Travel photo by Tanay Das" loading="lazy" onerror="this.parentElement.style.display='none'"/>
+              <div class="ic-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="white" stroke="none"/></svg></div>
+            </a>
+            <a href="https://www.instagram.com/p/DVXfLtQEvX6/" target="_blank" rel="noopener" class="ic-slide">
+              <img src="https://instagram.com/p/DVXfLtQEvX6/media/?size=l" alt="Travel photo by Tanay Das" loading="lazy" onerror="this.parentElement.style.display='none'"/>
+              <div class="ic-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="white" stroke="none"/></svg></div>
+            </a>
+            <a href="https://www.instagram.com/p/DUr_o9jEp4u/" target="_blank" rel="noopener" class="ic-slide">
+              <img src="https://instagram.com/p/DUr_o9jEp4u/media/?size=l" alt="Travel photo by Tanay Das" loading="lazy" onerror="this.parentElement.style.display='none'"/>
+              <div class="ic-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="white" stroke="none"/></svg></div>
+            </a>
+            <a href="https://www.instagram.com/p/DXooapvkoFi/" target="_blank" rel="noopener" class="ic-slide">
+              <img src="https://instagram.com/p/DXooapvkoFi/media/?size=l" alt="Travel photo by Tanay Das" loading="lazy" onerror="this.parentElement.style.display='none'"/>
+              <div class="ic-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="white" stroke="none"/></svg></div>
+            </a>
+          </div>
+          <div class="ic-controls">
+            <button class="ic-btn" onclick="moveCarousel(-1)" aria-label="Previous">&#8592;</button>
+            <div class="ic-dots" id="icDots"></div>
+            <button class="ic-btn" onclick="moveCarousel(1)" aria-label="Next">&#8594;</button>
+          </div>
         </div>
-        <script async src="//www.instagram.com/embed.js"></script>
         <p style="font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--light);text-align:center;margin-top:.85rem">
           Photography &middot; Travel &middot; Curiosity &nbsp;&middot;&nbsp;
           <a href="https://www.instagram.com/_tanaydas_/" target="_blank" rel="noopener" style="color:var(--goldd)">@_tanaydas_</a>
@@ -1055,7 +1093,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1000;pointer-events:none;
           <div><div class="cc__k">Instagram</div><div class="cc__v">@_tanaydas_</div></div>
           <svg class="cc__arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="Tanay_CV_PhD.pdf" target="_blank" download class="cc cc--gold">
+        <a href="https://taanayd.github.io/portfolio/Tanay_CV_PhD.pdf" target="_blank" download class="cc cc--gold">
           <div class="cc__icon" style="color:var(--goldd)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 20h16"/></svg></div>
           <div><div class="cc__k">Résumé / CV</div><div class="cc__v">Download PDF</div></div>
           <svg class="cc__arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/></svg>
@@ -1082,7 +1120,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1000;pointer-events:none;
       <a href="publications.html">Publications</a>
       <a href="#awards">Awards</a>
       <a href="#photography">Travel</a>
-      <a href="Tanay_CV_PhD.pdf" download>CV</a>
+      <a href="https://taanayd.github.io/portfolio/Tanay_CV_PhD.pdf" download>CV</a>
       <a href="#hero">↑ Top</a>
       <span style="color:var(--light)">© 2026</span>
     </div>
@@ -1219,6 +1257,10 @@ const booksRow = document.getElementById('booksRow')
 books.forEach(b => {
   const el = document.createElement('div')
   el.className = 'book'
+  if(b.link !== '#'){
+    el.style.cursor = 'pointer'
+    el.addEventListener('click', () => window.open(b.link, '_blank'))
+  }
   el.innerHTML = `
     <div class="book-spine" style="background:${b.color};color:${b.tc}">
       <span class="book-year" style="color:${b.tc}">${b.year}</span>
@@ -1229,7 +1271,7 @@ books.forEach(b => {
       <div style="font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;color:var(--muted);margin-bottom:.5rem">${b.label} · ${b.year}</div>
       <h4>${b.title}</h4>
       <p>${b.abs}</p>
-      ${b.link !== '#' ? `<a href="${b.link}" target="_blank" rel="noopener">Read paper →</a>` : '<span style="font-family:var(--mono);font-size:.58rem;color:var(--gold)">In Press / Accepted</span>'}
+      ${b.link !== '#' ? `<a href="${b.link}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Read paper →</a>` : '<span style="font-family:var(--mono);font-size:.58rem;color:var(--gold)">In Press / Accepted</span>'}
     </div>
   `
   booksRow.appendChild(el)
@@ -1279,6 +1321,42 @@ if (window.gsap && window.ScrollTrigger) {
         scrollTrigger: { trigger: item, start: 'top 85%', once: true } })
   })
 }
+// ── Instagram Carousel ──────────────────────────────────
+(function(){
+  const track = document.getElementById('icTrack')
+  if(!track) return
+  const slides = track.querySelectorAll('.ic-slide')
+  const dotsC = document.getElementById('icDots')
+  let cur = 0
+  const total = slides.length
+
+  // Build dots
+  slides.forEach((_,i) => {
+    const d = document.createElement('div')
+    d.className = 'ic-dot' + (i===0?' active':'')
+    d.addEventListener('click', () => goTo(i))
+    dotsC.appendChild(d)
+  })
+
+  function goTo(n){
+    cur = (n + total) % total
+    track.style.transform = `translateX(-${cur * 100}%)`
+    track.style.transition = 'transform .5s cubic-bezier(.16,1,.3,1)'
+    track.style.display = 'flex'
+    document.querySelectorAll('.ic-dot').forEach((d,i) => d.classList.toggle('active', i===cur))
+  }
+
+  // Make track a flex container that slides
+  track.style.display = 'flex'
+  track.style.width = `${total * 100}%`
+  slides.forEach(s => s.style.flex = `0 0 ${100/total}%`)
+
+  window.moveCarousel = function(dir){ goTo(cur + dir) }
+
+  // Auto-advance every 4s
+  setInterval(() => goTo(cur + 1), 4000)
+})()
+
 </script>
 </body>
 </html>
