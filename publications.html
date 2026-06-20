@@ -1,127 +1,118 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Publications — Tanay Das</title>
-<meta name="description" content="All IEEE-indexed publications by Tanay Das — ESD protection, neuromorphic computing, RRAM, VLSI design."/>
+<meta name="description" content="9 IEEE-indexed publications by Tanay Das — ESD protection, neuromorphic RRAM, analog IC design."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&family=Great+Vibes&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
 :root{
-  --bg:#07090f;--bg2:#0d1117;--bg3:#141b27;--bg4:#1a2438;
-  --line:rgba(255,255,255,0.07);--line2:rgba(255,255,255,0.12);
-  --ink:#e8edf5;--ink2:#b0bace;--muted:#64748b;
-  --gold:#c9a84c;--gold2:#e8c86a;--golddim:rgba(201,168,76,0.12);
-  --teal:#2dd4bf;--blue:#60a5fa;--green:#4ade80;--red:#f87171;
-  --serif:'Playfair Display',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;
-  --ease:cubic-bezier(0.16,1,0.3,1);--r:8px;--max:900px;
+  --cream:#FAF8F4;--cream2:#F3EEE7;--cream3:#EBE4D8;
+  --border:#E7DFD4;--border2:#D4C9B8;
+  --ink:#111111;--ink2:#2C2C2C;--muted:#6B7280;--light:#9CA3AF;
+  --gold:#C8A97E;--gold2:#DFC4A0;--goldd:#A8864A;--golddim:rgba(200,169,126,0.10);
+  --sage:#A8B5A2;
+  --display:'Cormorant Garamond',Georgia,serif;
+  --body:'Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(0.16,1,0.3,1);--max:900px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;overflow-x:hidden}
+body{background:var(--cream);color:var(--ink);font-family:var(--body);line-height:1.75;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
-::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:2px}
+::selection{background:rgba(200,169,126,.2);color:var(--ink)}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--cream)}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+body::before{content:'';position:fixed;inset:0;z-index:1000;pointer-events:none;opacity:.025;
+background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(7,9,15,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--line);transition:box-shadow .3s}
-.nav.scrolled{box-shadow:0 1px 30px rgba(0,0,0,.4)}
-.nav__logo{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--ink)}
-.nav__logo em{font-style:italic;color:var(--gold)}
-.nav__links{display:flex;gap:4px}
-.nav__links a{font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:.4rem .75rem;border-radius:5px;transition:color .2s,background .2s}
-.nav__links a:hover,.nav__links a.active{color:var(--ink);background:rgba(255,255,255,.06)}
-.nav__actions{display:flex;align-items:center;gap:10px}
-.nav__cv{font-family:var(--mono);font-size:.63rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.4);padding:.38rem 1rem;border-radius:5px;transition:background .2s;display:flex;align-items:center;gap:6px}
-.nav__cv:hover{background:var(--golddim)}
-.nav__cv svg{width:13px;height:13px;stroke:currentColor;stroke-width:2;fill:none}
-.nav__burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
-.nav__burger span{display:block;width:20px;height:1.5px;background:var(--ink);border-radius:2px}
-.nav__mobile{display:none;flex-direction:column;background:var(--bg2);border-top:1px solid var(--line);padding:.75rem 1.5rem;gap:.25rem}
-.nav__mobile.open{display:flex}
-.nav__mobile a{font-size:.82rem;color:var(--muted);padding:.45rem 0;border-bottom:1px solid var(--line)}
-.nav__mobile a:last-child{border:none}
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,3.5rem);background:rgba(250,248,244,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.nav__brand{display:flex;align-items:center;gap:10px}
+.nav__init{width:32px;height:32px;background:var(--ink);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:.8rem;font-weight:600;color:var(--cream);transition:background .3s}
+.nav__brand:hover .nav__init{background:var(--goldd)}
+.nav__name{font-family:var(--display);font-size:1rem;font-weight:600;color:var(--ink)}
+.nav__links{display:flex;gap:2px}
+.nav__links a{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:.45rem .8rem;border-radius:5px;transition:color .2s}
+.nav__links a:hover,.nav__links a.active{color:var(--ink)}
+.nav__cta{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream);background:var(--ink);border:none;padding:.42rem 1.1rem;border-radius:5px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:background .25s}
+.nav__cta:hover{background:var(--goldd)}
+.nav__cta svg{width:12px;height:12px;stroke:currentColor;stroke-width:2.5;fill:none}
+.nav__burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+.nav__burger span{display:block;width:22px;height:1.5px;background:var(--ink);transition:all .25s;border-radius:1px}
+.nav__mob{display:none;position:fixed;inset-x-0;top:64px;background:rgba(250,248,244,.96);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:1.25rem clamp(1.5rem,5vw,3.5rem);flex-direction:column;gap:.25rem;z-index:199}
+.nav__mob.open{display:flex}
+.nav__mob a{font-family:var(--display);font-size:1.25rem;font-weight:400;color:var(--ink);padding:.6rem 0;border-bottom:1px solid var(--border)}
+.nav__mob a:last-child{border:none}
 
 /* HERO */
-.hero{padding:110px 48px 60px;background:var(--bg2);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 50% -20%,rgba(201,168,76,.05) 0%,transparent 60%);pointer-events:none}
-.hero__inner{position:relative;z-index:1;max-width:var(--max);margin:0 auto}
-.hero__back{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem;transition:color .2s}
-.hero__back:hover{color:var(--gold)}
-.hero__back svg{width:12px;height:12px;stroke:currentColor;stroke-width:2;fill:none}
-h1{font-family:var(--serif);font-size:clamp(2rem,4vw,2.8rem);font-weight:700;color:var(--ink);line-height:1.1;margin-bottom:.75rem}
-h1 em{font-style:italic;color:var(--gold);font-weight:400}
-.hero__sub{font-size:.92rem;color:var(--ink2);margin-bottom:2rem;line-height:1.7;max-width:580px}
-.stats-row{display:flex;gap:2rem;flex-wrap:wrap}
-.stat{text-align:center}
-.stat__n{font-family:var(--serif);font-size:1.7rem;font-weight:700;color:var(--ink);display:block;line-height:1}
-.stat__l{font-family:var(--mono);font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:.2rem}
+.page-hero{padding:110px clamp(1.5rem,5vw,4rem) 64px;background:var(--cream2);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 50% -20%,rgba(200,169,126,.06) 0%,transparent 60%);pointer-events:none}
+.inner{max-width:var(--max);margin:0 auto;position:relative;z-index:1}
+.back-link{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1.75rem;transition:color .2s}
+.back-link:hover{color:var(--goldd)}
+.back-link svg{width:12px;height:12px;stroke:currentColor;stroke-width:2;fill:none}
+.stats-row{display:flex;gap:2.5rem;flex-wrap:wrap;margin-top:1.5rem}
+.stat .sn{font-family:var(--display);font-size:2rem;font-weight:700;color:var(--ink);display:block;line-height:1}
+.stat .sl{font-family:var(--mono);font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:.25rem}
 
 /* FILTERS */
-.filters-row{max-width:var(--max);margin:2rem auto 0;padding:0 48px;display:flex;gap:.5rem;flex-wrap:wrap}
-.f-btn{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.45rem 1.1rem;border-radius:4px;border:1px solid var(--line2);background:none;color:var(--muted);cursor:pointer;transition:all .2s}
-.f-btn.active,.f-btn:hover{border-color:var(--gold);color:var(--gold);background:var(--golddim)}
+.filter-row{max-width:var(--max);margin:0 auto;padding:1.5rem clamp(1.5rem,5vw,4rem);display:flex;gap:.5rem;flex-wrap:wrap;border-bottom:1px solid var(--border)}
+.f-btn{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.42rem 1rem;border-radius:4px;border:1px solid var(--border);background:none;color:var(--muted);cursor:pointer;transition:all .2s}
+.f-btn.active,.f-btn:hover{border-color:var(--gold);color:var(--goldd);background:var(--golddim)}
 
 /* MAIN */
-.main{max-width:var(--max);margin:0 auto;padding:2.5rem 48px 5rem}
+.main{max-width:var(--max);margin:0 auto;padding:2.5rem clamp(1.5rem,5vw,4rem) 5rem}
+.sec-label{font-family:var(--mono);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:.5rem 0;margin:2rem 0 .25rem;display:flex;align-items:center;gap:.75rem}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
 
-/* Section label */
-.pub-section-label{font-family:var(--mono);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:.5rem 0;margin:1.75rem 0 .25rem;display:flex;align-items:center;gap:.75rem}
-.pub-section-label::after{content:'';flex:1;height:1px;background:var(--line2)}
-.pub-section-label:first-child{margin-top:0}
-
-/* Pub item */
-.pub-item{display:grid;grid-template-columns:48px 1fr auto;gap:1.25rem;align-items:center;padding:1.25rem 0;border-bottom:1px solid var(--line);transition:background .15s;border-radius:var(--r)}
-.pub-item:last-of-type{border-bottom:none}
-.pub-item:hover{background:rgba(255,255,255,.02);margin:0 -12px;padding:1.25rem 12px}
-
-/* NEW item highlight */
-.pub-item.pub-new{border-left:2px solid var(--gold);padding-left:.9rem}
-.pub-item.pub-new:hover{margin-left:-14px;padding-left:.9rem}
-
-.pub-num{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:rgba(255,255,255,.1);text-align:right;line-height:1}
-.pub-content{}
+/* PUB ITEM */
+.pub-item{display:grid;grid-template-columns:48px 1fr auto;gap:1.25rem;align-items:center;padding:1.4rem 0;border-bottom:1px solid var(--border);transition:background .15s;border-radius:8px}
+.pub-item:last-child{border-bottom:none}
+.pub-item:hover{background:rgba(200,169,126,.04);margin:0 -14px;padding:1.4rem 14px}
+.pub-item.pub-new{border-left:2px solid var(--gold);padding-left:12px}
+.pub-item.pub-new:hover{margin-left:-14px;padding-left:12px}
+.pub-n{font-family:var(--display);font-size:1.5rem;font-weight:700;color:rgba(17,17,17,.1);text-align:right;line-height:1}
 .pub-badges{margin-bottom:.45rem;display:flex;gap:.3rem;flex-wrap:wrap;align-items:center}
-.badge{display:inline-block;font-family:var(--mono);font-size:.56rem;font-weight:500;letter-spacing:.08em;padding:.15rem .6rem;border-radius:3px}
-.badge-teal{background:rgba(45,212,191,.1);color:var(--teal);border:1px solid rgba(45,212,191,.2)}
-.badge-gold{background:rgba(201,168,76,.12);color:var(--gold);border:1px solid rgba(201,168,76,.25)}
-.badge-blue{background:rgba(96,165,250,.1);color:var(--blue);border:1px solid rgba(96,165,250,.2)}
-.badge-red{background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.2)}
-.badge-green{background:rgba(74,222,128,.1);color:var(--green);border:1px solid rgba(74,222,128,.2)}
-.badge-new{background:rgba(201,168,76,.2);color:var(--gold);border:1px solid rgba(201,168,76,.4)}
-
-.pub-title{font-family:var(--serif);font-size:.93rem;font-weight:600;color:var(--ink);line-height:1.45;margin-bottom:.3rem}
-.pub-authors{font-size:.8rem;color:var(--muted);margin-bottom:.2rem}
+.badge{display:inline-block;font-family:var(--mono);font-size:.56rem;font-weight:500;letter-spacing:.08em;padding:.14rem .6rem;border-radius:3px}
+.badge-gold{background:var(--golddim);color:var(--goldd);border:1px solid rgba(200,169,126,.3)}
+.badge-sage{background:rgba(168,181,162,.1);color:var(--saged);border:1px solid rgba(168,181,162,.25)}
+.badge-new{background:rgba(200,169,126,.18);color:var(--goldd);border:1px solid rgba(200,169,126,.5)}
+.badge-ink{background:var(--ink);color:var(--cream)}
+.badge-gray{background:var(--cream3);border:1px solid var(--border2);color:var(--muted)}
+.badge-award{background:rgba(252,211,77,.12);color:#92400e;border:1px solid rgba(252,211,77,.3)}
+.pub-title{font-family:var(--display);font-size:.95rem;font-weight:600;color:var(--ink);line-height:1.45;margin-bottom:.3rem;transition:color .2s}
+.pub-item:hover .pub-title{color:var(--goldd)}
+.pub-authors{font-size:.8rem;color:var(--muted)}
 .pub-authors strong{color:var(--ink2);font-weight:500}
-.pub-venue{font-style:italic;font-size:.8rem;color:var(--muted);margin-bottom:.5rem}
-.pub-abstract{font-size:.8rem;color:var(--muted);line-height:1.65;margin-top:.5rem;padding-top:.5rem;border-top:1px solid var(--line);display:none}
-.pub-abstract.open{display:block}
-.pub-toggle{font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;color:var(--blue);cursor:pointer;transition:color .2s;background:none;border:none;padding:0;margin-top:.35rem}
-.pub-toggle:hover{color:var(--gold)}
-
-.pub-link{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:.35rem .85rem;border-radius:4px;transition:all .2s;white-space:nowrap;align-self:flex-start;margin-top:4px}
+.pub-venue{font-style:italic;font-size:.8rem;color:var(--muted);margin-top:.15rem}
+.pub-abs{font-size:.8rem;color:var(--muted);line-height:1.7;margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--border);display:none}
+.pub-abs.open{display:block}
+.abs-toggle{font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;color:var(--gold);cursor:pointer;transition:color .2s;background:none;border:none;padding:0;margin-top:.4rem}
+.abs-toggle:hover{color:var(--goldd)}
+.pub-link{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;color:var(--goldd);border:1px solid rgba(200,169,126,.35);padding:.32rem .8rem;border-radius:4px;transition:all .2s;white-space:nowrap;align-self:flex-start}
 .pub-link:hover{background:var(--golddim)}
 
 /* FOOTER */
-.footer{border-top:1px solid var(--line);padding:1.75rem 48px;max-width:100%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-.footer-brand{font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--ink)}
-.footer-brand em{font-style:italic;color:var(--gold)}
-.footer-sub{font-family:var(--mono);font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-top:.2rem}
-.footer-links{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;gap:1.25rem}
-.footer-links a:hover{color:var(--gold)}
+.footer{background:var(--cream2);border-top:1px solid var(--border);padding:1.75rem clamp(1.5rem,5vw,4rem)}
+.footer-inner{max-width:var(--max);margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-brand{display:flex;align-items:center;gap:.75rem}
+.fi{width:28px;height:28px;background:var(--ink);border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:.72rem;font-weight:600;color:var(--cream)}
+.fn{font-family:var(--display);font-size:.9rem;font-weight:500;color:var(--ink)}
+.fs{font-family:var(--mono);font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;color:var(--light);margin-top:.1rem}
+.footer-links{display:flex;gap:1.25rem;flex-wrap:wrap}
+.footer-links a{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+.footer-links a:hover{color:var(--goldd)}
 
 @media(max-width:768px){
-  .nav{padding:0 20px}
-  .nav__links,.nav__actions{display:none}
-  .nav__burger{display:flex}
-  .hero{padding:90px 20px 50px}
-  .filters-row,.main{padding-left:20px;padding-right:20px}
-  .pub-item{grid-template-columns:36px 1fr}
-  .pub-link{display:none}
-  .footer{flex-direction:column;align-items:flex-start;padding:1.5rem 20px}
+  .nav{padding:0 1.25rem}.nav__links,.nav__actions-d{display:none}.nav__burger{display:flex}
+  .page-hero{padding:90px 1.25rem 48px}.main{padding:1.5rem 1.25rem 4rem}.filter-row{padding:1rem 1.25rem}
+  .pub-item{grid-template-columns:36px 1fr}.pub-link{display:none}
+  .footer-inner{flex-direction:column;align-items:flex-start}.footer-links{flex-wrap:wrap}
 }
 </style>
 </head>
@@ -129,200 +120,190 @@ h1 em{font-style:italic;color:var(--gold);font-weight:400}
 
 <!-- NAV -->
 <nav class="nav" id="nav">
-  <a href="index.html" class="nav__logo">Tanay <em>Das</em></a>
+  <a href="index.html" class="nav__brand">
+    <div class="nav__init">TD</div>
+    <div><div class="nav__name">Tanay Das</div></div>
+  </a>
   <div class="nav__links">
+    <a href="index.html">Portfolio</a>
     <a href="index.html#about">About</a>
-    <a href="index.html#experience">Experience</a>
+    <a href="index.html#research">Research</a>
     <a href="tools.html">Tools</a>
     <a href="publications.html" class="active">Publications</a>
     <a href="index.html#contact">Contact</a>
   </div>
-  <div class="nav__actions">
-    <a href="Tanay_CV_PhD.pdf" target="_blank" class="nav__cv" download>
-      <svg viewBox="0 0 24 24"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 20h16"/></svg>
-      CV / Resume
+  <div class="nav__actions-d" style="display:flex;align-items:center;gap:10px">
+    <a href="Tanay_CV_PhD.pdf" target="_blank" download class="nav__cta">
+      <svg viewBox="0 0 24 24"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 20h16"/></svg>CV
     </a>
   </div>
-  <button class="nav__burger" id="burger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-  <div class="nav__mobile" id="mobileMenu">
-    <a href="index.html">← Portfolio</a>
-    <a href="tools.html">AI Tools</a>
-    <a href="index.html#contact">Contact</a>
-    <a href="Tanay_CV_PhD.pdf" target="_blank" style="color:var(--gold)" download>⬇ CV</a>
+  <button class="nav__burger" id="burger" aria-label="Menu"><span id="b1"></span><span id="b2"></span><span id="b3"></span></button>
+  <div class="nav__mob" id="mobMenu">
+    <a href="index.html" onclick="closeMob()">← Portfolio</a>
+    <a href="tools.html" onclick="closeMob()">AI Tools</a>
+    <a href="index.html#awards" onclick="closeMob()">Awards</a>
+    <a href="index.html#contact" onclick="closeMob()">Contact</a>
+    <a href="Tanay_CV_PhD.pdf" download onclick="closeMob()" style="color:var(--goldd)">⬇ Download CV</a>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero__inner">
-    <a href="index.html" class="hero__back">
-      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-      Back to Portfolio
-    </a>
-    <h1><em>Publications</em></h1>
-    <p class="hero__sub">IEEE-indexed publications spanning ESD protection for neuromodulation SoCs, neuromorphic RRAM computing, and VLSI design — from IIT Gandhinagar EDRL Lab and AMD DSV research.</p>
+<section class="page-hero">
+  <div class="inner">
+    <a href="index.html" class="back-link"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>Back to Portfolio</a>
+    <div style="font-family:var(--mono);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem">Publications</div>
+    <h1 style="font-family:var(--display);font-size:clamp(2.5rem,6vw,4rem);font-weight:300;line-height:1.05;letter-spacing:-.04em;color:var(--ink)">
+      9 IEEE<br><span style="font-style:italic;font-weight:500;color:var(--goldd)">Publications</span>
+    </h1>
+    <p style="font-size:.96rem;color:var(--muted);max-width:520px;line-height:1.85;margin-top:.85rem">
+      IEEE-indexed research spanning ESD protection for neuromodulation SoCs, neuromorphic RRAM computing, power side-channel analysis, and analog VLSI design — from IIT Gandhinagar EDRL Lab and AMD DSV.
+    </p>
     <div class="stats-row">
-      <div class="stat"><span class="stat__n">9</span><span class="stat__l">Total publications</span></div>
-      <div class="stat"><span class="stat__n">1</span><span class="stat__l">Journal</span></div>
-      <div class="stat"><span class="stat__n">8</span><span class="stat__l">Conference</span></div>
-      <div class="stat"><span class="stat__n">3</span><span class="stat__l">First author</span></div>
-      <div class="stat"><span class="stat__n">2</span><span class="stat__l">Awards</span></div>
+      <div class="stat"><span class="sn">9</span><span class="sl">Total</span></div>
+      <div class="stat"><span class="sn">1</span><span class="sl">Journal</span></div>
+      <div class="stat"><span class="sn">8</span><span class="sl">Conference</span></div>
+      <div class="stat"><span class="sn">3</span><span class="sl">First Author</span></div>
+      <div class="stat"><span class="sn">2</span><span class="sl">Awards</span></div>
     </div>
   </div>
 </section>
 
 <!-- FILTERS -->
-<div class="filters-row">
-  <button class="f-btn active" onclick="filterPubs('all',this)">All (9)</button>
-  <button class="f-btn" onclick="filterPubs('journal',this)">Journal (1)</button>
-  <button class="f-btn" onclick="filterPubs('conference',this)">Conference (8)</button>
-  <button class="f-btn" onclick="filterPubs('esd',this)">ESD Protection</button>
-  <button class="f-btn" onclick="filterPubs('neuromorphic',this)">Neuromorphic / RRAM</button>
+<div class="filter-row">
+  <button class="f-btn active" onclick="filter('all',this)">All (9)</button>
+  <button class="f-btn" onclick="filter('journal',this)">Journal (1)</button>
+  <button class="f-btn" onclick="filter('conference',this)">Conference (8)</button>
+  <button class="f-btn" onclick="filter('esd',this)">ESD Protection</button>
+  <button class="f-btn" onclick="filter('neuromorphic',this)">Neuromorphic / RRAM</button>
+  <button class="f-btn" onclick="filter('award',this)">Award Winners</button>
 </div>
 
-<!-- PUB LIST -->
+<!-- PUBLICATIONS -->
 <main class="main">
 
-  <!-- ── AWARDS / SPECIAL ── -->
-  <div class="pub-section-label" data-section="all conference neuromorphic">Special Recognition</div>
+  <div class="sec-label" data-sec="all award neuromorphic">Special Recognition</div>
 
-  <div class="pub-item pub-new" data-type="conference" data-topic="neuromorphic">
-    <div class="pub-num">★</div>
-    <div class="pub-content">
+  <div class="pub-item pub-new" data-type="conference" data-topic="award neuromorphic">
+    <div class="pub-n">★</div>
+    <div>
       <div class="pub-badges">
-        <span class="badge badge-new">✦ New · 2025</span>
+        <span class="badge badge-new">✦ 2025</span>
         <span class="badge badge-gold">IEEE SSCS Code-a-Chip Award</span>
-        <span class="badge badge-teal">Travel Grant · ESSERC 2026</span>
+        <span class="badge badge-sage">ESSERC 2026 · Travel Grant</span>
       </div>
       <div class="pub-title">Power Side-Channel Vulnerability Analysis on Analog In-Memory Computing Arrays</div>
       <div class="pub-authors"><strong>T. Das</strong>, U. Singh &nbsp;·&nbsp; Co-authored</div>
       <div class="pub-venue">IEEE SSCS Code-a-Chip Design Challenge · ESSERC 2026, Palma de Mallorca, Sep 7–10</div>
-      <div class="pub-badges" style="margin-top:.4rem;margin-bottom:0">
-        <span class="badge badge-green">Pearson ρ = 0.9979 (HW leakage)</span>
-        <span class="badge badge-green">ρ = 0.9998 (weight extraction)</span>
-      </div>
-      <button class="pub-toggle" onclick="toggleAbstract(this)">Show abstract ↓</button>
-      <div class="pub-abstract">Demonstrates power side-channel vulnerability on analog in-memory computing (IMC) arrays — RRAM 1T1R crossbar architecture on SKY130 PDK using Ngspice. Achieves Pearson ρ = 0.9979 for Hamming weight leakage and ρ = 0.9998 for weight extraction from power traces. Awarded IEEE SSCS Code-a-Chip Travel Grant for presentation at ESSERC 2026, Palma de Mallorca.</div>
+      <button class="abs-toggle" onclick="toggleAbs(this)">Show abstract ↓</button>
+      <div class="pub-abs">Demonstrates power side-channel vulnerability on analog in-memory computing (IMC) arrays using RRAM 1T1R crossbar on SKY130 PDK with Ngspice. Achieves Pearson ρ = 0.9979 for Hamming weight leakage and ρ = 0.9998 for weight extraction from power traces. Awarded IEEE SSCS Code-a-Chip Travel Grant for presentation at ESSERC 2026, Palma de Mallorca.</div>
     </div>
-    <span class="pub-link" style="color:var(--gold);border-color:rgba(201,168,76,.4)">Accepted ✓</span>
+    <span class="pub-link" style="color:var(--goldd);border-color:rgba(200,169,126,.4)">Accepted</span>
   </div>
 
-  <div class="pub-item pub-new" data-type="conference" data-topic="neuromorphic">
-    <div class="pub-num">★</div>
-    <div class="pub-content">
-      <div class="pub-badges">
-        <span class="badge badge-new">✦ New · Accepted</span>
-        <span class="badge badge-blue">ESSERC 2026</span>
-        <span class="badge badge-teal">Neuromorphic Computing</span>
-      </div>
-      <div class="pub-title">Frequency-Encoded STDP Learning Using 3-Terminal PCMO RRAM Synapses in a 16×3 Crossbar</div>
-      <div class="pub-authors"><strong>T. Das</strong>, U. Singh et al.</div>
-      <div class="pub-venue">IEEE European Solid-State Electronics Research Conference (ESSERC 2026) · Palma de Mallorca, Sep 7–10, 2026</div>
-      <div class="pub-badges" style="margin-top:.4rem;margin-bottom:0">
-        <span class="badge badge-green">92.6% Iris accuracy</span>
-        <span class="badge badge-blue">180nm TSMC · Cadence Virtuoso</span>
-      </div>
-      <button class="pub-toggle" onclick="toggleAbstract(this)">Show abstract ↓</button>
-      <div class="pub-abstract">Demonstrates frequency-encoded spike-timing-dependent plasticity (STDP) learning using 3-terminal PCMO RRAM synapses in a 16×3 crossbar array. Fabricated in 180 nm TSMC technology using Cadence Virtuoso. Achieves 92.6% classification accuracy on the Iris dataset using neuromorphic learning without backpropagation. Accepted for ESSERC 2026, Palma de Mallorca.</div>
-    </div>
-    <span class="pub-link" style="color:var(--gold);border-color:rgba(201,168,76,.4)">In Press</span>
-  </div>
-
-  <!-- ── JOURNAL ── -->
-  <div class="pub-section-label" data-section="all journal esd">Journal Publication</div>
+  <div class="sec-label" data-sec="all journal esd">Journal</div>
 
   <div class="pub-item" data-type="journal" data-topic="esd">
-    <div class="pub-num">J1</div>
-    <div class="pub-content">
-      <div class="pub-badges"><span class="badge badge-teal">Journal</span><span class="badge badge-blue">IEEE JEDS 2025</span></div>
+    <div class="pub-n">J1</div>
+    <div>
+      <div class="pub-badges"><span class="badge badge-sage">Journal</span><span class="badge badge-gray">IEEE JEDS 2025</span></div>
       <div class="pub-title">ESD Protection with Sub-3Ω Dynamic Resistance for Neuromodulation System-on-Chip</div>
       <div class="pub-authors"><strong>T. Das</strong>, N. Ahmad, L. Somappa, S. Lashkare</div>
       <div class="pub-venue">IEEE Journal of the Electron Devices Society (JEDS), 2025</div>
-      <button class="pub-toggle" onclick="toggleAbstract(this)">Show abstract ↓</button>
-      <div class="pub-abstract">Presents a novel ESD protection topology with sub-3Ω dynamic resistance for neuromodulation SoC applications, validated through TLP characterization and layout co-design in 65 nm CMOS. Achieves IEC 61000-4-2 compliance while supporting 10V neurostimulator operation.</div>
+      <button class="abs-toggle" onclick="toggleAbs(this)">Show abstract ↓</button>
+      <div class="pub-abs">Novel ESD protection topology achieving sub-3Ω dynamic resistance for neuromodulation SoC applications in 65nm CMOS. Validated via TLP characterization; IEC 61000-4-2 compliant for 10V neurostimulator operation.</div>
     </div>
     <a href="https://ieeexplore.ieee.org/abstract/document/11391546" target="_blank" rel="noopener" class="pub-link">IEEE ↗</a>
   </div>
 
-  <!-- ── CONFERENCE ── -->
-  <div class="pub-section-label" data-section="all conference esd neuromorphic">Conference Publications</div>
+  <div class="sec-label" data-sec="all conference esd neuromorphic">Conference Papers</div>
 
-  <div class="pub-item" data-type="conference" data-topic="neuromorphic">
-    <div class="pub-num">C1</div>
-    <div class="pub-content">
-      <div class="pub-badges"><span class="badge badge-gold">Conference</span><span class="badge badge-red">🏆 Best Paper</span><span class="badge badge-blue">ICEE 2025</span></div>
+  <div class="pub-item" data-type="conference" data-topic="award neuromorphic">
+    <div class="pub-n">C1</div>
+    <div>
+      <div class="pub-badges"><span class="badge badge-award">🏆 Best Paper</span><span class="badge badge-gold">Conf.</span><span class="badge badge-gray">ICEE 2025</span></div>
       <div class="pub-title">Hybrid SW-FPGA RRAM-crossbar Array for In-Memory Computing with Bit-Slicing Architecture</div>
       <div class="pub-authors">U. Singh, <strong>T. Das</strong> et al.</div>
       <div class="pub-venue">International Conference on Emerging Electronics (ICEE), 2025</div>
-      <button class="pub-toggle" onclick="toggleAbstract(this)">Show abstract ↓</button>
-      <div class="pub-abstract">Proposes a hybrid software-FPGA RRAM crossbar array architecture with bit-slicing for efficient in-memory computing. Awarded Best Paper at ICEE 2025.</div>
+      <button class="abs-toggle" onclick="toggleAbs(this)">Show abstract ↓</button>
+      <div class="pub-abs">Proposes a hybrid software-FPGA RRAM crossbar array architecture with bit-slicing for efficient in-memory computing. Demonstrates significant performance gains over conventional approaches. Awarded Best Paper at IEEE ICEE 2025.</div>
     </div>
     <a href="https://ieeexplore.ieee.org/abstract/document/11409883" target="_blank" rel="noopener" class="pub-link">IEEE ↗</a>
   </div>
 
   <div class="pub-item" data-type="conference" data-topic="esd">
-    <div class="pub-num">C2</div>
-    <div class="pub-content">
-      <div class="pub-badges"><span class="badge badge-gold">Conference</span><span class="badge badge-blue">ICEE 2025</span></div>
+    <div class="pub-n">C2</div>
+    <div>
+      <div class="pub-badges"><span class="badge badge-gold">Conf.</span><span class="badge badge-gray">ICEE 2025</span></div>
       <div class="pub-title">ESD Protection with On-chip Diodes for 65nm CMOS High Voltage Neurostimulators</div>
       <div class="pub-authors"><strong>T. Das</strong>, L. Somappa, S. Lashkare</div>
       <div class="pub-venue">International Conference on Emerging Electronics (ICEE), 2025</div>
-      <button class="pub-toggle" onclick="toggleAbstract(this)">Show abstract ↓</button>
-      <div class="pub-abstract">Demonstrates ESD protection using on-chip diode structures for 65 nm CMOS neurostimulator circuits operating at high voltages, with TLP-based characterization results.</div>
+      <button class="abs-toggle" onclick="toggleAbs(this)">Show abstract ↓</button>
+      <div class="pub-abs">On-chip diode-based ESD protection for 65nm CMOS high-voltage neurostimulator circuits. TLP-characterised with compliant clamping performance.</div>
     </div>
     <a href="https://ieeexplore.ieee.org/abstract/document/11409724" target="_blank" rel="noopener" class="pub-link">IEEE ↗</a>
   </div>
 
   <div class="pub-item" data-type="conference" data-topic="esd">
-    <div class="pub-num">C3</div>
-    <div class="pub-content">
-      <div class="pub-badges"><span class="badge badge-gold">Conference</span><span class="badge badge-blue">ICEE 2025</span></div>
-      <div class="pub-title">TCAD-Guided Design of a Compact ESD Protection Circuit for Neurostimulators in CMOS 65nm</div>
+    <div class="pub-n">C3</div>
+    <div>
+      <div class="pub-badges"><span class="badge badge-gold">Conf.</span><span class="badge badge-gray">ICEE 2025</span></div>
+      <div class="pub-title">TCAD-Guided Design of a Compact ESD Protection Circuit for Neurostimulators in 65nm CMOS</div>
       <div class="pub-authors">N. Maheshwari, <strong>T. Das</strong> et al.</div>
       <div class="pub-venue">International Conference on Emerging Electronics (ICEE), 2025</div>
-      <button class="pub-toggle" onclick="toggleAbstract(this)">Show abstract ↓</button>
-      <div class="pub-abstract">Uses TCAD simulation to guide the design of a compact ESD protection circuit targeting neurostimulator applications in 65 nm CMOS, enabling design-space exploration at device level.</div>
+      <button class="abs-toggle" onclick="toggleAbs(this)">Show abstract ↓</button>
+      <div class="pub-abs">TCAD simulation guides the design of a compact ESD protection circuit for 65nm neurostimulator applications, enabling device-level design-space exploration.</div>
     </div>
     <a href="https://ieeexplore.ieee.org/abstract/document/11409969" target="_blank" rel="noopener" class="pub-link">IEEE ↗</a>
   </div>
 
   <div class="pub-item" data-type="conference" data-topic="esd">
-    <div class="pub-num">C4</div>
-    <div class="pub-content">
-      <div class="pub-badges"><span class="badge badge-gold">Conference</span><span class="badge badge-blue">EDTM 2025</span></div>
+    <div class="pub-n">C4</div>
+    <div>
+      <div class="pub-badges"><span class="badge badge-gold">Conf.</span><span class="badge badge-gray">EDTM 2025</span></div>
       <div class="pub-title">Enhanced ESD Protection Techniques for 10V Neurostimulator Circuits in 65nm CMOS Technology</div>
       <div class="pub-authors"><strong>T. Das</strong>, N. Ahmad, L. Somappa, S. Lashkare</div>
       <div class="pub-venue">IEEE Electronics Design, Test and Application (EDTM), 2025</div>
-      <button class="pub-toggle" onclick="toggleAbstract(this)">Show abstract ↓</button>
-      <div class="pub-abstract">Presents enhanced ESD protection enabling 10V operation in neurostimulator circuits in 65 nm CMOS, achieving IEC 61000-4-2 compliance with sub-3Ω clamping resistance.</div>
+      <button class="abs-toggle" onclick="toggleAbs(this)">Show abstract ↓</button>
+      <div class="pub-abs">Enhanced ESD protection enabling 10V operation in 65nm CMOS neurostimulator circuits, achieving IEC 61000-4-2 compliance with sub-3Ω clamping resistance.</div>
     </div>
     <a href="https://ieeexplore.ieee.org/abstract/document/11041318" target="_blank" rel="noopener" class="pub-link">IEEE ↗</a>
   </div>
 
   <div class="pub-item" data-type="conference" data-topic="esd">
-    <div class="pub-num">C5</div>
-    <div class="pub-content">
-      <div class="pub-badges"><span class="badge badge-gold">Conference</span><span class="badge badge-blue">VDAT 2024</span></div>
+    <div class="pub-n">C5</div>
+    <div>
+      <div class="pub-badges"><span class="badge badge-gold">Conf.</span><span class="badge badge-gray">VDAT 2024</span></div>
       <div class="pub-title">Dynamic Resistance Reduction Methods for Voltage Clamp Lowering to Enhance GGNMOS ESD Protection</div>
       <div class="pub-authors"><strong>T. Das</strong>, M. Pathak, S. Lashkare</div>
       <div class="pub-venue">VLSI Design and Test Symposium (VDAT), 2024</div>
-      <button class="pub-toggle" onclick="toggleAbstract(this)">Show abstract ↓</button>
-      <div class="pub-abstract">Investigates circuit-level methods to reduce the dynamic on-resistance of GGNMOS-based ESD protection structures, enabling lower clamping voltages without compromising holding current.</div>
+      <button class="abs-toggle" onclick="toggleAbs(this)">Show abstract ↓</button>
+      <div class="pub-abs">Circuit-level methods to reduce GGNMOS dynamic on-resistance for lower clamping voltages without compromising holding current, enabling more effective ESD protection.</div>
     </div>
     <a href="https://ieeexplore.ieee.org/document/10705717/" target="_blank" rel="noopener" class="pub-link">IEEE ↗</a>
   </div>
 
+  <div class="pub-item pub-new" data-type="conference" data-topic="neuromorphic">
+    <div class="pub-n">C6</div>
+    <div>
+      <div class="pub-badges"><span class="badge badge-new">✦ ESSERC 2026 · Accepted</span><span class="badge badge-gold">Conf.</span></div>
+      <div class="pub-title">Frequency-Encoded STDP Learning Using 3-Terminal PCMO RRAM Synapses in a 16×3 Crossbar</div>
+      <div class="pub-authors"><strong>T. Das</strong>, U. Singh et al.</div>
+      <div class="pub-venue">IEEE European Solid-State Electronics Research Conference (ESSERC 2026) · Palma de Mallorca, Sep 7–10</div>
+      <button class="abs-toggle" onclick="toggleAbs(this)">Show abstract ↓</button>
+      <div class="pub-abs">Frequency-encoded spike-timing-dependent plasticity (STDP) learning using 3-terminal PCMO RRAM synapses in a 16×3 crossbar in 180nm TSMC (Cadence Virtuoso). Achieves 92.6% classification accuracy on the Iris dataset without backpropagation. Accepted for ESSERC 2026.</div>
+    </div>
+    <span class="pub-link" style="color:var(--goldd);border-color:rgba(200,169,126,.4)">In Press</span>
+  </div>
+
   <div class="pub-item" data-type="conference" data-topic="other">
-    <div class="pub-num">C6</div>
-    <div class="pub-content">
-      <div class="pub-badges"><span class="badge badge-gold">Conference</span><span class="badge badge-blue">Materials Today 2022</span></div>
+    <div class="pub-n">C7</div>
+    <div>
+      <div class="pub-badges"><span class="badge badge-gold">Conf.</span><span class="badge badge-gray">Materials Today 2022</span></div>
       <div class="pub-title">Synthesis and Characterization of MXene from MAX Phase</div>
       <div class="pub-authors">A. Ghosh, H. Pal, <strong>T. Das</strong>, S. Chatterjee, A. Das</div>
       <div class="pub-venue">Materials Today: Proceedings, 2022</div>
-      <button class="pub-toggle" onclick="toggleAbstract(this)">Show abstract ↓</button>
-      <div class="pub-abstract">Experimental study covering the synthesis and structural characterization of MXene 2D materials derived from MAX phase precursors, with analysis of morphological and compositional properties.</div>
+      <button class="abs-toggle" onclick="toggleAbs(this)">Show abstract ↓</button>
+      <div class="pub-abs">Experimental synthesis and structural characterisation of MXene 2D materials derived from MAX phase precursors, with analysis of morphological and compositional properties.</div>
     </div>
     <a href="https://doi.org/10.1016/j.matpr.2022.02.253" target="_blank" rel="noopener" class="pub-link">View ↗</a>
   </div>
@@ -331,42 +312,52 @@ h1 em{font-style:italic;color:var(--gold);font-weight:400}
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div>
-    <div class="footer-brand">Tanay <em>Das</em></div>
-    <div class="footer-sub">Silicon Design Engineer · AMD, Hyderabad · M.Tech IIT Gandhinagar 2025</div>
-  </div>
-  <div class="footer-links">
-    <a href="index.html">← Portfolio</a>
-    <a href="tools.html">Tools</a>
-    <a href="Tanay_CV_PhD.pdf" target="_blank" download>CV</a>
-    <a href="index.html#contact">Contact</a>
-    <span>© 2026</span>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="fi">TD</div>
+      <div><div class="fn">Tanay Das</div><div class="fs">Silicon Design Engineer · AMD, Hyderabad · M.Tech IIT Gandhinagar 2025</div></div>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">← Portfolio</a>
+      <a href="tools.html">Tools</a>
+      <a href="Tanay_CV_PhD.pdf" download>CV</a>
+      <a href="index.html#contact">Contact</a>
+      <span style="color:var(--light)">© 2026</span>
+    </div>
   </div>
 </footer>
 
 <script>
-const nav = document.getElementById('nav');
-window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20),{passive:true});
-document.getElementById('burger').addEventListener('click',()=>document.getElementById('mobileMenu').classList.toggle('open'));
-document.querySelectorAll('.nav__mobile a').forEach(a=>a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open')));
+const nav=document.getElementById('nav')
+window.addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>40),{passive:true})
+let open=false
+document.getElementById('burger').addEventListener('click',()=>{
+  open=!open;document.getElementById('mobMenu').classList.toggle('open',open)
+  document.getElementById('b1').style.transform=open?'rotate(45deg) translateY(6.5px)':''
+  document.getElementById('b2').style.opacity=open?'0':'1'
+  document.getElementById('b3').style.transform=open?'rotate(-45deg) translateY(-6.5px)':''
+})
+function closeMob(){open=false;document.getElementById('mobMenu').classList.remove('open')}
 
-function toggleAbstract(btn){
-  const abs = btn.nextElementSibling;
-  const open = abs.classList.toggle('open');
-  btn.textContent = open ? 'Hide abstract ↑' : 'Show abstract ↓';
+function toggleAbs(btn){
+  const abs=btn.nextElementSibling
+  const isOpen=abs.classList.toggle('open')
+  btn.textContent=isOpen?'Hide abstract ↑':'Show abstract ↓'
 }
 
-function filterPubs(type, btn){
-  document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
+function filter(type,btn){
+  document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'))
+  btn.classList.add('active')
   document.querySelectorAll('.pub-item').forEach(item=>{
-    if(type==='all'){item.style.display='grid';return;}
-    if(type==='journal'||type==='conference'){item.style.display=item.dataset.type===type?'grid':'none';return;}
-    item.style.display=item.dataset.topic===type?'grid':'none';
-  });
-  document.querySelectorAll('.pub-section-label').forEach(label=>{
-    label.style.display = (type==='all'||label.dataset.section.includes(type)) ? 'flex' : 'none';
-  });
+    if(type==='all'){item.style.display='grid';return}
+    if(type==='journal'||type==='conference'){
+      item.style.display=item.dataset.type===type?'grid':'none';return
+    }
+    item.style.display=item.dataset.topic&&item.dataset.topic.includes(type)?'grid':'none'
+  })
+  document.querySelectorAll('.sec-label').forEach(l=>{
+    l.style.display=(type==='all'||l.dataset.sec.includes(type))?'flex':'none'
+  })
 }
 </script>
 </body>
