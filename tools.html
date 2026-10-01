@@ -1,360 +1,208 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>AI Tools — Tanay Das · AMD DSV</title>
-<meta name="description" content="AI-powered internal tooling built at AMD DSV — RTL Verification Platform and CR Batch Verification Portal."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&family=Great+Vibes&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<style>
-:root{
-  --cream:#FAF8F4;--cream2:#F3EEE7;--cream3:#EBE4D8;
-  --border:#E7DFD4;--border2:#D4C9B8;
-  --ink:#111111;--ink2:#2C2C2C;--muted:#6B7280;--light:#9CA3AF;
-  --gold:#C8A97E;--gold2:#DFC4A0;--goldd:#A8864A;--golddim:rgba(200,169,126,0.10);
-  --sage:#A8B5A2;--saged:#7A9070;
-  --display:'Cormorant Garamond',Georgia,serif;
-  --body:'Inter',system-ui,sans-serif;
-  --mono:'JetBrains Mono',monospace;
-  --ease:cubic-bezier(0.16,1,0.3,1);--max:1160px;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-body{background:var(--cream);color:var(--ink);font-family:var(--body);line-height:1.75;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-img{display:block;max-width:100%}
-::selection{background:rgba(200,169,126,.2);color:var(--ink)}
-::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--cream)}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
-
-body::before{content:'';position:fixed;inset:0;z-index:1000;pointer-events:none;opacity:.025;
-background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-
-/* NAV */
-.wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(1.5rem,5vw,4rem)}
-.lbl{font-family:var(--mono);font-size:.6875rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
-.lbl-gold{color:var(--gold)}
-.nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,3.5rem);background:rgba(250,248,244,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
-.nav__brand{display:flex;align-items:center;gap:10px}
-.nav__init{width:32px;height:32px;background:var(--ink);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:.8rem;font-weight:600;color:var(--cream);transition:background .3s}
-.nav__brand:hover .nav__init{background:var(--goldd)}
-.nav__name{font-family:var(--display);font-size:1rem;font-weight:600;color:var(--ink)}
-.nav__links{display:flex;gap:2px}
-.nav__links a{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:.45rem .8rem;border-radius:5px;transition:color .2s}
-.nav__links a:hover,.nav__links a.active{color:var(--ink)}
-.nav__cta{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream);background:var(--ink);border:none;padding:.42rem 1.1rem;border-radius:5px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:background .25s}
-.nav__cta:hover{background:var(--goldd)}
-.nav__cta svg{width:12px;height:12px;stroke:currentColor;stroke-width:2.5;fill:none}
-.nav__burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
-.nav__burger span{display:block;width:22px;height:1.5px;background:var(--ink);transition:all .25s;border-radius:1px}
-.nav__mob{display:none;position:fixed;inset-x-0;top:64px;background:rgba(250,248,244,.96);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:1.25rem clamp(1.5rem,5vw,3.5rem);flex-direction:column;gap:.25rem;z-index:199}
-.nav__mob.open{display:flex}
-.nav__mob a{font-family:var(--display);font-size:1.25rem;font-weight:400;color:var(--ink);padding:.6rem 0;border-bottom:1px solid var(--border)}
-.nav__mob a:last-child{border:none}
-
-/* HERO */
-.page-hero{padding:110px clamp(1.5rem,5vw,4rem) 64px;background:var(--cream2);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
-.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 50% -20%,rgba(200,169,126,.06) 0%,transparent 60%);pointer-events:none}
-.page-hero::after{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:.15}
-.page-hero .inner{position:relative;z-index:1;max-width:var(--max);margin:0 auto}
-.back-link{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1.75rem;transition:color .2s}
-.back-link:hover{color:var(--goldd)}
-.back-link svg{width:12px;height:12px;stroke:currentColor;stroke-width:2;fill:none}
-
-/* METRICS BAR */
-.metrics-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:var(--max);margin:0 auto;padding:2rem clamp(1.5rem,5vw,4rem);border-bottom:1px solid var(--border);background:var(--cream)}
-.mb-card{background:var(--cream2);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:10px;padding:1.1rem 1rem;text-align:center}
-.mb-n{font-family:var(--display);font-size:1.9rem;font-weight:700;color:var(--ink);line-height:1;margin-bottom:.2rem}
-.mb-l{font-family:var(--mono);font-size:.57rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
-
-/* SECTIONS */
-.sec{padding:clamp(3.5rem,7vw,6rem) clamp(1.5rem,5vw,4rem);border-top:1px solid var(--border)}
-.sec--alt{background:var(--cream2)}
-.sh-lbl{font-family:var(--mono);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:inline-block;padding:.2rem .75rem;border-radius:100px;background:var(--golddim);border:1px solid rgba(200,169,126,.25);margin-bottom:1.25rem}
-.tool-badge{display:inline-block;font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--goldd);background:var(--golddim);border:1px solid rgba(200,169,126,.25);padding:.22rem .8rem;border-radius:100px;margin-bottom:1rem}
-.tool-num{font-family:var(--display);font-size:5rem;font-weight:700;opacity:.06;color:var(--ink);line-height:1;margin-bottom:.25rem}
-.tool-name{font-family:var(--display);font-size:clamp(1.8rem,3vw,2.4rem);font-weight:600;color:var(--ink);line-height:1.15;margin-bottom:.85rem}
-.tool-desc{font-size:.95rem;color:var(--muted);line-height:1.85;margin-bottom:1.5rem}
-.feats{list-style:none;display:flex;flex-direction:column;gap:.55rem;margin-bottom:1.5rem}
-.feat{display:flex;align-items:flex-start;gap:.55rem;font-size:.875rem;color:var(--muted);line-height:1.6}
-.feat::before{content:'→';color:var(--gold);flex-shrink:0;font-size:.75rem;margin-top:.1em}
-.tstack{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.25rem}
-.ts{font-family:var(--mono);font-size:.6rem;letter-spacing:.04em;padding:.2rem .7rem;border-radius:4px;background:rgba(255,255,255,.6);border:1px solid var(--border);color:var(--muted)}
-.cta-link{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;color:var(--ink);border-bottom:1.5px solid var(--gold);padding-bottom:1px;transition:color .2s}
-.cta-link:hover{color:var(--goldd)}
-
-/* BROWSER FRAME */
-.bframe{border-radius:12px;overflow:hidden;border:1px solid var(--border);box-shadow:0 4px 24px rgba(17,17,17,.08);transition:transform .35s var(--ease),box-shadow .35s}
-.bframe:hover{transform:translateY(-5px) rotate(.2deg);box-shadow:0 12px 40px rgba(17,17,17,.12)}
-.bbar{display:flex;align-items:center;gap:5px;background:var(--cream3);padding:9px 14px;border-bottom:1px solid var(--border)}
-.bdot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.bdot.r{background:#f87171}.bdot.y{background:#fbbf24}.bdot.g{background:#4ade80}
-.burl{flex:1;text-align:center;font-family:var(--mono);font-size:9.5px;color:var(--muted);background:rgba(255,255,255,.6);border-radius:3px;padding:2px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.bframe img{width:100%;display:block}
-
-/* GRID LAYOUTS */
-.tool-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:3.5rem;align-items:start}
-.tool-grid.flip{grid-template-columns:1.2fr 1fr}
-.tool-grid.flip .tool-img-col{order:1}
-.tool-grid.flip .tool-copy-col{order:2}
-
-/* STEPS */
-.steps{display:flex;flex-direction:column;gap:.9rem;margin-bottom:1.5rem}
-.step{display:flex;gap:.9rem;align-items:flex-start}
-.step-n{width:26px;height:26px;background:var(--golddim);border:1px solid rgba(200,169,126,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.62rem;font-weight:500;color:var(--goldd);flex-shrink:0;margin-top:.1rem}
-.step-body{font-size:.88rem;color:var(--muted);line-height:1.7}
-.step-body strong{color:var(--ink);font-weight:500}
-
-/* MODES */
-.modes-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.5rem}
-.mode{background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;transition:border-color .2s}
-.mode:hover{border-color:rgba(200,169,126,.3)}
-.mode-n{font-family:var(--mono);font-size:.58rem;font-weight:600;color:var(--goldd);margin-bottom:.3rem;letter-spacing:.06em}
-.mode-title{font-size:.87rem;font-weight:600;color:var(--ink);margin-bottom:.3rem}
-.mode-desc{font-size:.78rem;color:var(--muted);line-height:1.6}
-
-/* PERFORMANCE */
-.perf-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.25rem 0}
-.perf-card{background:var(--cream2);border:1px solid var(--border);border-radius:10px;padding:1.5rem;text-align:center}
-.perf-label{font-family:var(--mono);font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.5rem}
-.perf-n{font-family:var(--display);font-size:2.2rem;font-weight:700;line-height:1;margin-bottom:.35rem}
-.perf-sub{font-size:.8rem;color:var(--muted);line-height:1.5}
-.perf-card.bad .perf-n{color:#ef4444}.perf-card.good .perf-n{color:#22c55e}
-
-/* ARCH */
-.arch{background:var(--cream2);border:1px solid var(--border);border-radius:8px;padding:1.25rem 1.5rem;font-family:var(--mono);font-size:.75rem;color:var(--muted);line-height:2;overflow-x:auto}
-.arch .arr{color:var(--gold);margin:0 .3rem}
-.arch .node{color:var(--ink2)}
-.arch .hi{color:var(--goldd);font-weight:500}
-
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(24px)}
-.reveal.on{opacity:1;transform:none;transition:opacity .8s var(--ease),transform .8s var(--ease)}
-.reveal[data-d="1"].on{transition-delay:.1s}
-.reveal[data-d="2"].on{transition-delay:.2s}
-
-/* FOOTER */
-.hr{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--border) 20%,var(--border) 80%,transparent)}
-.footer{background:var(--cream2);border-top:1px solid var(--border);padding:1.75rem clamp(1.5rem,5vw,4rem)}
-.footer-inner{max-width:var(--max);margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-.footer-brand{display:flex;align-items:center;gap:.75rem}
-.fi{width:28px;height:28px;background:var(--ink);border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:.72rem;font-weight:600;color:var(--cream)}
-.fn{font-family:var(--display);font-size:.9rem;font-weight:500;color:var(--ink)}
-.fs{font-family:var(--mono);font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;color:var(--light);margin-top:.1rem}
-.footer-links{display:flex;gap:1.25rem;flex-wrap:wrap}
-.footer-links a{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);transition:color .2s}
-.footer-links a:hover{color:var(--goldd)}
-
-@media(max-width:1024px){.tool-grid,.tool-grid.flip{grid-template-columns:1fr;gap:2.5rem}.tool-grid.flip .tool-img-col,.tool-grid.flip .tool-copy-col{order:unset}.modes-grid{grid-template-columns:1fr}.perf-grid{grid-template-columns:1fr}.metrics-bar{grid-template-columns:1fr 1fr}}
-@media(max-width:768px){.nav{padding:0 1.25rem}.nav__links,.nav__actions-d{display:none}.nav__burger{display:flex}.sec{padding:3rem 1.25rem}.page-hero{padding:90px 1.25rem 48px}.metrics-bar{padding:1.5rem 1.25rem}.footer-inner{flex-direction:column;align-items:flex-start}.footer-links{flex-wrap:wrap}}
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
 </head>
 <body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+<script src="./page-fx.js"></script>
+<style>html{scroll-behavior:smooth}html,body{margin:0;background:#0A0A0A;color:#ECE8E1;-webkit-font-smoothing:antialiased}*{box-sizing:border-box}a{color:#ECE8E1;text-decoration:none}a:hover{color:#E5A93C}button{font:inherit;color:inherit}::selection{background:#E5A93C;color:#0A0A0A}</style>
+</helmet>
+<div ref="{{ rootRef }}" style="font-family:'Schibsted Grotesk',system-ui,sans-serif;background:#0A0A0A;color:#ECE8E1;min-height:100vh;overflow-x:clip">
+  <div ref="{{ progRef }}" style="position:fixed;top:0;left:0;right:0;height:2px;background:#E5A93C;transform:scaleX(0);transform-origin:0 50%;z-index:90"></div>
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:60;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;padding:14px clamp(20px,4vw,56px);background:rgba(10,10,10,.75);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid #262420">
+    <a data-route="" href="index.html" style="display:flex;align-items:center;gap:10px"><span style="width:26px;height:26px;border:1px solid #ECE8E1;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:10px">TD</span><span style="font-weight:700;font-size:15px">Tanay Das</span></a>
+    <div style="display:flex;flex-wrap:wrap;gap:6px 22px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase">
+      <a data-route="" href="journey.html" style="color:#9A958C">Journey</a>
+      <a data-route="" href="work.html" style="color:#9A958C">Work</a>
+      <a data-route="" href="tools.html" style="color:#E5A93C">● AI Tools</a>
+      <a data-route="" href="photography.html" style="color:#9A958C">Photography</a>
+      <a data-route="" href="toolkit.html" style="color:#9A958C">Toolkit</a>
+      <a data-route="" href="papers.html" style="color:#9A958C">Papers</a>
+    </div>
+    <div style="display:flex;gap:16px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em"><span style="color:#9A958C;font-variant-numeric:tabular-nums">HYD {{ time }}</span><a href="./resume.pdf" download="Tanay_Das_Resume.pdf" type="application/pdf" style="border:1px solid #3A3733;padding:6px 10px;text-transform:uppercase">CV ↓</a></div>
+  </nav>
 
-<!-- NAV -->
-<nav class="nav" id="nav">
-  <a href="index.html" class="nav__brand">
-    <div class="nav__init">TD</div>
-    <div><div class="nav__name">Tanay Das</div></div>
-  </a>
-  <div class="nav__links">
-    <a href="index.html">Portfolio</a>
-    <a href="index.html#about">About</a>
-    <a href="index.html#research">Research</a>
-    <a href="tools.html" class="active">Tools</a>
-    <a href="publications.html">Publications</a>
-    <a href="index.html#contact">Contact</a>
-  </div>
-  <div class="nav__actions-d" style="display:flex;align-items:center;gap:10px">
-    <a href="Tanay_CV_PhD.pdf" target="_blank" download class="nav__cta">
-      <svg viewBox="0 0 24 24"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 20h16"/></svg>CV
+  <main data-page="">
+    <header data-screen-label="Tools hero" style="padding:150px clamp(20px,4vw,56px) 56px;display:flex;flex-direction:column;gap:36px">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C"><span style="color:#E5A93C">/tools</span><span>Two internal AI platforms · AMD</span><span>Used daily by the team</span></div>
+      <h1 style="margin:0;font-size:clamp(56px,11vw,184px);font-weight:800;letter-spacing:-.055em;line-height:.84">
+        <span style="display:block;overflow:hidden;padding-bottom:.05em"><span data-k="" style="display:inline-block">I</span> <span data-k="" style="display:inline-block">automated</span></span>
+        <span style="display:block;overflow:hidden;padding-bottom:.05em"><span data-k="" style="display:inline-block">the</span> <span data-k="" style="display:inline-block">boring</span></span>
+        <span style="display:block;overflow:hidden;padding-bottom:.1em"><span data-k="" style="display:inline-block;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.02em;color:#E5A93C">parts.</span></span>
+      </h1>
+      <div data-reveal="300" style="display:flex;flex-wrap:wrap;gap:24px clamp(24px,4vw,64px);align-items:flex-end;justify-content:space-between">
+        <p style="margin:0;max-width:640px;font-size:clamp(19px,1.8vw,24px);line-height:1.35;font-weight:500;letter-spacing:-.01em;text-wrap:pretty">Verification engineers shouldn’t spend afternoons copying repro steps into scripts. So I built the tools that do it — grounded in the IEEE manuals, fanned out across four simulators and an LSF cluster.</p>
+        <div style="display:flex;gap:40px;flex-wrap:wrap">
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:56px;font-weight:800;letter-spacing:-.05em;line-height:.9;color:#E5A93C">18×</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C">Faster</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:56px;font-weight:800;letter-spacing:-.05em;line-height:.9">4</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C">Simulators</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:56px;font-weight:800;letter-spacing:-.05em;line-height:.9">2</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C">Platforms</span></div>
+        </div>
+      </div>
+    </header>
+
+    <sc-for list="{{ tools }}" as="t" hint-placeholder-count="2">
+      <section id="{{ t.id }}" data-screen-label="{{ t.label }}" style="padding:96px clamp(20px,4vw,56px);border-top:1px solid #262420;scroll-margin-top:80px">
+        <div data-reveal="0" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 48px;margin-bottom:40px">
+          <div style="display:flex;flex-direction:column;gap:14px;max-width:900px">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#E5A93C">Platform {{ t.n }} · {{ t.cat }}</span>
+            <h2 style="margin:0;font-size:clamp(40px,5.6vw,88px);font-weight:800;letter-spacing:-.05em;line-height:.9;text-wrap:balance">{{ t.title }}</h2>
+            <p style="margin:0;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(24px,2.3vw,32px);line-height:1.2;color:#B5B0A7;max-width:760px">{{ t.line }}</p>
+          </div>
+          <span style="font-size:clamp(80px,10vw,160px);font-weight:800;letter-spacing:-.06em;line-height:.75;color:#262420">{{ t.n }}</span>
+        </div>
+
+        <div data-reveal="80" style="perspective:1400px;margin-bottom:56px">
+          <div onMouseMove="{{ tilt }}" onMouseLeave="{{ untilt }}" style="border:1px solid #262420;background:#121110;overflow:hidden;transform-style:preserve-3d">
+            <div style="display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid #262420"><span style="width:9px;height:9px;border-radius:50%;background:#3A3733"></span><span style="width:9px;height:9px;border-radius:50%;background:#3A3733"></span><span style="width:9px;height:9px;border-radius:50%;background:#E5A93C"></span><span style="margin-left:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#9A958C">{{ t.url }}</span></div>
+            <div style="position:relative;aspect-ratio:16/9;overflow:hidden">
+              <div data-zoom="" role="img" aria-label="{{ t.title }} screenshot" style="position:absolute;inset:0;background-image:url({{ t.shot }});background-size:cover;background-position:top center;transition:transform 1s cubic-bezier(.16,1,.3,1)"></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;gap:16px;margin:-32px 0 56px">
+          <sc-for list="{{ t.extra }}" as="x" hint-placeholder-count="1">
+            <figure data-reveal="0" style="margin:0;flex:1 1 360px;display:flex;flex-direction:column;gap:10px">
+              <div style="border:1px solid #262420;overflow:hidden;aspect-ratio:16/10;position:relative;background:#121110">
+                <div role="img" aria-label="{{ x.cap }}" style="position:absolute;inset:0;background-image:url({{ x.src }});background-size:cover;background-position:top center;transition:transform 1s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.04)"></div>
+              </div>
+              <figcaption style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C">{{ x.cap }}</figcaption>
+            </figure>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:40px clamp(24px,4vw,72px);margin-bottom:56px">
+          <div data-reveal="0" style="flex:1 1 320px;display:flex;flex-direction:column;gap:24px">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C">Before → after</span>
+            <sc-for list="{{ t.bars }}" as="b" hint-placeholder-count="2">
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><span style="font-size:15px;color:#B5B0A7">{{ b.label }}</span><span style="font-size:28px;font-weight:700;letter-spacing:-.03em;color:{{ b.color }}">{{ b.value }}</span></div>
+                <div style="height:10px;background:#1A1816;overflow:hidden"><div data-bar="{{ b.pct }}" style="height:100%;width:{{ b.pct }};background:{{ b.color }};transform-origin:0 50%"></div></div>
+              </div>
+            </sc-for>
+            <p style="margin:0;font-size:16px;line-height:1.6;color:#B5B0A7">{{ t.outcome }}</p>
+            <div style="display:flex;flex-wrap:wrap;gap:6px">
+              <sc-for list="{{ t.stack }}" as="s" hint-placeholder-count="5"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:5px 9px;border:1px solid #3A3733;color:#B5B0A7">{{ s }}</span></sc-for>
+            </div>
+          </div>
+          <div data-reveal="120" style="flex:1.4 1 440px;display:flex;flex-direction:column;gap:14px">
+            <div style="display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C"><span>Pipeline · step through it</span><span style="color:#E5A93C">{{ t.stepN }} / {{ t.stepTotal }}</span></div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(72px,1fr));gap:4px">
+              <sc-for list="{{ t.steps }}" as="s" hint-placeholder-count="5">
+                <button type="button" onClick="{{ s.pick }}" onMouseEnter="{{ s.pick }}" style="cursor:pointer;text-align:left;background:{{ s.bg }};border:1px solid {{ s.border }};padding:12px 10px;display:flex;flex-direction:column;gap:6px;transition:background .3s,border-color .3s">
+                  <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:{{ s.numColor }}">{{ s.i }}</span>
+                  <span style="font-size:13px;font-weight:600;color:{{ s.color }}">{{ s.k }}</span>
+                </button>
+              </sc-for>
+            </div>
+            <div data-step="" style="border:1px solid #262420;background:#111010;padding:24px;display:flex;flex-direction:column;gap:12px;min-height:170px">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#E5A93C">{{ t.cur.k }}</span>
+              <p style="margin:0;font-size:19px;line-height:1.45;font-weight:500;letter-spacing:-.01em">{{ t.cur.t }}</p>
+              <pre style="margin:0;padding:12px 14px;background:#0A0A0A;border:1px solid #1E1C19;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;color:#D8D2C6;white-space:pre-wrap">{{ t.cur.code }}</pre>
+            </div>
+          </div>
+        </div>
+      </section>
+    </sc-for>
+
+    <section data-screen-label="Principles" style="padding:96px clamp(20px,4vw,56px);border-top:1px solid #262420;background:#0E0D0C">
+      <h2 data-reveal="0" style="margin:0 0 40px;font-size:clamp(40px,6vw,96px);font-weight:800;letter-spacing:-.05em;line-height:.9">How I build <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:#E5A93C">them.</span></h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));border-top:1px solid #262420">
+        <sc-for list="{{ principles }}" as="p" hint-placeholder-count="3">
+          <div data-reveal="0" style="padding:28px 24px 28px 0;display:flex;flex-direction:column;gap:12px;border-bottom:1px solid #262420">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#E5A93C">{{ p.n }}</span>
+            <span style="font-size:24px;font-weight:700;letter-spacing:-.02em">{{ p.h }}</span>
+            <span style="font-size:15px;line-height:1.55;color:#9A958C">{{ p.b }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <a data-route="" href="toolkit.html" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;padding:80px clamp(20px,4vw,56px) 56px;border-top:1px solid #262420;color:#ECE8E1" style-hover="color:#E5A93C">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C">The rest of the bench</span>
+      <span style="font-size:clamp(48px,9vw,140px);font-weight:800;letter-spacing:-.055em;line-height:.85">Toolkit →</span>
     </a>
-  </div>
-  <button class="nav__burger" id="burger" aria-label="Menu"><span id="b1"></span><span id="b2"></span><span id="b3"></span></button>
-  <div class="nav__mob" id="mobMenu">
-    <a href="index.html" onclick="closeMob()">← Portfolio</a>
-    <a href="index.html#research" onclick="closeMob()">Research</a>
-    <a href="publications.html" onclick="closeMob()">Publications</a>
-    <a href="index.html#contact" onclick="closeMob()">Contact</a>
-    <a href="Tanay_CV_PhD.pdf" download onclick="closeMob()" style="color:var(--goldd)">⬇ Download CV</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="page-hero">
-  <div class="inner">
-    <a href="index.html" class="back-link"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>Back to Portfolio</a>
-    <div class="lbl lbl-gold" style="margin-bottom:1rem">AI-Assisted EDA Tooling · AMD DSV Simulation Team · Jul 2025 – Present</div>
-    <h1 style="font-family:var(--display);font-size:clamp(2.5rem,6vw,4.5rem);font-weight:300;line-height:1.05;letter-spacing:-.04em;color:var(--ink);margin-bottom:.75rem">
-      Vibe-coded.<br><span style="font-style:italic;font-weight:500;color:var(--goldd)">Deployed. Used daily.</span>
-    </h1>
-    <p style="font-size:1rem;color:var(--muted);max-width:560px;line-height:1.85;margin-top:.75rem">
-      Full-stack internal platforms built with Claude API, ChromaDB RAG, FastAPI, and WebSocket — shipped fast, used daily by the AMD DSV Simulation Team to dramatically accelerate verification workflows.
-    </p>
-  </div>
-</section>
-
-<!-- METRICS -->
-<div class="metrics-bar">
-  <div class="mb-card"><div class="mb-n">18×</div><div class="mb-l">Faster Verification</div></div>
-  <div class="mb-card"><div class="mb-n">4</div><div class="mb-l">Simulators in Parallel</div></div>
-  <div class="mb-card"><div class="mb-n">3</div><div class="mb-l">IEEE LRMs Covered</div></div>
-  <div class="mb-card"><div class="mb-n">2</div><div class="mb-l">Platforms Deployed</div></div>
+  </main>
 </div>
-
-<!-- TOOL 01 -->
-<section class="sec" id="platform">
-  <div class="wrap">
-    <div class="tool-grid reveal">
-      <div class="tool-copy-col">
-        <div class="tool-badge">Tool 01 · AMD DSV · v2.1 · April 2026</div>
-        <div class="tool-num">01</div>
-        <h2 class="tool-name">AI-Powered RTL<br>Verification Platform</h2>
-        <p class="tool-desc">Eliminates manual testcase authoring — generates complete VHDL/SystemVerilog suites grounded in IEEE LRMs via Claude Sonnet 4.6 + ChromaDB RAG, runs in parallel across 4 industry simulators, and delivers instant cross-simulator divergence detection.</p>
-        <ul class="feats">
-          <li class="feat">All 4 simulators live: XSim 2026.1 · VCS X-2025.06-SP2 · Questa 2025.2 · Riviera-PRO 2024.10</li>
-          <li class="feat">LRM-grounded: IEEE 1076-2008 · 1076-2019 · 1800-2017 · 7 TC categories · 5 complexity levels</li>
-          <li class="feat">5-round auto-fix loop — compiler errors fed back to Claude for automatic rewrite</li>
-          <li class="feat">Jira CR deep-fetch · one-click filing · WebSocket live streaming · PDF/CSV export</li>
-        </ul>
-        <div class="tstack"><span class="ts">Claude API (Sonnet 4.6)</span><span class="ts">ChromaDB</span><span class="ts">LlamaIndex</span><span class="ts">MCP SSE</span><span class="ts">FastAPI</span><span class="ts">WebSocket</span><span class="ts">Python 3.11</span></div>
-        <a href="#platform-detail" class="cta-link">How it works ↓</a>
-      </div>
-      <div class="tool-img-col">
-        <div class="bframe">
-          <div class="bbar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="burl">xcotdas50x.amd.com:8888 — RTL Verify · AI Testcase Generation & Simulation</span></div>
-          <img src="images/platform-live.png" alt="RTL Verification Platform — all 4 simulators active"/>
-        </div>
-        <p style="font-family:var(--mono);font-size:.58rem;color:var(--light);margin-top:.75rem;text-align:center">Live platform — XSim · VCS · Questa · Riviera-PRO all active</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TOOL 01 DETAIL -->
-<section class="sec sec--alt" id="platform-detail">
-  <div class="wrap">
-    <div class="lbl lbl-gold" style="margin-bottom:1.5rem;display:block">Platform Architecture</div>
-    <div class="tool-grid">
-      <div class="reveal">
-        <h3 style="font-family:var(--display);font-size:1.6rem;font-weight:600;color:var(--ink);margin-bottom:1.5rem">Three core capabilities</h3>
-        <div class="steps">
-          <div class="step"><div class="step-n">01</div><div class="step-body"><strong>Claude Sonnet 4.6 + ChromaDB RAG</strong> — every TC derives from actual IEEE standard text pinned verbatim into the generation prompt. Covers IEEE 1076-2008, 1076-2019, and 1800-2017.</div></div>
-          <div class="step"><div class="step-n">02</div><div class="step-body"><strong>4 simulators in parallel</strong> — identical TC suite runs on XSim, VCS, Questa, and Riviera-PRO simultaneously. Instant cross-simulator divergence diff via WebSocket live streaming.</div></div>
-          <div class="step"><div class="step-n">03</div><div class="step-body"><strong>5-round auto-fix loop</strong> — when a TC fails syntax check, Claude receives the compiler error and rewrites automatically up to 5 rounds. 20-min debug sessions resolve in seconds.</div></div>
-        </div>
-        <div class="arch">
-          <span class="node">IEEE LRM PDFs</span><span class="arr">→</span><span class="node">ChromaDB + LlamaIndex</span><span class="arr">→</span><span class="node">MCP SSE</span><span class="arr">→</span><span class="hi">Claude Sonnet 4.6</span><br>
-          <span class="arr" style="margin-left:0">→</span><span class="node">TC Suite</span><span class="arr">→</span><span class="node">XSim · VCS · Questa · Riviera</span><span class="arr">→</span><span class="hi">Verdict Diff</span><span class="arr">→</span><span class="node">Jira · PDF/CSV</span>
-        </div>
-      </div>
-      <div class="reveal" data-d="2">
-        <div class="bframe" style="margin-bottom:1.25rem">
-          <div class="bbar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="burl">xcotdas50x.amd.com:8888 — Generate TCs</span></div>
-          <img src="images/platform-ui-generate.png" alt="Generate TCs — scope input, complexity slider, TC categories"/>
-        </div>
-        <div class="bframe">
-          <div class="bbar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="burl">xcotdas50x.amd.com:8888 — Export & Coverage</span></div>
-          <img src="images/platform-ui-results.png" alt="Export & Coverage — CSV/PDF, Snapshots"/>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TOOL 02 -->
-<section class="sec" id="portal">
-  <div class="wrap">
-    <div class="tool-grid flip reveal">
-      <div class="tool-img-col">
-        <div class="bframe">
-          <div class="bbar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="burl">xhdtdas50x.amd.com:5000 — CR Verification Portal · AMD</span></div>
-          <img src="images/tool-portal.png" alt="CR Verification Portal"/>
-        </div>
-        <p style="font-family:var(--mono);font-size:.58rem;color:var(--light);margin-top:.75rem;text-align:center">Live portal — CR input, AI indicator, LSF toggle, real-time terminal</p>
-      </div>
-      <div class="tool-copy-col">
-        <div class="tool-badge">Tool 02 · AMD DSV · GUI for jira_verifier.py</div>
-        <div class="tool-num">02</div>
-        <h2 class="tool-name">CR Batch<br>Verification Portal</h2>
-        <p class="tool-desc">Web GUI that fetches Verifier Assigned CRs from Jira, uses AI to read Steps-to-Reproduce, auto-generates <code style="font-family:var(--mono);font-size:.82em;background:var(--cream3);border:1px solid var(--border);padding:1px 5px;border-radius:3px">produced_run.sh</code>, and submits to the LSF cluster — 18× faster than running locally.</p>
-        <ul class="feats">
-          <li class="feat">18 CRs verified in ~10 min via LSF cluster vs ~3 hours locally</li>
-          <li class="feat">Claude primary / Genie AI fallback · 32 GB RAM per CR on LSF</li>
-          <li class="feat">Per-CR status cards · live terminal stream · HTML + CSV report generation</li>
-          <li class="feat">4 action modes — List · Setup · Execute · Execute Live (WebSocket)</li>
-        </ul>
-        <div class="tstack"><span class="ts">Jira REST API v2</span><span class="ts">Claude API</span><span class="ts">Genie AI</span><span class="ts">FastAPI</span><span class="ts">LSF bsub/bjobs</span><span class="ts">WebSocket</span><span class="ts">Python 3.11</span></div>
-        <a href="#portal-detail" class="cta-link">4 action modes ↓</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TOOL 02 DETAIL -->
-<section class="sec sec--alt" id="portal-detail">
-  <div class="wrap">
-    <div class="lbl lbl-gold" style="margin-bottom:1.5rem;display:block">Portal Workflows</div>
-    <div class="tool-grid">
-      <div class="reveal">
-        <h3 style="font-family:var(--display);font-size:1.6rem;font-weight:600;color:var(--ink);margin-bottom:1.5rem">4 action modes</h3>
-        <div class="modes-grid">
-          <div class="mode"><div class="mode-n">Mode 01</div><div class="mode-title">List CRs</div><div class="mode-desc">Queries Jira only — shows all Verifier Assigned CRs with title and status. No files touched. Safe for triage.</div></div>
-          <div class="mode"><div class="mode-n">Mode 02</div><div class="mode-title">Setup (No-Run)</div><div class="mode-desc">Creates directories, copies bugcase files, generates <code style="font-family:var(--mono);font-size:.76em">produced_run.sh</code> via AI — does not execute. Inspect before running.</div></div>
-          <div class="mode"><div class="mode-n">Mode 03</div><div class="mode-title">Execute</div><div class="mode-desc">Full run: setup + execute on LSF or locally. Generates HTML + CSV report. Shortcut: <code style="font-family:var(--mono);font-size:.76em">Ctrl+Enter</code>.</div></div>
-          <div class="mode"><div class="mode-n">Mode 04</div><div class="mode-title">Execute Live</div><div class="mode-desc">Same as Execute but streams every log line live via WebSocket. Ideal for debugging individual CR failures.</div></div>
-        </div>
-        <div class="perf-grid">
-          <div class="perf-card bad"><div class="perf-label">Without Portal · Local</div><div class="perf-n">~3 hr</div><div class="perf-sub">Sequential · shared server · manual scripts · one CR at a time</div></div>
-          <div class="perf-card good"><div class="perf-label">With Portal · LSF Cluster</div><div class="perf-n">~10 min</div><div class="perf-sub">Parallel · 32 GB per CR · AI-generated scripts · 18 CRs simultaneously</div></div>
-        </div>
-      </div>
-      <div class="reveal" data-d="2">
-        <div class="bframe" style="margin-bottom:1.25rem">
-          <div class="bbar"><span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span><span class="burl">xhdtdas50x.amd.com:5000/guide — Portal Guide</span></div>
-          <img src="images/portal-guide-full.png" alt="CR Verification Portal Guide"/>
-        </div>
-        <div class="arch">
-          <span class="node">Jira API</span><span class="arr">→</span><span class="node">Fetch CRs + Bugcases</span><span class="arr">→</span><span class="hi">AI reads STR</span><br>
-          <span class="arr" style="margin-left:0">→</span><span class="node">produced_run.sh</span><span class="arr">→</span><span class="node">LSF Cluster</span><span class="arr">→</span><span class="node">XSim Runs</span><br>
-          <span class="arr" style="margin-left:0">→</span><span class="hi">HTML + CSV Report</span><span class="arr">→</span><span class="node">Live Terminal</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <div class="fi">TD</div>
-      <div><div class="fn">Tanay Das</div><div class="fs">Silicon Design Engineer · AMD, Hyderabad · M.Tech IIT Gandhinagar 2025</div></div>
-    </div>
-    <div class="footer-links">
-      <a href="index.html">← Portfolio</a>
-      <a href="publications.html">Publications</a>
-      <a href="Tanay_CV_PhD.pdf" download>CV</a>
-      <a href="index.html#contact">Contact</a>
-      <span style="color:var(--light)">© 2026</span>
-    </div>
-  </div>
-</footer>
-
-<script>
-const nav=document.getElementById('nav')
-window.addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>40),{passive:true})
-let open=false
-document.getElementById('burger').addEventListener('click',()=>{
-  open=!open;document.getElementById('mobMenu').classList.toggle('open',open)
-  document.getElementById('b1').style.transform=open?'rotate(45deg) translateY(6.5px)':''
-  document.getElementById('b2').style.opacity=open?'0':'1'
-  document.getElementById('b3').style.transform=open?'rotate(-45deg) translateY(-6.5px)':''
-})
-function closeMob(){open=false;document.getElementById('mobMenu').classList.remove('open')}
-const rio=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');rio.unobserve(e.target)}})},{threshold:0.06,rootMargin:'0px 0px -50px 0px'})
-document.querySelectorAll('.reveal').forEach(el=>rio.observe(el))
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { time: '', step: [0, 0] };
+  rootRef = React.createRef(); progRef = React.createRef();
+  T = [
+    { id: 'rtl-platform', cat: 'AI · EDA tooling', title: 'AI-powered RTL verification platform', url: 'rtl-verify · internal', shot: './images/platform-live.png', extra: [{ src: './images/platform-ui-generate.png', cap: 'Generate · pick a construct' }, { src: './images/platform-ui-results.png', cap: 'Results · cross-simulator diff' }],
+      line: 'Testcases that quote the IEEE manual, run on four simulators at once.',
+      outcome: 'Generates VHDL and SystemVerilog suites grounded in the LRMs via Claude + ChromaDB RAG, runs them in parallel across four industry simulators, and flags any divergence instantly.',
+      bars: [{ label: 'Manual testcase authoring', value: 'hours', pct: '100%', color: '#55514A' }, { label: 'Generated + cross-checked', value: 'minutes', pct: '8%', color: '#E5A93C' }],
+      stack: ['Claude API', 'ChromaDB', 'LlamaIndex', 'FastAPI', 'WebSocket'],
+      steps: [
+        { k: 'Embed', t: 'IEEE 1076 and 1800 manuals are chunked and embedded into ChromaDB via LlamaIndex.', code: 'index = VectorStoreIndex(lrm_chunks, store=chroma)' },
+        { k: 'Retrieve', t: 'The engineer picks a construct; retrieval pulls the clauses that govern it.', code: 'clauses = index.query("generic subprograms", top_k=8)' },
+        { k: 'Generate', t: 'Claude writes testcases across seven categories, each citing its source clause.', code: 'suite = claude.generate(construct, clauses, cats=7)' },
+        { k: 'Fan out', t: 'FastAPI dispatches the suite to XSim, Xcelium, Questa and Riviera-PRO in parallel.', code: 'await gather(*[run(sim, suite) for sim in SIMS])' },
+        { k: 'Diff', t: 'Results stream back over WebSocket; any simulator that disagrees is flagged.', code: 'ws.send(diff(results))  # → divergence report' }
+      ] },
+    { id: 'cr-portal', cat: 'AI · Internal tooling', title: 'CR batch verification portal', url: 'cr-portal · internal', shot: './images/tool-portal.png', extra: [{ src: './images/portal-guide-full.png', cap: 'Guide · the four action modes' }],
+      line: 'Eighteen change requests, one click, one coffee break.',
+      outcome: 'A web GUI that fetches verifier-assigned CRs from Jira, lets AI read each Steps-to-Reproduce, generates the simulation scripts and submits them to the LSF cluster. 18 CRs in ~10 minutes instead of ~3 hours locally.',
+      bars: [{ label: '18 CRs, run locally', value: '~3 h', pct: '100%', color: '#55514A' }, { label: '18 CRs, via the portal', value: '~10 min', pct: '5.5%', color: '#E5A93C' }],
+      stack: ['Jira REST API', 'Claude API', 'FastAPI', 'LSF', 'WebSocket'],
+      steps: [
+        { k: 'Fetch', t: 'The Jira REST API pulls every CR assigned to the verifier.', code: 'crs = jira.search("assignee = me AND status = Verify")' },
+        { k: 'Read', t: 'Claude reads each Steps-to-Reproduce field and extracts the setup.', code: 'spec = claude.parse(cr.steps_to_reproduce)' },
+        { k: 'Script', t: 'A simulation script is generated per CR.', code: 'script = render(spec, template="sim.tcl")' },
+        { k: 'Submit', t: 'All jobs go to the LSF cluster in parallel.', code: 'bsub -q regress -J cr_$ID < script' },
+        { k: 'Monitor', t: 'A live dashboard with four action modes streams status back.', code: 'ws.stream(job_status)  # 18 / 18 done' }
+      ] }
+  ];
+  PR = [
+    { h: 'Ground it in the spec', b: 'If the model can’t cite the clause, the test doesn’t ship.' },
+    { h: 'Parallel by default', b: 'Four simulators and a cluster are faster than one engineer waiting.' },
+    { h: 'Built for Monday morning', b: 'Tools the team opens daily beat demos nobody reopens.' }
+  ];
+  componentDidMount() {
+    const go = () => window.PageFX ? (this.off = PageFX.boot(this, this.rootRef.current, this.progRef.current), this.bars()) : setTimeout(go, 50); go();
+  }
+  componentWillUnmount() { this.off && this.off(); this.io && this.io.disconnect(); }
+  bars() {
+    const els = [...this.rootRef.current.querySelectorAll('[data-bar]')];
+    if (!PageFX.motion() || !('IntersectionObserver' in window)) return;
+    this.io = new IntersectionObserver(en => en.forEach(x => { if (!x.isIntersecting) return; x.target.animate([{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], { duration: 1400, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'backwards' }); this.io.unobserve(x.target); }), { threshold: .5 });
+    els.forEach(e => this.io.observe(e));
+  }
+  pick(ti, si) {
+    if (this.state.step[ti] === si) return;
+    const step = [...this.state.step]; step[ti] = si;
+    this.setState({ step }, () => {
+      const box = this.rootRef.current.querySelectorAll('[data-step]')[ti];
+      if (box && PageFX.motion()) box.animate([{ opacity: .2, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }], { duration: 450, easing: 'cubic-bezier(.16,1,.3,1)' });
+    });
+  }
+  tilt = e => {
+    const el = e.currentTarget, r = el.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+    el.style.transition = 'transform .12s ease-out'; el.style.transform = `rotateY(${x * 4}deg) rotateX(${-y * 4}deg)`;
+    const z = el.querySelector('[data-zoom]'); if (z) z.style.transform = `scale(1.04) translate(${-x * 10}px,${-y * 8}px)`;
+  };
+  untilt = e => {
+    const el = e.currentTarget; el.style.transition = 'transform .9s cubic-bezier(.34,1.4,.64,1)'; el.style.transform = '';
+    const z = el.querySelector('[data-zoom]'); if (z) z.style.transform = '';
+  };
+  renderVals() {
+    const tools = this.T.map((t, ti) => {
+      const cur = this.state.step[ti];
+      return { ...t, n: String(ti + 1).padStart(2, '0'), label: 'Platform ' + (ti + 1), stepN: String(cur + 1).padStart(2, '0'), stepTotal: String(t.steps.length).padStart(2, '0'), cur: t.steps[cur],
+        steps: t.steps.map((s, si) => { const on = si === cur, done = si < cur; return { k: s.k, i: String(si + 1).padStart(2, '0'), pick: () => this.pick(ti, si), bg: on ? '#1A160F' : '#111010', border: on ? '#E5A93C' : done ? '#55462A' : '#262420', numColor: on || done ? '#E5A93C' : '#55514A', color: on ? '#ECE8E1' : '#9A958C' }; }) };
+    });
+    return { rootRef: this.rootRef, progRef: this.progRef, time: this.state.time, tools, tilt: this.tilt, untilt: this.untilt,
+      principles: this.PR.map((p, i) => ({ ...p, n: String(i + 1).padStart(2, '0') })) };
+  }
+}
 </script>
 </body>
 </html>

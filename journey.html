@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+<script src="./page-fx.js"></script>
+<style>html{scroll-behavior:smooth}html,body{margin:0;background:#0A0A0A;color:#ECE8E1;-webkit-font-smoothing:antialiased}*{box-sizing:border-box}a{color:#ECE8E1;text-decoration:none}a:hover{color:#E5A93C}button{font:inherit;color:inherit}::selection{background:#E5A93C;color:#0A0A0A}</style>
+</helmet>
+<div ref="{{ rootRef }}" style="font-family:'Schibsted Grotesk',system-ui,sans-serif;background:#0A0A0A;color:#ECE8E1;min-height:100vh;overflow-x:clip">
+  <div ref="{{ progRef }}" style="position:fixed;top:0;left:0;right:0;height:2px;background:#E5A93C;transform:scaleX(0);transform-origin:0 50%;z-index:90"></div>
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:60;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;padding:14px clamp(20px,4vw,56px);background:rgba(10,10,10,.75);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid #262420">
+    <a data-route="" href="index.html" style="display:flex;align-items:center;gap:10px"><span style="width:26px;height:26px;border:1px solid #ECE8E1;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:10px">TD</span><span style="font-weight:700;font-size:15px">Tanay Das</span></a>
+    <div style="display:flex;flex-wrap:wrap;gap:6px 22px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase">
+      <a data-route="" href="journey.html" style="color:#E5A93C">● Journey</a>
+      <a data-route="" href="work.html" style="color:#9A958C">Work</a>
+      <a data-route="" href="tools.html" style="color:#9A958C">AI Tools</a>
+      <a data-route="" href="photography.html" style="color:#9A958C">Photography</a>
+      <a data-route="" href="toolkit.html" style="color:#9A958C">Toolkit</a>
+      <a data-route="" href="papers.html" style="color:#9A958C">Papers</a>
+    </div>
+    <div style="display:flex;gap:16px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em"><span style="color:#9A958C;font-variant-numeric:tabular-nums">HYD {{ time }}</span><a href="./resume.pdf" download="Tanay_Das_Resume.pdf" type="application/pdf" style="border:1px solid #3A3733;padding:6px 10px;text-transform:uppercase">CV ↓</a></div>
+  </nav>
+
+  <main data-page="">
+    <header data-screen-label="Journey hero" style="padding:150px clamp(20px,4vw,56px) 80px;display:flex;flex-direction:column;gap:40px;border-bottom:1px solid #262420">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C"><span style="color:#E5A93C">/journey</span><span>Six chapters · 2019 → now</span><span>Sikkim → Ahmedabad → Gandhinagar → Hyderabad</span></div>
+      <h1 style="margin:0;font-size:clamp(64px,13vw,210px);font-weight:800;letter-spacing:-.055em;line-height:.82">
+        <span style="display:block;overflow:hidden;padding-bottom:.05em"><span data-k="" style="display:inline-block">The</span> <span data-k="" style="display:inline-block">long</span></span>
+        <span style="display:block;overflow:hidden;padding-bottom:.08em"><span data-k="" style="display:inline-block">way</span> <span data-k="" style="display:inline-block;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.02em;color:#E5A93C">round.</span></span>
+      </h1>
+      <p data-reveal="300" style="margin:0;max-width:760px;font-size:clamp(20px,2vw,28px);line-height:1.3;font-weight:500;letter-spacing:-.015em;text-wrap:pretty">A gold medal, a space agency, a clean-room thesis and an AMD badge. Also: a lot of chai, a few burnt probes, and an unreasonable number of window seats.</p>
+    </header>
+
+    <section data-screen-label="Chapters" style="padding:40px clamp(20px,4vw,56px) 120px">
+      <sc-for list="{{ chapters }}" as="c" hint-placeholder-count="6">
+        <article data-reveal="0" onMouseEnter="{{ c.enter }}" style="display:flex;flex-wrap:wrap;gap:24px clamp(24px,4vw,72px);padding:56px 0;border-bottom:1px solid #262420">
+          <div style="flex:1 1 220px;display:flex;flex-direction:column;gap:10px">
+            <span style="position:sticky;top:90px;font-size:clamp(72px,9vw,150px);font-weight:800;letter-spacing:-.06em;line-height:.8;color:{{ c.yearColor }};transition:color .5s">{{ c.big }}</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C">Ch. {{ c.n }} · {{ c.period }}</span>
+          </div>
+          <div style="flex:2 1 420px;display:flex;flex-direction:column;gap:18px;max-width:720px">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#E5A93C">{{ c.org }} · {{ c.place }}</span>
+            <h2 style="margin:0;font-size:clamp(30px,3.6vw,52px);font-weight:700;letter-spacing:-.035em;line-height:1">{{ c.role }}</h2>
+            <p style="margin:0;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(24px,2.3vw,32px);line-height:1.2;color:#ECE8E1;text-wrap:balance">{{ c.line }}</p>
+            <p style="margin:0;font-size:16px;line-height:1.65;color:#B5B0A7;text-wrap:pretty">{{ c.story }}</p>
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 24px;padding-top:14px;border-top:1px solid #262420">
+              <span style="font-size:36px;font-weight:700;letter-spacing:-.03em;color:#E5A93C">{{ c.metric }}</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#9A958C">{{ c.metricLabel }}</span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px">
+              <sc-for list="{{ c.tags }}" as="t" hint-placeholder-count="3"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:5px 9px;border:1px solid #3A3733;color:#B5B0A7">{{ t }}</span></sc-for>
+            </div>
+          </div>
+        </article>
+      </sc-for>
+    </section>
+
+    <section data-screen-label="Beyond the lab" style="padding:120px clamp(20px,4vw,56px);border-top:1px solid #262420;background:#0E0D0C">
+      <div data-reveal="0" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 40px;margin-bottom:48px">
+        <h2 style="margin:0;font-size:clamp(44px,7vw,112px);font-weight:800;letter-spacing:-.05em;line-height:.88">Beyond<br>the <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:#E5A93C">lab.</span></h2>
+        <p style="margin:0;max-width:340px;color:#9A958C;font-size:15px;line-height:1.5">The same eye that hunts a 3Ω clamp also hunts the right light on an old street.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:16px">
+        <sc-for list="{{ beyond }}" as="b" hint-placeholder-count="3">
+          <a data-reveal="0" data-route="" href="{{ b.href }}" style="flex:1 1 300px;display:flex;flex-direction:column;border:1px solid #262420;background:#121110;overflow:hidden;color:#ECE8E1" style-hover="border-color:#E5A93C;color:#ECE8E1">
+            <div style="aspect-ratio:4/3;overflow:hidden;position:relative">
+              <div data-zoom="" role="img" aria-label="{{ b.title }}" style="position:absolute;inset:0;background-image:url({{ b.img }});background-size:cover;background-position:center;transition:transform .9s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.06)"></div>
+              <div style="position:absolute;inset:0;background:linear-gradient(to top,#0A0A0A,transparent 55%);pointer-events:none"></div>
+            </div>
+            <div style="padding:22px;display:flex;flex-direction:column;gap:10px">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#E5A93C">{{ b.k }}</span>
+              <span style="font-size:24px;font-weight:700;letter-spacing:-.02em">{{ b.title }}</span>
+              <span style="font-size:14px;line-height:1.5;color:#9A958C">{{ b.body }}</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;margin-top:6px">{{ b.cta }} →</span>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+
+    <a data-route="" href="work.html" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;padding:80px clamp(20px,4vw,56px) 56px;border-top:1px solid #262420;color:#ECE8E1" style-hover="color:#E5A93C">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C">Next chapter</span>
+      <span style="font-size:clamp(48px,9vw,140px);font-weight:800;letter-spacing:-.055em;line-height:.85">Work →</span>
+    </a>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { time: '', active: 5 };
+  rootRef = React.createRef(); progRef = React.createRef();
+  CH = [
+    { big: '2019', period: '2019–23', org: 'SMIT', place: 'Sikkim', role: 'B.Tech, Electronics & Communication', metric: '9.7', metricLabel: 'CPI · Gold medal',
+      line: 'Top of the class, mostly powered by breadboards and late-night chai.',
+      story: 'Four years of learning that every datasheet lies a little. Academic Excellence Awards in 2021 and 2022, and the first time a circuit I designed did exactly what the simulation said.', tags: ['ECE', 'Gold medal', 'Excellence award ×2'] },
+    { big: '2023', period: 'Jan–May 2023', org: 'SAC · ISRO', place: 'Ahmedabad', role: 'Research intern', metric: '~90%', metricLabel: 'Fewer single-event upsets',
+      line: 'Taught 65nm flip-flops to ignore cosmic rays.',
+      story: 'Laid out a radiation-hardened digital standard-cell library in Cadence Virtuoso for space-grade parts, then wrapped it with EDAC logic. Satellites do not get reboots.', tags: ['65nm CMOS', 'Rad-hard', 'EDAC', 'Virtuoso'] },
+    { big: '2023', period: '2023–25', org: 'IIT Gandhinagar', place: 'EDRL Lab', role: 'M.Tech, Microelectronics & VLSI', metric: '<3Ω', metricLabel: 'ESD dynamic resistance',
+      line: 'Built clamps so a neurostimulator survives the human holding it.',
+      story: 'Thesis under Prof. Sandip Lashkare on ESD protection for brain–machine-interface SoCs — TLP-characterised in 65nm and 180nm, IEC 61000-4-2 compliant. A journal paper in IEEE JEDS and conference papers at EDTM, ICEE and VDAT came out of the lab years. CPI 9.06.', tags: ['ESD', 'TLP', 'RRAM', 'IEEE JEDS'] },
+    { big: '2024', period: 'May–Jul 2024', org: 'StarIC', place: 'Canada (remote)', role: 'Photonics IC design intern', metric: '4-bit', metricLabel: 'Serial photonic DAC',
+      line: 'Swapped electrons for photons for a summer.',
+      story: 'Designed a WDM electro-optic modulator and dispersion-compensating fibre models, and generated every layout in Python with gdsfactory. No hand-drawn polygons were harmed.', tags: ['Photonics', 'gdsfactory', 'Python'] },
+    { big: '2025', period: 'Jul 2025 – now', org: 'AMD', place: 'Hyderabad', role: 'Silicon Design Engineer', metric: '18×', metricLabel: 'Faster CR verification',
+      line: 'Four simulators, one language manual, zero tolerance for disagreement.',
+      story: 'Cross-simulator LRM compliance for VHDL-2019, VHDL-2008 and SystemVerilog across XSim, Xcelium, Questa and Riviera-PRO. On the side: two AI platforms the team now runs daily.', tags: ['SystemVerilog', 'VHDL-2019', 'Claude API', 'RAG'] },
+    { big: '2026', period: '2026', org: 'ESSERC', place: 'IEEE SSCS', role: 'Code-a-Chip travel grant', metric: 'ρ 0.9998', metricLabel: 'Weight-extraction correlation',
+      line: 'An analog AI chip will tell you its secrets if you watch its power rail.',
+      story: 'A power side-channel attack on SKY130 RRAM 1T1R in-memory compute arrays, awarded the IEEE SSCS Code-a-Chip travel grant for ESSERC 2026.', tags: ['Side-channel', 'SKY130', 'In-memory compute'] }
+  ];
+  BEYOND = [
+    { k: 'Photography', title: 'Palace hall, lamps on', body: 'Heritage walks, festival nights and garden macros — from @_tanaydas_.', img: './assets/insta1.jpg', href: 'photography.html', cta: 'Open the gallery' },
+    { k: 'The tools', title: 'Automating the boring parts', body: 'Two AI platforms my AMD team opens every morning.', img: './images/platform-live.png', href: 'tools.html', cta: 'See the tools' },
+    { k: 'Cities', title: 'Skyline after hours', body: 'Every lit window is somebody’s regression still running.', img: './assets/insta4.jpg', href: 'photography.html', cta: 'More dispatches' }
+  ];
+  componentDidMount() { const go = () => window.PageFX ? (this.off = PageFX.boot(this, this.rootRef.current, this.progRef.current)) : setTimeout(go, 50); go(); }
+  componentWillUnmount() { this.off && this.off(); }
+  renderVals() {
+    return {
+      rootRef: this.rootRef, progRef: this.progRef, time: this.state.time,
+      chapters: this.CH.map((c, i) => ({ ...c, n: String(i + 1).padStart(2, '0'), yearColor: this.state.active === i ? '#E5A93C' : '#2E2B27', enter: () => this.state.active !== i && this.setState({ active: i }) })),
+      beyond: this.BEYOND
+    };
+  }
+}
+</script>
+</body>
+</html>

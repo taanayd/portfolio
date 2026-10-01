@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+<script src="./page-fx.js"></script>
+<script src="./image-slot.js"></script>
+<style>html{scroll-behavior:smooth}html,body{margin:0;background:#0A0A0A;color:#ECE8E1;-webkit-font-smoothing:antialiased}*{box-sizing:border-box}a{color:#ECE8E1;text-decoration:none}a:hover{color:#E5A93C}button{font:inherit;color:inherit}::selection{background:#E5A93C;color:#0A0A0A}</style>
+</helmet>
+<div ref="{{ rootRef }}" style="font-family:'Schibsted Grotesk',system-ui,sans-serif;background:#0A0A0A;color:#ECE8E1;min-height:100vh;overflow-x:clip">
+  <div ref="{{ progRef }}" style="position:fixed;top:0;left:0;right:0;height:2px;background:#E5A93C;transform:scaleX(0);transform-origin:0 50%;z-index:90"></div>
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:60;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;padding:14px clamp(20px,4vw,56px);background:rgba(10,10,10,.75);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid #262420">
+    <a data-route="" href="index.html" style="display:flex;align-items:center;gap:10px"><span style="width:26px;height:26px;border:1px solid #ECE8E1;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:10px">TD</span><span style="font-weight:700;font-size:15px">Tanay Das</span></a>
+    <div style="display:flex;flex-wrap:wrap;gap:6px 22px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase">
+      <a data-route="" href="journey.html" style="color:#9A958C">Journey</a>
+      <a data-route="" href="work.html" style="color:#9A958C">Work</a>
+      <a data-route="" href="tools.html" style="color:#9A958C">AI Tools</a>
+      <a data-route="" href="photography.html" style="color:#E5A93C">● Photography</a>
+      <a data-route="" href="toolkit.html" style="color:#9A958C">Toolkit</a>
+      <a data-route="" href="papers.html" style="color:#9A958C">Papers</a>
+    </div>
+    <div style="display:flex;gap:16px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em"><span style="color:#9A958C;font-variant-numeric:tabular-nums">HYD {{ time }}</span><a href="./resume.pdf" download="Tanay_Das_Resume.pdf" type="application/pdf" style="border:1px solid #3A3733;padding:6px 10px;text-transform:uppercase">CV ↓</a></div>
+  </nav>
+
+  <main data-page="">
+    <header data-screen-label="Photography hero" style="padding:150px clamp(20px,4vw,56px) 48px;display:flex;flex-direction:column;gap:36px">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C"><span style="color:#E5A93C">/photography</span><span>From the Instagram grid</span><span>Roll 01 — {{ count }} frames</span></div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:32px">
+        <h1 style="margin:0;font-size:clamp(60px,12vw,200px);font-weight:800;letter-spacing:-.055em;line-height:.82">
+          <span style="display:block;overflow:hidden;padding-bottom:.05em"><span data-k="" style="display:inline-block">Off</span> <span data-k="" style="display:inline-block">the</span></span>
+          <span style="display:block;overflow:hidden;padding-bottom:.1em"><span data-k="" style="display:inline-block;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.02em;color:#E5A93C">clock.</span></span>
+        </h1>
+        <p data-reveal="300" style="margin:0;max-width:380px;font-size:17px;line-height:1.55;color:#B5B0A7">Festival nights, old forts, garden macros and skylines after dark — straight from @_tanaydas_. Same obsession as layout work — light, geometry, and what to leave out.</p>
+      </div>
+    </header>
+
+    <div style="position:sticky;top:57px;z-index:40;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding:12px clamp(20px,4vw,56px);background:rgba(10,10,10,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid #262420;border-bottom:1px solid #262420">
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
+          <button type="button" onClick="{{ f.pick }}" style="cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:7px 12px;border:1px solid {{ f.border }};background:{{ f.bg }};color:{{ f.color }};transition:all .3s" style-active="transform:scale(.95)">{{ f.label }} · {{ f.n }}</button>
+        </sc-for>
+      </div>
+      <a href="https://www.instagram.com/_tanaydas_/" target="_blank" rel="noopener noreferrer" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid #55514A;padding-bottom:3px">@_tanaydas_ ↗</a>
+    </div>
+
+    <section data-screen-label="Gallery" ref="{{ gridRef }}" style="padding:24px clamp(20px,4vw,56px) 96px;display:flex;flex-wrap:wrap;gap:16px">
+      <sc-for list="{{ frames }}" as="p" hint-placeholder-count="6">
+        <figure style="margin:0;flex:{{ p.flex }};display:{{ p.display }};flex-direction:column;gap:12px">
+          <div onClick="{{ p.open }}" style="position:relative;aspect-ratio:{{ p.ratio }};overflow:hidden;background:#121110;border:1px solid #262420;cursor:{{ p.cursor }}">
+            <sc-if value="{{ p.isImg }}" hint-placeholder-val="{{ false }}">
+              <div role="img" aria-label="{{ p.title }}" style="position:absolute;inset:0;background-image:url({{ p.src }});background-size:cover;background-position:{{ p.pos }};transition:transform 1.1s cubic-bezier(.16,1,.3,1),filter .6s;filter:saturate(.9)" style-hover="transform:scale(1.05);filter:saturate(1.05)"></div>
+              <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.7),transparent 45%);pointer-events:none"></div>
+              <span style="position:absolute;right:12px;bottom:12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#ECE8E1;pointer-events:none">View ⤢</span>
+            </sc-if>
+            <sc-if value="{{ p.isSlot }}" hint-placeholder-val="{{ false }}">
+              <image-slot id="{{ p.slotId }}" shape="rect" placeholder="{{ p.title }}"></image-slot>
+            </sc-if>
+            <span style="position:absolute;left:12px;top:12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;color:#E5A93C;background:rgba(10,10,10,.65);padding:3px 7px;pointer-events:none">{{ p.frame }}</span>
+          </div>
+          <figcaption style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
+            <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:22px;line-height:1.15">{{ p.title }}</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C">{{ p.place }}</span>
+          </figcaption>
+        </figure>
+      </sc-for>
+    </section>
+
+    <a data-route="" href="toolkit.html" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;padding:80px clamp(20px,4vw,56px) 56px;border-top:1px solid #262420;color:#ECE8E1" style-hover="color:#E5A93C">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C">Back to the bench</span>
+      <span style="font-size:clamp(48px,9vw,140px);font-weight:800;letter-spacing:-.055em;line-height:.85">Toolkit →</span>
+    </a>
+  </main>
+
+  <div style="position:fixed;inset:0;z-index:80;pointer-events:{{ lbPE }};opacity:{{ lbOp }};transition:opacity .45s;background:rgba(6,6,6,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px clamp(20px,4vw,56px);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase">
+      <span style="color:#E5A93C">{{ lb.frame }} · {{ lb.place }}</span>
+      <div style="display:flex;gap:8px">
+        <button type="button" onClick="{{ prev }}" style="cursor:pointer;background:none;border:1px solid #3A3733;padding:6px 10px" style-hover="border-color:#ECE8E1">← Prev</button>
+        <button type="button" onClick="{{ next }}" style="cursor:pointer;background:none;border:1px solid #3A3733;padding:6px 10px" style-hover="border-color:#ECE8E1">Next →</button>
+        <button type="button" onClick="{{ close }}" style="cursor:pointer;background:none;border:1px solid #3A3733;padding:6px 10px" style-hover="border-color:#E5A93C;color:#E5A93C">Close · Esc</button>
+      </div>
+    </div>
+    <div onClick="{{ close }}" style="flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:0 clamp(20px,4vw,56px)">
+      <div ref="{{ lbRef }}" role="img" aria-label="{{ lb.title }}" style="width:100%;height:100%;background-image:url({{ lb.src }});background-size:contain;background-repeat:no-repeat;background-position:center;transform:scale({{ lbScale }});transition:transform .7s cubic-bezier(.16,1,.3,1)"></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 32px;padding:20px clamp(20px,4vw,56px) 28px">
+      <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(26px,3vw,40px);line-height:1.1">{{ lb.title }}</span>
+      <span style="font-size:15px;color:#B5B0A7;max-width:520px;line-height:1.5">{{ lb.caption }}</span>
+      <a href="{{ lb.link }}" target="_blank" rel="noopener noreferrer" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid #55514A;padding-bottom:3px">{{ lb.linkLabel }}</a>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { time: '', filter: 'All', lb: -1, last: 0 };
+  rootRef = React.createRef(); progRef = React.createRef(); gridRef = React.createRef(); lbRef = React.createRef();
+  F = [
+    { src: './assets/dispatch-streets.jpg', pos: '50% 50%', title: 'Old streets & architecture', place: 'Kolkata / Ahmedabad', cat: 'Cities', ratio: '1/1', flex: '2 1 520px', film: 'Leica M6 · Portra 400', caption: 'Walking old brick corridors between tape-outs. The window did half the composition.' },
+    { src: './assets/dispatch-departures.jpg', pos: '50% 40%', title: 'Somewhere with departures', place: 'Transit', cat: 'Transit', ratio: '4/5', flex: '1 1 300px', film: 'Phone · golden hour', caption: 'Terminal coffee, boarding calls, and watching skylines shift.' },
+    { src: './assets/dispatch-bench.jpg', pos: '60% 50%', title: 'Home bench & two sines', place: 'Hyderabad', cat: 'Bench', ratio: '16/10', flex: '1.6 1 440px', film: 'Phone · after dark', caption: 'Two sines, one coffee, zero ground loops (today).' },
+  ];
+  REAL = [
+    { src: './assets/ig-21235.jpg', pos: '50% 40%', title: 'Ganesh, after dark', place: 'Hyderabad', cat: 'Streets', ratio: '3/4', flex: '1.2 1 340px', film: 'Phone · festival night', caption: 'One harsh light, a lot of colour, and two kids who stole the frame.' },
+    { src: './assets/ig-15849.jpg', pos: '50% 45%', title: 'Golconda, noon', place: 'Hyderabad', cat: 'Travel', ratio: '1/1', flex: '1.6 1 440px', film: 'Phone · hard sun', caption: 'Four hundred years of stone, one blue sky, and me refusing to squint.' },
+    { src: './assets/ig-09652.jpg', pos: '50% 40%', title: 'Garden lizard', place: 'Macro', cat: 'Nature', ratio: '1/1', flex: '1 1 300px', film: 'Phone · macro', caption: 'Held still for exactly one frame. Then it did not.' },
+    { src: './assets/ig-82237.jpg', pos: '40% 50%', title: 'White peacocks', place: 'Wildlife', cat: 'Nature', ratio: '1/1', flex: '1 1 300px', film: 'Phone · shade', caption: 'Zero colour, all texture.' },
+    { src: './assets/ig-77546.jpg', pos: '50% 50%', title: 'Palace courtyard', place: 'Udaipur', cat: 'Travel', ratio: '1/1', flex: '1 1 300px', film: 'Phone · dappled light', caption: 'Neem shade, marble, and a bench nobody sits on.' },
+    { src: './assets/ig-64120.jpg', pos: '50% 35%', title: 'Lost in the stacks', place: 'Bookstore', cat: 'Streets', ratio: '3/4', flex: '1.2 1 340px', film: 'Phone · shop light', caption: 'Surrounded by Sherlock, Garfield and the Godfather. Picked a textbook anyway.' },
+    { src: './assets/ig-97685.jpg', pos: '50% 50%', title: 'Streetlamp, blue hour', place: 'Campus walk', cat: 'Nature', ratio: '1/1', flex: '1 1 300px', film: 'Phone · blue hour', caption: 'The lamp came on and the orchid tree lit up like a PCB.' },
+    { src: './assets/ig-20105.jpg', pos: '50% 50%', title: 'Desert rose', place: 'Balcony', cat: 'Nature', ratio: '1/1', flex: '1 1 300px', film: 'Phone · overcast', caption: 'Low angle, cloudy sky, maximum drama.' }
+  ];
+  IG = [
+    { src: './assets/insta1.jpg', pos: '50% 50%', title: 'Palace hall, lamps on', place: 'Heritage walk', cat: 'Travel', ratio: '1/1', flex: '1.6 1 440px', film: 'Instagram', caption: 'Cast-iron pillars, chandeliers and a floor that reflects all of it.', ig: 'https://www.instagram.com/p/DZUnbTmDUan/' },
+    { src: './assets/insta3.jpg', pos: '50% 50%', title: 'Valley at first light', place: 'Hills', cat: 'Nature', ratio: '1/1', flex: '1.2 1 340px', film: 'Instagram', caption: 'Layered ridges, a still lake, and nobody else awake.', ig: 'https://www.instagram.com/p/DVXfLtQEvX6/' },
+    { src: './assets/insta4.jpg', pos: '50% 50%', title: 'Skyline after hours', place: 'City at night', cat: 'Cities', ratio: '1/1', flex: '1.2 1 340px', film: 'Instagram', caption: 'Every lit window is somebody’s regression still running.', ig: 'https://www.instagram.com/p/DUr_o9jEp4u/' },
+    { src: './assets/insta5.jpg', pos: '50% 50%', title: 'Bridge in RGB', place: 'City at night', cat: 'Cities', ratio: '1/1', flex: '1.6 1 440px', film: 'Instagram', caption: 'A cable-stayed bridge doing its best LED-strip impression.', ig: 'https://www.instagram.com/p/DXooapvkoFi/' }
+  ];
+  constructor(p) { super(p); const R = this.REAL, G = this.IG; this.F = [R[0], G[0], R[1], G[1], R[2], R[3], G[2], R[5], G[3], R[4], R[6], R[7]]; }
+  componentDidMount() {
+    const go = () => window.PageFX ? (this.off = PageFX.boot(this, this.rootRef.current, this.progRef.current)) : setTimeout(go, 50); go();
+    this.onKey = e => { if (this.state.lb < 0) return; if (e.key === 'Escape') this.close(); if (e.key === 'ArrowRight') this.step(1); if (e.key === 'ArrowLeft') this.step(-1); };
+    addEventListener('keydown', this.onKey);
+  }
+  componentWillUnmount() { this.off && this.off(); removeEventListener('keydown', this.onKey); document.body.style.overflow = ''; }
+  componentDidUpdate() { document.body.style.overflow = this.state.lb >= 0 ? 'hidden' : ''; }
+  imgs() { return this.F.map((f, i) => i).filter(i => !this.F[i].slot); }
+  open(i) { this.setState({ lb: i, last: i }); }
+  close = () => this.setState({ lb: -1 });
+  step(d) { const L = this.imgs(), k = L.indexOf(this.state.lb < 0 ? this.state.last : this.state.lb); this.open(L[(k + d + L.length) % L.length]); }
+  pick(f) {
+    this.setState({ filter: f }, () => {
+      const g = this.gridRef.current; if (!g || !window.PageFX || !PageFX.motion()) return;
+      [...g.children].forEach((el, i) => el.animate([{ opacity: 0, transform: 'translateY(20px) scale(.98)' }, { opacity: 1, transform: 'none' }], { duration: 700, delay: i * 50, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'backwards' }));
+    });
+  }
+  renderVals() {
+    const S = this.state, cats = ['All', 'Streets', 'Travel', 'Nature', 'Cities'];
+    const frames = this.F.map((f, i) => {
+      const show = S.filter === 'All' || f.cat === S.filter;
+      return { ...f, frame: String(i + 1).padStart(2, '0') + 'A', isImg: !f.slot, isSlot: !!f.slot, slotId: f.slot || '', display: show ? 'flex' : 'none', cursor: f.slot ? 'default' : 'zoom-in', open: f.slot ? undefined : () => this.open(i) };
+    });
+    const li = S.lb >= 0 ? S.lb : S.last, L = this.F[li];
+    return {
+      rootRef: this.rootRef, progRef: this.progRef, gridRef: this.gridRef, lbRef: this.lbRef, time: S.time,
+      count: this.F.length, frames,
+      filters: cats.map(c => { const on = S.filter === c; return { label: c, n: c === 'All' ? this.F.length : this.F.filter(f => f.cat === c).length, pick: () => this.pick(c), bg: on ? '#E5A93C' : 'transparent', color: on ? '#0A0A0A' : '#B5B0A7', border: on ? '#E5A93C' : '#3A3733' }; }),
+      lb: { ...L, frame: String(li + 1).padStart(2, '0') + 'A', link: L.ig || 'https://www.instagram.com/_tanaydas_/', linkLabel: L.ig ? 'View this post ↗' : '@_tanaydas_ ↗' },
+      lbPE: S.lb >= 0 ? 'auto' : 'none', lbOp: S.lb >= 0 ? 1 : 0, lbScale: S.lb >= 0 ? 1 : 0.94,
+      close: this.close, next: () => this.step(1), prev: () => this.step(-1)
+    };
+  }
+}
+</script>
+</body>
+</html>

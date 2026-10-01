@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+<script src="./page-fx.js"></script>
+<style>html{scroll-behavior:smooth}html,body{margin:0;background:#0A0A0A;color:#ECE8E1;-webkit-font-smoothing:antialiased}*{box-sizing:border-box}a{color:#ECE8E1;text-decoration:none}a:hover{color:#E5A93C}button{font:inherit;color:inherit}::selection{background:#E5A93C;color:#0A0A0A}</style>
+</helmet>
+<div ref="{{ rootRef }}" style="font-family:'Schibsted Grotesk',system-ui,sans-serif;background:#0A0A0A;color:#ECE8E1;min-height:100vh;overflow-x:clip">
+  <div ref="{{ progRef }}" style="position:fixed;top:0;left:0;right:0;height:2px;background:#E5A93C;transform:scaleX(0);transform-origin:0 50%;z-index:90"></div>
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:60;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;padding:14px clamp(20px,4vw,56px);background:rgba(10,10,10,.75);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid #262420">
+    <a data-route="" href="index.html" style="display:flex;align-items:center;gap:10px"><span style="width:26px;height:26px;border:1px solid #ECE8E1;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:10px">TD</span><span style="font-weight:700;font-size:15px">Tanay Das</span></a>
+    <div style="display:flex;flex-wrap:wrap;gap:6px 22px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase">
+      <a data-route="" href="journey.html" style="color:#9A958C">Journey</a>
+      <a data-route="" href="work.html" style="color:#9A958C">Work</a>
+      <a data-route="" href="tools.html" style="color:#9A958C">AI Tools</a>
+      <a data-route="" href="photography.html" style="color:#9A958C">Photography</a>
+      <a data-route="" href="toolkit.html" style="color:#9A958C">Toolkit</a>
+      <a data-route="" href="papers.html" style="color:#E5A93C">● Papers</a>
+    </div>
+    <div style="display:flex;gap:16px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em"><span style="color:#9A958C;font-variant-numeric:tabular-nums">HYD {{ time }}</span><a href="./resume.pdf" download="Tanay_Das_Resume.pdf" type="application/pdf" style="border:1px solid #3A3733;padding:6px 10px;text-transform:uppercase">CV ↓</a></div>
+  </nav>
+
+  <main data-page="">
+    <header data-screen-label="Papers hero" style="padding:150px clamp(20px,4vw,56px) 48px;display:flex;flex-direction:column;gap:36px">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C"><span style="color:#E5A93C">/papers</span><span>JEDS · EDTM · ICEE · VDAT · ESSERC · Materials Today</span><a href="https://scholar.google.com/citations?user=6aBaFCcAAAAJ" target="_blank" rel="noopener noreferrer" style="color:#9A958C">Google Scholar ↗</a></div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:32px">
+        <h1 style="margin:0;font-size:clamp(60px,12vw,200px);font-weight:800;letter-spacing:-.055em;line-height:.82">
+          <span style="display:block;overflow:hidden;padding-bottom:.05em"><span data-k="" style="display:inline-block">Proof</span></span>
+          <span style="display:block;overflow:hidden;padding-bottom:.1em"><span data-k="" style="display:inline-block;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.02em;color:#E5A93C">of work.</span></span>
+        </h1>
+        <div data-reveal="300" style="display:flex;gap:40px;flex-wrap:wrap">
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:56px;font-weight:800;letter-spacing:-.05em;line-height:.9">8</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C">Papers</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:56px;font-weight:800;letter-spacing:-.05em;line-height:.9;color:#E5A93C">2</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C">Awards</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:56px;font-weight:800;letter-spacing:-.05em;line-height:.9">5</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C">First author</span></div>
+        </div>
+      </div>
+    </header>
+
+    <div style="position:sticky;top:57px;z-index:40;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding:12px clamp(20px,4vw,56px);background:rgba(10,10,10,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid #262420;border-bottom:1px solid #262420">
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
+          <button type="button" onClick="{{ f.pick }}" style="cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:7px 12px;border:1px solid {{ f.border }};background:{{ f.bg }};color:{{ f.color }};transition:all .3s" style-active="transform:scale(.95)">{{ f.label }} · {{ f.n }}</button>
+        </sc-for>
+      </div>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C">Click a paper to read the abstract</span>
+    </div>
+
+    <section data-screen-label="Paper list" ref="{{ listRef }}" style="padding:0 clamp(20px,4vw,56px) 96px">
+      <sc-for list="{{ papers }}" as="p" hint-placeholder-count="4">
+        <article style="display:{{ p.display }};flex-direction:column;border-bottom:1px solid #262420">
+          <button type="button" onClick="{{ p.toggle }}" style="cursor:pointer;text-align:left;background:{{ p.rowBg }};border:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 32px;padding:30px 0;transition:background .3s,padding .45s cubic-bezier(.16,1,.3,1)" style-hover="padding-left:14px">
+            <span style="flex:0 0 150px;display:flex;flex-direction:column;align-items:flex-start;gap:10px"><span style="flex:0 0 auto;width:96px;height:40px;padding:5px 8px;background:#ECE8E1;display:grid;place-items:center;overflow:hidden"><sc-if value="{{ p.hasLogo }}" hint-placeholder-val="{{ false }}"><span role="img" aria-label="{{ p.venue }}" style="display:block;width:100%;height:100%;background-image:url({{ p.logo }});background-size:contain;background-repeat:no-repeat;background-position:center"></span></sc-if><sc-if value="{{ p.noLogo }}" hint-placeholder-val="{{ false }}"><span style="font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:500;color:#0A0A0A;text-align:center;line-height:1.1">{{ p.mono }}</span></sc-if></span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9A958C;line-height:1.4">{{ p.year }} · {{ p.venue }}</span></span>
+            <span style="flex:1 1 380px;display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:clamp(22px,2.3vw,32px);font-weight:600;letter-spacing:-.025em;line-height:1.15;text-wrap:balance;color:{{ p.titleColor }};transition:color .3s">{{ p.title }}</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9A958C">{{ p.authors }}</span>
+            </span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border:1px solid {{ p.badgeColor }};color:{{ p.badgeColor }}">{{ p.badge }}</span>
+            <span style="font-size:22px;color:#E5A93C;transform:rotate({{ p.rot }});transition:transform .5s cubic-bezier(.34,1.4,.64,1)">+</span>
+          </button>
+          <div style="display:grid;grid-template-rows:{{ p.rows }};transition:grid-template-rows .6s cubic-bezier(.16,1,.3,1)">
+            <div style="overflow:hidden;min-height:0">
+              <div style="display:flex;flex-wrap:wrap;gap:28px clamp(24px,4vw,64px);padding:4px 0 36px;opacity:{{ p.op }};transform:translateY({{ p.dy }});transition:opacity .5s .1s,transform .6s .1s cubic-bezier(.16,1,.3,1)">
+                <div style="flex:0 0 150px"></div>
+                <div style="flex:1 1 380px;display:flex;flex-direction:column;gap:18px;max-width:820px">
+                  <p style="margin:0;font-size:17px;line-height:1.65;color:#B5B0A7;text-wrap:pretty">{{ p.abstract }}</p>
+                  <div style="display:flex;gap:12px;padding:12px 14px;border:1px solid #3A2F1F;background:#14110C;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.5;color:#ECE8E1"><span style="color:#E5A93C">→</span><span>{{ p.result }}</span></div>
+                  <div style="display:flex;flex-wrap:wrap;gap:6px">
+                    <sc-for list="{{ p.tags }}" as="t" hint-placeholder-count="4"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:5px 9px;border:1px solid #3A3733;color:#B5B0A7">{{ t }}</span></sc-for>
+                  </div>
+                  <div style="display:flex;flex-wrap:wrap;gap:10px">
+                    <sc-if value="{{ p.hasLink }}" hint-placeholder-val="{{ false }}">
+                      <a href="{{ p.href }}" target="_blank" rel="noopener noreferrer" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;background:#ECE8E1;color:#0A0A0A;padding:11px 15px" style-hover="background:#E5A93C;color:#0A0A0A">{{ p.linkText }} ↗</a>
+                    </sc-if>
+                    <button type="button" onClick="{{ p.toggleBib }}" style="cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;background:none;border:1px solid {{ p.bibBorder }};color:{{ p.bibColor }};padding:10px 14px" style-hover="border-color:#E5A93C;color:#E5A93C">{{ p.bibLabel }}</button>
+                    <button type="button" onClick="{{ p.copy }}" style="cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;background:none;border:1px solid #3A3733;padding:10px 14px" style-hover="border-color:#E5A93C;color:#E5A93C" style-active="transform:scale(.95)">{{ p.copyLabel }}</button>
+                  </div>
+                  <div style="display:grid;grid-template-rows:{{ p.bibRows }};transition:grid-template-rows .5s cubic-bezier(.16,1,.3,1)">
+                    <div style="overflow:hidden;min-height:0">
+                      <pre style="margin:0;padding:18px;background:#0F0E0D;border:1px solid #262420;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;color:#D8D2C6;white-space:pre-wrap;word-break:break-word">{{ p.bib }}</pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </sc-for>
+      <div data-reveal="0" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding:32px 0">
+        <span style="font-size:16px;color:#9A958C">Full list — cross-check against Google Scholar for the latest.</span>
+        <div style="display:flex;gap:20px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase">
+          <a href="https://scholar.google.com/citations?user=6aBaFCcAAAAJ" target="_blank" rel="noopener noreferrer" style="border-bottom:1px solid #55514A;padding-bottom:3px">Scholar ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="awards" data-screen-label="Awards" style="padding:96px clamp(20px,4vw,56px);border-top:1px solid #262420;background:#0E0D0C">
+      <div data-reveal="0" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 40px;margin-bottom:40px">
+        <h2 style="margin:0;font-size:clamp(44px,7vw,112px);font-weight:800;letter-spacing:-.05em;line-height:.88">Awards &amp; <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:#E5A93C">grants.</span></h2>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C">2021 → 2025</span>
+      </div>
+      <div style="border-bottom:1px solid #262420">
+        <sc-for list="{{ awards }}" as="a" hint-placeholder-count="6">
+          <div data-reveal="0" style="display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;padding:22px 0;border-top:1px solid #262420;transition:padding .45s cubic-bezier(.16,1,.3,1),background .3s" style-hover="padding-left:14px;background:#141312">
+            <div style="flex:0 0 56px;width:56px;height:56px;background:#ECE8E1;display:grid;place-items:center;overflow:hidden">
+              <sc-if value="{{ a.hasLogo }}" hint-placeholder-val="{{ false }}">
+                <div role="img" aria-label="{{ a.org }}" style="width:48px;height:48px;background-image:url({{ a.logo }});background-size:contain;background-repeat:no-repeat;background-position:center"></div>
+              </sc-if>
+              <sc-if value="{{ a.noLogo }}" hint-placeholder-val="{{ false }}">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;color:#0A0A0A">{{ a.mono }}</span>
+              </sc-if>
+            </div>
+            <div style="flex:1 1 320px;display:flex;flex-direction:column;gap:6px">
+              <span style="font-size:clamp(19px,1.8vw,24px);font-weight:600;letter-spacing:-.02em;line-height:1.2;color:{{ a.color }}">{{ a.name }}</span>
+              <span style="font-size:14px;line-height:1.45;color:#9A958C">{{ a.desc }}</span>
+            </div>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border:1px solid {{ a.kColor }};color:{{ a.kColor }}">{{ a.kind }}</span>
+            <span style="flex:0 0 90px;text-align:right;font-size:22px;font-weight:700;letter-spacing:-.02em;color:#9A958C">{{ a.year }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <a data-route="" href="index.html#contact" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;padding:80px clamp(20px,4vw,56px) 56px;border-top:1px solid #262420;color:#ECE8E1" style-hover="color:#E5A93C">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C">Want to collaborate?</span>
+      <span style="font-size:clamp(48px,9vw,140px);font-weight:800;letter-spacing:-.055em;line-height:.85">Say hello →</span>
+    </a>
+  </main>
+
+  <div style="position:fixed;left:50%;bottom:28px;z-index:95;transform:translate(-50%,{{ toastY }});opacity:{{ toastOp }};transition:transform .5s cubic-bezier(.34,1.4,.64,1),opacity .3s;pointer-events:none;background:#E5A93C;color:#0A0A0A;padding:12px 18px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase">{{ toast }}</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { time: '', filter: 'All', open: 0, bib: -1, toast: '', copied: -1 };
+  rootRef = React.createRef(); progRef = React.createRef(); listRef = React.createRef();
+  P = [
+    { key: 'das2026sidechannel', year: '2026', venue: 'ESSERC', type: 'Conference', award: true, badge: 'Code-a-Chip grant', authors: 'T. Das, U. Singh',
+      title: 'Power Side-Channel Vulnerability on Analog In-Memory Computing Arrays',
+      abstract: 'Demonstrates that analog in-memory computing arrays leak their stored weights through the supply rail. Using an RRAM 1T1R crossbar on the open SKY130 PDK, the attack recovers Hamming-weight leakage and full weight values from power traces alone.',
+      result: 'ρ = 0.9979 (Hamming-weight leakage) · ρ = 0.9998 (weight extraction) · IEEE SSCS Code-a-Chip travel grant',
+      tags: ['SKY130', 'Ngspice', 'RRAM 1T1R', 'Side-channel', 'Python'], bibVenue: 'booktitle = {IEEE European Solid-State Electronics Research Conference (ESSERC)}' },
+    { key: 'das2025jeds', year: '2025', venue: 'IEEE JEDS', type: 'Journal', award: false, badge: 'Journal', authors: 'T. Das, N. Ahmad, L. Somappa, S. Lashkare', href: 'https://ieeexplore.ieee.org/abstract/document/11391546',
+      title: 'ESD Protection with Sub-3Ω Dynamic Resistance for Neuromodulation System-on-Chip',
+      abstract: 'Novel ESD protection topology achieving sub-3Ω dynamic resistance for neuromodulation SoC applications in 65nm CMOS. Validated via TLP characterisation; IEC 61000-4-2 compliant for 10V neurostimulator operation.',
+      result: 'Sub-3Ω dynamic resistance · 10V neurostimulator · IEC 61000-4-2 compliant',
+      tags: ['65nm CMOS', 'TLP', 'IEC 61000-4-2', 'ESD'], bibVenue: 'journal = {IEEE Journal of the Electron Devices Society}' },
+    { key: 'singh2025hybrid', year: '2025', venue: 'ICEE', type: 'Conference', award: true, badge: 'Best Paper', authors: 'U. Singh, T. Das et al.', href: 'https://ieeexplore.ieee.org/abstract/document/11409883',
+      title: 'Hybrid SW-FPGA RRAM-crossbar Array for In-Memory Computing with Bit-Slicing Architecture',
+      abstract: 'A hybrid software–FPGA RRAM crossbar array architecture with bit-slicing for efficient in-memory computing, with significant performance gains over conventional approaches.',
+      result: 'Best Paper Award · IEEE ICEE 2025',
+      tags: ['RRAM', 'FPGA', 'Bit-slicing', 'IMC'], bibVenue: 'booktitle = {International Conference on Emerging Electronics (ICEE)}' },
+    { key: 'das2025diodes', year: '2025', venue: 'ICEE', type: 'Conference', award: false, badge: 'ESD', authors: 'T. Das, L. Somappa, S. Lashkare', href: 'https://ieeexplore.ieee.org/abstract/document/11409724',
+      title: 'ESD Protection with On-chip Diodes for 65nm CMOS High Voltage Neurostimulators',
+      abstract: 'On-chip diode-based ESD protection for 65nm CMOS high-voltage neurostimulator circuits, TLP-characterised with compliant clamping performance.',
+      result: 'On-chip diode clamps · 65nm CMOS · high-voltage neurostimulators',
+      tags: ['65nm CMOS', 'Diodes', 'TLP', 'ESD'], bibVenue: 'booktitle = {International Conference on Emerging Electronics (ICEE)}' },
+    { key: 'maheshwari2025tcad', year: '2025', venue: 'ICEE', type: 'Conference', award: false, badge: 'ESD · TCAD', authors: 'N. Maheshwari, T. Das et al.', href: 'https://ieeexplore.ieee.org/abstract/document/11409969',
+      title: 'TCAD-Guided Design of a Compact ESD Protection Circuit for Neurostimulators in 65nm CMOS',
+      abstract: 'TCAD simulation guides the design of a compact ESD protection circuit for 65nm neurostimulator applications, enabling device-level design-space exploration.',
+      result: 'Device-level design-space exploration with TCAD · 65nm',
+      tags: ['TCAD', '65nm CMOS', 'ESD'], bibVenue: 'booktitle = {International Conference on Emerging Electronics (ICEE)}' },
+    { key: 'das2025edtm', year: '2025', venue: 'EDTM', type: 'Conference', award: false, badge: 'ESD', authors: 'T. Das, N. Ahmad, L. Somappa, S. Lashkare', href: 'https://ieeexplore.ieee.org/abstract/document/11041318',
+      title: 'Enhanced ESD Protection Techniques for 10V Neurostimulator Circuits in 65nm CMOS Technology',
+      abstract: 'Enhanced ESD protection enabling 10V operation in 65nm CMOS neurostimulator circuits, achieving IEC 61000-4-2 compliance with sub-3Ω clamping resistance.',
+      result: '10V operation · IEC 61000-4-2 · sub-3Ω clamping',
+      tags: ['65nm CMOS', 'IEC 61000-4-2', 'ESD'], bibVenue: 'booktitle = {IEEE Electron Devices Technology and Manufacturing Conference (EDTM)}' },
+    { key: 'das2024vdat', year: '2024', venue: 'VDAT', type: 'Conference', award: false, badge: 'ESD', authors: 'T. Das, M. Pathak, S. Lashkare', href: 'https://ieeexplore.ieee.org/document/10705717/',
+      title: 'Dynamic Resistance Reduction Methods for Voltage Clamp Lowering to Enhance GGNMOS ESD Protection',
+      abstract: 'Circuit-level methods to reduce GGNMOS dynamic on-resistance for lower clamping voltages without compromising holding current, enabling more effective ESD protection.',
+      result: 'Lower clamp voltage via reduced GGNMOS dynamic resistance',
+      tags: ['GGNMOS', 'Clamp design', 'ESD'], bibVenue: 'booktitle = {International Symposium on VLSI Design and Test (VDAT)}' },
+    { key: 'ghosh2022mxene', year: '2022', venue: 'Mater. Today', type: 'Journal', award: false, badge: 'Materials', authors: 'A. Ghosh, H. Pal, T. Das, S. Chatterjee, A. Das', href: 'https://doi.org/10.1016/j.matpr.2022.02.253', linkLabel: 'Read on DOI',
+      title: 'Synthesis and Characterization of MXene from MAX Phase',
+      abstract: 'Experimental synthesis and structural characterisation of MXene 2D materials derived from MAX-phase precursors, with analysis of morphological and compositional properties.',
+      result: '2D material synthesis · structural characterisation',
+      tags: ['MXene', '2D materials', 'Characterisation'], bibVenue: 'journal = {Materials Today: Proceedings}' }
+  ];
+  LOGO = { 'ESSERC': './assets/logo-esserc.png', 'ICEE': './images/icee-logo-dark.png', 'IEEE JEDS': './assets/logo-eds.png', 'EDTM': './assets/logo-eds.png', 'VDAT': './assets/logo-vsi.webp' };
+  AW = [
+    { name: 'IEEE SSCS Code-a-Chip Travel Grant', desc: 'Power side-channel vulnerability on analog IMC arrays · ESSERC 2026, Palma de Mallorca', year: '2025', kind: 'Travel grant', org: 'IEEE SSCS', logo: './images/sscs.jpg', hl: true },
+    { name: 'Best Paper Award — IEEE ICEE 2025', desc: 'Hybrid SW–FPGA RRAM crossbar for in-memory computing with bit-slicing', year: '2025', kind: 'Best paper', org: 'IEEE ICEE', logo: './images/icee-logo-dark.png', hl: true },
+    { name: 'URAM 2.0 Scholarship — Micron Technology', desc: 'Academic and research excellence in semiconductor engineering', year: '2024', kind: 'Scholarship', org: 'Micron', mono: 'MU' },
+    { name: 'Winner — Capture The Bug Hackathon', desc: 'Design verification hackathon · NIELIT', year: '2022', kind: 'Winner', org: 'NIELIT', mono: 'NI' },
+    { name: 'Winner — Sky130 Mixed-Signal Design Marathon', desc: 'FOSSEE · IIT Bombay', year: '2022', kind: 'Winner', org: 'IIT Bombay', logo: './images/iitb.png' },
+    { name: 'Gold Medal · Certificate of Academic Excellence', desc: 'Sikkim Manipal Institute of Technology', year: '2021–22', kind: 'Academic', org: 'SMIT', mono: 'SMIT' }
+  ];
+  componentDidMount() { const go = () => window.PageFX ? (this.off = PageFX.boot(this, this.rootRef.current, this.progRef.current)) : setTimeout(go, 50); go(); }
+  componentWillUnmount() { this.off && this.off(); clearTimeout(this.tt); }
+  bibOf(p) {
+    const kind = p.type === 'Journal' ? '@article' : '@inproceedings';
+    const authors = p.authors.replace(/ et al\./, ' and others').split(', ').join(' and ');
+    return `${kind}{${p.key},\n  title  = {${p.title}},\n  author = {${authors}},\n  ${p.bibVenue},\n  year   = {${p.year}}\n}`;
+  }
+  copy(i) {
+    const txt = this.bibOf(this.P[i]);
+    const done = ok => { this.setState({ toast: ok ? 'BibTeX copied' : 'Copy blocked — select the text', copied: i }); clearTimeout(this.tt); this.tt = setTimeout(() => this.setState({ toast: '', copied: -1 }), 1800); };
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(() => done(true), () => { this.setState({ bib: i }); done(false); });
+    else { this.setState({ bib: i }); done(false); }
+  }
+  pick(f) {
+    this.setState({ filter: f }, () => {
+      const l = this.listRef.current; if (!l || !window.PageFX || !PageFX.motion()) return;
+      [...l.querySelectorAll('article')].forEach((el, i) => el.animate([{ opacity: 0, transform: 'translateY(16px)' }, { opacity: 1, transform: 'none' }], { duration: 600, delay: i * 60, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'backwards' }));
+    });
+  }
+  renderVals() {
+    const S = this.state, amber = '#E5A93C', mute = '#9A958C';
+    const match = p => S.filter === 'All' || (S.filter === 'Awarded' ? p.award : p.type === S.filter);
+    const papers = this.P.map((p, i) => {
+      const open = S.open === i, bib = S.bib === i;
+      const logo = this.LOGO[p.venue];
+      return { ...p, hasLink: !!p.href, linkText: p.linkLabel || 'Read on IEEE', logo, hasLogo: !!logo, noLogo: !logo, mono: p.venue === 'Mater. Today' ? 'MATERIALS TODAY' : p.venue, slotId: 'venue-' + p.key, slotHint: 'Drop a photo from ' + p.venue + ' ' + p.year, display: match(p) ? 'flex' : 'none', toggle: () => this.setState({ open: open ? -1 : i }),
+        rowBg: 'transparent', titleColor: open ? amber : '#ECE8E1', rot: open ? '45deg' : '0deg', rows: open ? '1fr' : '0fr', op: open ? 1 : 0, dy: open ? '0px' : '-8px',
+        badgeColor: p.award ? amber : mute, bib: this.bibOf(p), bibRows: bib ? '1fr' : '0fr', bibLabel: bib ? 'Hide BibTeX' : 'Show BibTeX', bibBorder: bib ? amber : '#3A3733', bibColor: bib ? amber : '#ECE8E1',
+        toggleBib: () => this.setState({ bib: bib ? -1 : i }), copy: () => this.copy(i), copyLabel: S.copied === i ? 'Copied ✓' : 'Copy BibTeX' };
+    });
+    const F = ['All', 'Journal', 'Conference', 'Awarded'];
+    return {
+      rootRef: this.rootRef, progRef: this.progRef, listRef: this.listRef, time: S.time, papers,
+      filters: F.map(f => { const on = S.filter === f; return { label: f, n: this.P.filter(p => f === 'All' || (f === 'Awarded' ? p.award : p.type === f)).length, pick: () => this.pick(f), bg: on ? amber : 'transparent', color: on ? '#0A0A0A' : '#B5B0A7', border: on ? amber : '#3A3733' }; }),
+      awards: this.AW.map(a => ({ ...a, hasLogo: !!a.logo, noLogo: !a.logo, color: a.hl ? amber : '#ECE8E1', kColor: a.hl ? amber : mute })),
+      toast: S.toast, toastOp: S.toast ? 1 : 0, toastY: S.toast ? '0' : '20px'
+    };
+  }
+}
+</script>
+</body>
+</html>

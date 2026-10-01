@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+<script src="./page-fx.js"></script>
+<style>html{scroll-behavior:smooth}html,body{margin:0;background:#0A0A0A;color:#ECE8E1;-webkit-font-smoothing:antialiased}*{box-sizing:border-box}a{color:#ECE8E1;text-decoration:none}a:hover{color:#E5A93C}button{font:inherit;color:inherit}::selection{background:#E5A93C;color:#0A0A0A}</style>
+</helmet>
+<div ref="{{ rootRef }}" style="font-family:'Schibsted Grotesk',system-ui,sans-serif;background:#0A0A0A;color:#ECE8E1;min-height:100vh;overflow-x:clip">
+  <div ref="{{ progRef }}" style="position:fixed;top:0;left:0;right:0;height:2px;background:#E5A93C;transform:scaleX(0);transform-origin:0 50%;z-index:90"></div>
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:60;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;padding:14px clamp(20px,4vw,56px);background:rgba(10,10,10,.75);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid #262420">
+    <a data-route="" href="index.html" style="display:flex;align-items:center;gap:10px"><span style="width:26px;height:26px;border:1px solid #ECE8E1;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:10px">TD</span><span style="font-weight:700;font-size:15px">Tanay Das</span></a>
+    <div style="display:flex;flex-wrap:wrap;gap:6px 22px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase">
+      <a data-route="" href="journey.html" style="color:#9A958C">Journey</a>
+      <a data-route="" href="work.html" style="color:#9A958C">Work</a>
+      <a data-route="" href="tools.html" style="color:#9A958C">AI Tools</a>
+      <a data-route="" href="photography.html" style="color:#9A958C">Photography</a>
+      <a data-route="" href="toolkit.html" style="color:#E5A93C">● Toolkit</a>
+      <a data-route="" href="papers.html" style="color:#9A958C">Papers</a>
+    </div>
+    <div style="display:flex;gap:16px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em"><span style="color:#9A958C;font-variant-numeric:tabular-nums">HYD {{ time }}</span><a href="./resume.pdf" download="Tanay_Das_Resume.pdf" type="application/pdf" style="border:1px solid #3A3733;padding:6px 10px;text-transform:uppercase">CV ↓</a></div>
+  </nav>
+
+  <main data-page="">
+    <header data-screen-label="Toolkit hero" style="padding:150px clamp(20px,4vw,56px) 48px;display:flex;flex-direction:column;gap:36px">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C"><span style="color:#E5A93C">/toolkit</span><span>{{ total }} instruments on the bench</span><span>Probe any channel</span></div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:32px">
+        <h1 style="margin:0;font-size:clamp(60px,12vw,200px);font-weight:800;letter-spacing:-.055em;line-height:.82">
+          <span style="display:block;overflow:hidden;padding-bottom:.05em"><span data-k="" style="display:inline-block">The</span></span>
+          <span style="display:block;overflow:hidden;padding-bottom:.1em"><span data-k="" style="display:inline-block;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.02em;color:#E5A93C">bench.</span></span>
+        </h1>
+        <p data-reveal="300" style="margin:0;max-width:380px;font-size:17px;line-height:1.55;color:#B5B0A7">Lab instruments, EDA suites and the AI stack — each one with its telemetry: when, where, and what came out the other end.</p>
+      </div>
+    </header>
+
+    <div style="position:sticky;top:57px;z-index:40;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));background:rgba(10,10,10,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid #262420;border-bottom:1px solid #262420">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
+        <button type="button" onClick="{{ t.pick }}" style="cursor:pointer;text-align:left;background:{{ t.bg }};border:0;border-right:1px solid #262420;border-bottom:2px solid {{ t.bar }};padding:14px clamp(14px,2vw,24px);display:flex;justify-content:space-between;align-items:baseline;gap:12px;transition:background .3s">
+          <span style="font-size:15px;font-weight:600;color:{{ t.color }}">{{ t.label }}</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#9A958C">CH{{ t.ch }} · {{ t.n }}</span>
+        </button>
+      </sc-for>
+    </div>
+
+    <section data-screen-label="Inspector" style="padding:32px clamp(20px,4vw,56px) 96px;display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start">
+      <div ref="{{ gridRef }}" style="flex:3 1 460px;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));border-top:1px solid #262420;border-left:1px solid #262420">
+        <sc-for list="{{ tools }}" as="t" hint-placeholder-count="6">
+          <button type="button" onClick="{{ t.select }}" onMouseEnter="{{ t.select }}" style="text-align:left;border:0;border-right:1px solid #262420;border-bottom:1px solid #262420;cursor:pointer;background:{{ t.bg }};padding:22px;display:flex;flex-direction:column;gap:14px;min-height:150px;transition:background .3s" style-active="transform:scale(.98)">
+            <span style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:{{ t.metaColor }}"><span>{{ t.idx }}</span><span>{{ t.kind }}</span></span>
+            <span style="font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.05;color:{{ t.color }};transition:color .3s">{{ t.name }}</span>
+            <span style="font-size:13px;line-height:1.4;color:#9A958C">{{ t.one }}</span>
+            <span style="display:flex;gap:2px;margin-top:auto">
+              <sc-for list="{{ t.mini }}" as="c" hint-placeholder-count="8"><span style="flex:1;height:3px;background:{{ c }}"></span></sc-for>
+            </span>
+          </button>
+        </sc-for>
+      </div>
+
+      <aside ref="{{ inspRef }}" style="flex:2 1 360px;position:sticky;top:120px;border:1px solid #262420;background:#111010;padding:clamp(20px,2.4vw,28px);display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase">
+          <span style="color:#9A958C">Telemetry · {{ tool.kind }}</span>
+          <span data-tag="" style="padding:4px 8px;border:1px solid {{ tool.statusColor }};color:{{ tool.statusColor }}">{{ tool.status }}</span>
+        </div>
+        <div style="position:relative;height:120px;border:1px solid #2A2520;background:#0D0B09">
+          <canvas ref="{{ scopeRef }}" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
+          <span style="position:absolute;left:8px;top:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#E5A93C">{{ tool.sig }}</span>
+          <span style="position:absolute;right:8px;bottom:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#9A958C">{{ tool.scale }}</span>
+        </div>
+        <span style="font-size:clamp(30px,3vw,44px);font-weight:800;letter-spacing:-.04em;line-height:.95">{{ tool.name }}</span>
+        <p style="margin:0;font-family:'Instrument Serif',serif;font-style:italic;font-size:22px;line-height:1.25">{{ tool.quip }}</p>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid #262420;border-bottom:1px solid #262420">
+          <sc-for list="{{ tool.readouts }}" as="r" hint-placeholder-count="3">
+            <div data-tag="" style="padding:14px 8px 14px 0;display:flex;flex-direction:column;gap:6px">
+              <span style="font-size:24px;font-weight:700;letter-spacing:-.03em;line-height:1;color:#E5A93C">{{ r.v }}</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#9A958C">{{ r.l }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C">Active years</span>
+          <div style="display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:3px">
+            <sc-for list="{{ tool.years }}" as="y" hint-placeholder-count="8">
+              <div style="display:flex;flex-direction:column;gap:5px"><span style="height:18px;background:{{ y.fill }};transition:background .4s ease {{ y.delay }}"></span><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:{{ y.label }}">{{ y.y }}</span></div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C;margin-bottom:6px">Used for</span>
+          <sc-for list="{{ tool.uses }}" as="u" hint-placeholder-count="3">
+            <div data-tag="" style="display:flex;gap:12px;padding:9px 0;border-top:1px solid #1E1C19;font-size:14px;line-height:1.45;color:#B5B0A7"><span style="color:#E5A93C;font-family:'JetBrains Mono',monospace;font-size:11px;padding-top:2px">→</span><span>{{ u }}</span></div>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          <sc-for list="{{ tool.badges }}" as="b" hint-placeholder-count="4"><span data-tag="" style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:5px 9px;border:1px solid #3A3733">{{ b }}</span></sc-for>
+        </div>
+      </aside>
+    </section>
+
+    <a data-route="" href="papers.html" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;padding:80px clamp(20px,4vw,56px) 56px;border-top:1px solid #262420;color:#ECE8E1" style-hover="color:#E5A93C">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C">What came out of it</span>
+      <span style="font-size:clamp(48px,9vw,140px);font-weight:800;letter-spacing:-.055em;line-height:.85">Papers →</span>
+    </a>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { time: '', tab: 0, sel: 0 };
+  rootRef = React.createRef(); progRef = React.createRef(); gridRef = React.createRef(); inspRef = React.createRef(); scopeRef = React.createRef();
+  YEARS = [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
+  TABS = ['Lab bench', 'Silicon & EDA', 'AI stack'];
+  T = [
+    { tab: 0, name: 'TLP characterisation', kind: 'Lab', one: 'Nanosecond pulses to prove a clamp holds.', years: [2024, 2025], wave: 'pulse', sig: 'TLP · I–V sweep', scale: '100 ns/div',
+      quip: 'Zap it on purpose so nobody zaps it by accident.', readouts: [{ v: '<3Ω', l: 'Dyn. resistance' }, { v: '2', l: 'Nodes' }, { v: 'IEC', l: '61000-4-2' }],
+      uses: ['ESD clamp validation for a BMI neuromodulation SoC', 'Correlating silicon TLP curves with Virtuoso models'], badges: ['TLP', 'ESD', '65nm', '180nm'] },
+    { tab: 0, name: 'Scope + TIA front-end', kind: 'Lab', one: 'Turning picoamps of RRAM into readable volts.', years: [2024, 2025], wave: 'sine', sig: 'CH1 · TIA out', scale: '2 ms/div',
+      quip: 'Two sines, one coffee, zero ground loops (today).', readouts: [{ v: 'TL072', l: 'Op-amp' }, { v: 'OPA2134', l: 'Low-noise' }, { v: '10-bit', l: 'ADC' }],
+      uses: ['Reading RRAM crossbar column currents', 'Debugging MCP3008 sampling on the bench'], badges: ['TIA', 'MCP3008', 'Bench'] },
+    { tab: 0, name: 'Basys-3 FPGA', kind: 'Lab', one: 'MNIST on a student board, no DSP blocks harmed.', years: [2022, 2024, 2025], wave: 'square', sig: 'CLK · MAC enable', scale: '10 ns/div',
+      quip: 'Bit-slicing: when you refuse to use the multiplier on principle.', readouts: [{ v: '0', l: 'DSP blocks' }, { v: 'MNIST', l: 'Workload' }, { v: 'Best', l: 'Paper · ICEE' }],
+      uses: ['Bit-sliced MAC for crossbar in-memory compute', 'Software–FPGA co-design'], badges: ['Verilog', 'Vivado', 'Bit-slicing'] },
+    { tab: 0, name: 'KiCad', kind: 'Lab', one: 'Three crossbar boards, zero magic smoke.', years: [2024, 2025], wave: 'steps', sig: 'Net · COL[0:7]', scale: '8 ch',
+      quip: 'If it has a footprint, I have opinions about it.', readouts: [{ v: '3', l: 'Boards' }, { v: '8×8', l: 'Max array' }, { v: '4×4', l: 'First spin' }],
+      uses: ['RRAM crossbar PCBs with TIA stages', 'MCP3008 column read-out'], badges: ['PCB', 'Layout', 'BOM'] },
+    { tab: 1, name: 'Cadence Virtuoso', kind: 'Analog', one: 'Where most of my polygons live.', years: [2022, 2023, 2024, 2025], wave: 'sine', sig: 'Spectre · transient', scale: '1 ns/div',
+      quip: 'Schematic, layout, DRC, repeat until the coffee runs out.', readouts: [{ v: '65/180', l: 'nm nodes' }, { v: '3', l: 'Contexts' }, { v: 'Rad-hard', l: 'Cells @ ISRO' }],
+      uses: ['ESD clamp layout for a BMI SoC', 'Rad-hard standard cells at ISRO', 'NV-SRAM cell simulation in Spectre'], badges: ['Schematic', 'Layout', 'Spectre'] },
+    { tab: 1, name: 'SystemVerilog', kind: 'Verification', one: '$deposit, but make it deterministic.', years: [2024, 2025, 2026], wave: 'square', sig: 'sig · $deposit', scale: '4 sims',
+      quip: 'The same line of code, four opinions, one right answer.', readouts: [{ v: '4', l: 'Simulators' }, { v: '1800', l: 'IEEE std' }, { v: '3', l: 'Scenario types' }],
+      uses: ['$deposit signal-forcing across multi-driver nets', 'Packed-array and hierarchical reference cases'], badges: ['XSim', 'Xcelium', 'Questa', 'Riviera-PRO'] },
+    { tab: 1, name: 'VHDL-2008 / 2019', kind: 'Verification', one: 'Reading the manual so the simulator doesn’t guess.', years: [2025, 2026], wave: 'steps', sig: 'LRM · 1076-2019', scale: '16 constructs',
+      quip: 'Generic subprograms: fun at parties, less fun in four simulators.', readouts: [{ v: '16', l: '2008 constructs' }, { v: '1076', l: 'IEEE std' }, { v: '2019', l: 'Latest rev' }],
+      uses: ['Testplans for generic subprograms and anonymous types', 'External names and conditional force assignment'], badges: ['LRM', 'Testplans', 'Multi-sim'] },
+    { tab: 1, name: 'gdsfactory', kind: 'Photonics', one: 'Layouts as code. My hands thank me.', years: [2024], wave: 'sine', sig: 'λ · WDM channels', scale: '4-bit DAC',
+      quip: 'Every waveguide, generated. Not one drawn.', readouts: [{ v: '4-bit', l: 'Serial DAC' }, { v: 'WDM', l: 'Modulator' }, { v: '100%', l: 'Scripted' }],
+      uses: ['Photonic DAC building blocks at StarIC', 'Dispersion-compensating fibre models'], badges: ['Python', 'GDSII', 'Photonics'] },
+    { tab: 2, name: 'Claude API', kind: 'AI', one: 'The colleague who reads every Jira ticket.', years: [2025, 2026], wave: 'noise', sig: 'tokens · stream', scale: '18× faster',
+      quip: 'Good at reading repro steps. Better at not getting bored of them.', readouts: [{ v: '2', l: 'Platforms' }, { v: '18×', l: 'Speed-up' }, { v: 'Daily', l: 'Team use' }],
+      uses: ['LRM-grounded RTL testcase generation', 'Parsing CR reproduction steps into sim scripts'], badges: ['Tool use', 'RAG', 'Streaming'] },
+    { tab: 2, name: 'RAG · ChromaDB', kind: 'AI', one: 'So the model cites clause numbers, not vibes.', years: [2025, 2026], wave: 'steps', sig: 'retrieval · top-k', scale: '2 manuals',
+      quip: 'Every generated test ships with its receipt.', readouts: [{ v: '2', l: 'IEEE manuals' }, { v: '7', l: 'Test categories' }, { v: 'Cited', l: 'Every test' }],
+      uses: ['Embedding IEEE 1076 and 1800', 'Grounding generated tests in the spec'], badges: ['LlamaIndex', 'ChromaDB', 'Embeddings'] },
+    { tab: 2, name: 'FastAPI + LSF', kind: 'Infra', one: 'Fan-out to the cluster, stream it back.', years: [2025, 2026], wave: 'square', sig: 'jobs · parallel', scale: '18 CRs',
+      quip: 'A 3-hour queue, turned into a coffee break.', readouts: [{ v: '18', l: 'Parallel CRs' }, { v: '10 min', l: 'vs ~3 h' }, { v: 'WS', l: 'Live status' }],
+      uses: ['Submitting generated sims to LSF', 'WebSocket dashboards for the team'], badges: ['FastAPI', 'LSF', 'WebSocket', 'Jira API'] }
+  ];
+  componentDidMount() {
+    const go = () => window.PageFX ? (this.off = PageFX.boot(this, this.rootRef.current, this.progRef.current)) : setTimeout(go, 50); go();
+    this.scope();
+  }
+  componentWillUnmount() { this.off && this.off(); cancelAnimationFrame(this.raf); }
+  scope() {
+    const cv = this.scopeRef.current; if (!cv) return;
+    const ctx = cv.getContext('2d'); let W = 0, H = 0, ph = 0, last = performance.now();
+    const hw = i => (((i * 2654435761) >>> 0) % 9) / 8;
+    const f = now => {
+      const r = cv.getBoundingClientRect(), d = Math.min(2, devicePixelRatio || 1);
+      if (r.width !== W || r.height !== H) { W = r.width; H = r.height; cv.width = W * d; cv.height = H * d; ctx.setTransform(d, 0, 0, d, 0, 0); }
+      const dt = Math.min(64, now - last) / 1000; last = now; ph += dt * 60;
+      ctx.clearRect(0, 0, W, H);
+      ctx.strokeStyle = 'rgba(229,169,60,.09)'; ctx.lineWidth = 1;
+      for (let x = 0; x < W; x += W / 10) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+      for (let y = 0; y < H; y += H / 4) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+      const w = this.T[this.state.sel].wave, mid = H / 2, A = H * .32;
+      ctx.strokeStyle = '#E5A93C'; ctx.lineWidth = 1.5; ctx.shadowColor = 'rgba(229,169,60,.6)'; ctx.shadowBlur = 6; ctx.beginPath();
+      for (let x = 0; x <= W; x += 2) {
+        const g = (x + ph) / W; let y;
+        if (w === 'sine') y = Math.sin(g * 12.56);
+        else if (w === 'square') y = Math.sin(g * 18.8) > 0 ? 1 : -1;
+        else if (w === 'pulse') { const p = (g * 3) % 1; y = p < .08 ? 1 : p < .3 ? Math.exp(-(p - .08) * 18) * .9 - .2 : -.2; }
+        else if (w === 'steps') y = hw(Math.floor(g * 14)) * 2 - 1;
+        else y = (Math.sin(g * 40) * .4 + (Math.random() - .5) * .9);
+        x ? ctx.lineTo(x, mid - y * A) : ctx.moveTo(x, mid - y * A);
+      }
+      ctx.stroke(); ctx.shadowBlur = 0;
+      if (!window.PageFX || PageFX.motion()) this.raf = requestAnimationFrame(f);
+    };
+    this.raf = requestAnimationFrame(f);
+  }
+  pulse(el) {
+    if (!el || !window.PageFX || !PageFX.motion()) return;
+    el.querySelectorAll('[data-tag]').forEach((t, i) => t.animate([{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'none' }], { duration: 500, delay: i * 40, easing: 'cubic-bezier(.34,1.4,.64,1)', fill: 'backwards' }));
+  }
+  select(i) { if (i !== this.state.sel) this.setState({ sel: i }, () => this.pulse(this.inspRef.current)); }
+  pickTab(k) {
+    const first = this.T.findIndex(t => t.tab === k);
+    this.setState({ tab: k, sel: first }, () => {
+      this.pulse(this.inspRef.current);
+      const g = this.gridRef.current; if (!g || !window.PageFX || !PageFX.motion()) return;
+      [...g.children].forEach((el, i) => el.animate([{ opacity: 0, transform: 'translateY(16px)' }, { opacity: 1, transform: 'none' }], { duration: 600, delay: i * 45, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'backwards' }));
+    });
+  }
+  renderVals() {
+    const S = this.state, amber = '#E5A93C', mute = '#9A958C';
+    const tools = this.T.map((t, i) => ({ t, i })).filter(x => x.t.tab === S.tab).map(({ t, i }, k) => {
+      const on = S.sel === i;
+      return { name: t.name, kind: t.kind, one: t.one, idx: String(k + 1).padStart(2, '0'), select: () => this.select(i), bg: on ? '#1A160F' : '#111010', color: on ? amber : '#ECE8E1', metaColor: on ? amber : mute, mini: this.YEARS.map(y => t.years.includes(y) ? (on ? amber : '#55514A') : '#1E1C19') };
+    });
+    const T = this.T[S.sel], live = T.years.includes(2026);
+    return {
+      rootRef: this.rootRef, progRef: this.progRef, gridRef: this.gridRef, inspRef: this.inspRef, scopeRef: this.scopeRef, time: S.time,
+      total: this.T.length, tools,
+      tabs: this.TABS.map((l, k) => { const on = S.tab === k; return { label: l, ch: k + 1, n: this.T.filter(t => t.tab === k).length, pick: () => this.pickTab(k), bg: on ? '#121110' : 'transparent', bar: on ? amber : 'transparent', color: on ? '#ECE8E1' : mute }; }),
+      tool: { ...T, status: live ? '● Live' : 'Archived · ' + Math.max(...T.years), statusColor: live ? amber : mute,
+        years: this.YEARS.map((y, k) => ({ y: "'" + String(y).slice(2), fill: T.years.includes(y) ? amber : '#1E1C19', label: T.years.includes(y) ? '#ECE8E1' : '#55514A', delay: k * 40 + 'ms' })) }
+    };
+  }
+}
+</script>
+</body>
+</html>
