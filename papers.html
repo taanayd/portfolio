@@ -26,7 +26,7 @@
       <a data-route="" href="tools.html" style="color:#9A958C">AI Tools</a>
       <a data-route="" href="photography.html" style="color:#9A958C">Photography</a>
       <a data-route="" href="toolkit.html" style="color:#9A958C">Toolkit</a>
-      <a data-route="" href="papers.html" style="color:#E5A93C">● Papers</a>
+      <a data-route="" href="papers.html" aria-current="page" style="color:#E5A93C">● Papers</a>
     </div>
     <div style="display:flex;gap:16px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em"><span style="color:#9A958C;font-variant-numeric:tabular-nums">HYD {{ time }}</span><a href="./resume.pdf" download="Tanay_Das_Resume.pdf" type="application/pdf" style="border:1px solid #3A3733;padding:6px 10px;text-transform:uppercase">CV ↓</a></div>
   </nav>
@@ -135,6 +135,16 @@
       <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A958C">Want to collaborate?</span>
       <span style="font-size:clamp(48px,9vw,140px);font-weight:800;letter-spacing:-.055em;line-height:.85">Say hello →</span>
     </a>
+      <footer class="site-footer" aria-label="Site footer">
+      <a class="site-footer__mark" href="index.html"><b>TD</b><span>Tanay Das</span></a>
+      <span>Silicon design · Hyderabad, India</span>
+      <nav class="site-footer__links" aria-label="Footer links">
+        <a href="index.html">Home</a><a href="index.html#contact">Contact</a>
+        <a href="https://www.linkedin.com/in/dastanay/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+        <a href="./resume.pdf" download="Tanay_Das_Resume.pdf">Résumé ↓</a>
+      </nav>
+      <small>© 2026 Tanay Das</small>
+    </footer>
   </main>
 
   <div style="position:fixed;left:50%;bottom:28px;z-index:95;transform:translate(-50%,{{ toastY }});opacity:{{ toastOp }};transition:transform .5s cubic-bezier(.34,1.4,.64,1),opacity .3s;pointer-events:none;background:#E5A93C;color:#0A0A0A;padding:12px 18px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase">{{ toast }}</div>
