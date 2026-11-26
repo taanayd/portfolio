@@ -89,7 +89,14 @@ window.LAB_GALLERY = [
     unit: 'Research internship',
     place: 'Ahmedabad, India',
     period: '2023',
-    photos: []
+    photos: [
+      { src: 'assets/labs/isro/ahmedabad-riverfront.jpg', thumb: 'assets/labs/isro/ahmedabad-riverfront-sm.jpg', w: 1800, h: 1350,
+        caption: 'Weekend at the Sabarmati Riverfront with fellow interns', year: '2023' },
+      { src: 'assets/labs/isro/ahmedabad-lakeside.jpg', thumb: 'assets/labs/isro/ahmedabad-lakeside-sm.jpg', w: 1800, h: 1350,
+        caption: 'Lakeside evening in Ahmedabad during the internship', year: '2023' },
+      { src: 'assets/labs/isro/ahmedabad-evening.jpg', thumb: 'assets/labs/isro/ahmedabad-evening-sm.jpg', w: 1800, h: 1350,
+        caption: 'An evening out in Ahmedabad with fellow interns', year: '2023' }
+    ]
   },
   {
     id: 'smit',
@@ -97,7 +104,16 @@ window.LAB_GALLERY = [
     unit: 'Electronics & Communication Engineering',
     place: 'Sikkim, India',
     period: '2019 – 2023',
-    photos: []
+    photos: [
+      { src: 'assets/labs/smit/batch-photo.jpg', thumb: 'assets/labs/smit/batch-photo-sm.jpg', w: 1024, h: 768,
+        caption: 'With the batch at convocation', year: '2023' },
+      { src: 'assets/labs/smit/fest-formal-night.jpg', thumb: 'assets/labs/smit/fest-formal-night-sm.jpg', w: 1800, h: 1200,
+        caption: 'Formal night at the college fest', year: '' },
+      { src: 'assets/labs/smit/friends-fest-week.jpg', thumb: 'assets/labs/smit/friends-fest-week-sm.jpg', w: 1152, h: 648,
+        caption: 'College friends during fest week', year: '' },
+      { src: 'assets/labs/smit/evening-out.jpg', thumb: 'assets/labs/smit/evening-out-sm.jpg', w: 1600, h: 900,
+        caption: 'An evening out with college friends', year: '' }
+    ]
   },
   {
     id: 'moments',
