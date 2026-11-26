@@ -95,7 +95,9 @@ window.LAB_GALLERY = [
       { src: 'assets/labs/isro/ahmedabad-lakeside.jpg', thumb: 'assets/labs/isro/ahmedabad-lakeside-sm.jpg', w: 1800, h: 1350,
         caption: 'Lakeside evening in Ahmedabad during the internship', year: '2023' },
       { src: 'assets/labs/isro/ahmedabad-evening.jpg', thumb: 'assets/labs/isro/ahmedabad-evening-sm.jpg', w: 1800, h: 1350,
-        caption: 'An evening out in Ahmedabad with fellow interns', year: '2023' }
+        caption: 'An evening out in Ahmedabad with fellow interns', year: '2023' },
+      { src: 'assets/labs/isro/arcade-evening.jpg', thumb: 'assets/labs/isro/arcade-evening-sm.jpg', w: 1600, h: 900,
+        caption: 'Arcade evening with fellow interns from SAC, ISRO', year: '2023' }
     ]
   },
   {
@@ -110,9 +112,7 @@ window.LAB_GALLERY = [
       { src: 'assets/labs/smit/fest-formal-night.jpg', thumb: 'assets/labs/smit/fest-formal-night-sm.jpg', w: 1800, h: 1200,
         caption: 'Formal night at the college fest', year: '' },
       { src: 'assets/labs/smit/friends-fest-week.jpg', thumb: 'assets/labs/smit/friends-fest-week-sm.jpg', w: 1152, h: 648,
-        caption: 'College friends during fest week', year: '' },
-      { src: 'assets/labs/smit/evening-out.jpg', thumb: 'assets/labs/smit/evening-out-sm.jpg', w: 1600, h: 900,
-        caption: 'An evening out with college friends', year: '' }
+        caption: 'College friends during fest week', year: '' }
     ]
   },
   {
