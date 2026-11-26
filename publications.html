@@ -1,13 +1,194 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="robots" content="noindex">
-  <meta http-equiv="refresh" content="0; url=./papers.html">
-  <link rel="canonical" href="https://taanayd.github.io/portfolio/papers.html">
-  <title>Publications — Tanay Das</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Publications — Tanay Das</title>
+<meta name="description" content="Publications by Tanay Das on ESD protection, RRAM in-memory computing and hardware security.">
+<meta name="author" content="Tanay Das">
+<meta property="og:title" content="Publications — Tanay Das">
+<meta property="og:description" content="Publications by Tanay Das on ESD protection, RRAM in-memory computing and hardware security.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://taanayd.github.io/portfolio/tanay.jpg">
+<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+<script>(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)})();</script>
+<link rel="preload" href="assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<script src="assets/js/site.js" defer></script>
 </head>
 <body>
-  <p>Publications have moved to <a href="./papers.html">the current publications page</a>.</p>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html"><b>Tanay Das</b><span>PhD researcher · KU Leuven</span></a>
+    <button class="icon-btn menu-btn" type="button" data-menu aria-controls="site-nav" aria-expanded="false" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html" aria-current="page">Publications</a>
+      <a href="projects.html">Projects</a>
+      <a href="experience.html">Experience</a>
+      <a href="gallery.html">Lab gallery</a>
+      <a href="photography.html">Photography</a>
+    </nav>
+    <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark theme"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+<header class="page-head">
+  <div class="eyebrow">Publications</div>
+  <h1>Publications</h1>
+  <p class="lede">Journal and conference papers on ESD protection, in-memory computing and hardware security. The most complete and current list is on <a href="https://scholar.google.com/citations?user=6aBaFCcAAAAJ" rel="noopener">Google Scholar</a>.</p>
+</header>
+<div class="filters" data-filter-group="#pub-list" role="group" aria-label="Filter publications">
+  <button type="button" class="chip" data-filter="all" aria-pressed="true">All<span class="n">8</span></button>
+  <button type="button" class="chip" data-filter="journal" aria-pressed="false">Journal<span class="n">2</span></button>
+  <button type="button" class="chip" data-filter="conference" aria-pressed="false">Conference<span class="n">6</span></button>
+  <button type="button" class="chip" data-filter="award" aria-pressed="false">Awarded<span class="n">2</span></button>
+</div>
+<div id="pub-list">
+  <section class="year-group" data-group>
+    <h2>2026</h2>
+    <div>
+    <article class="pub" data-kind="conference award">
+      <h3 class="pub-title">Power Side-Channel Vulnerability on Analog In-Memory Computing Arrays</h3>
+      <p class="pub-authors"><span class="me">T. Das</span>, U. Singh</p>
+      <p class="pub-venue">IEEE European Solid-State Electronics Research Conference (ESSERC), Code-a-Chip, 2026</p>
+      <div class="pub-meta"><span class="tag">Conference</span><span class="tag award">IEEE SSCS Code-a-Chip travel grant</span> <span class="muted">Link to follow</span> <button type="button" data-bib="bib-das2026sidechannel">BibTeX</button></div>
+      <details><summary>Abstract</summary><p>Shows that analog in-memory computing arrays leak their stored weights through the supply rail. On an RRAM 1T1R crossbar in the open SKY130 PDK, power traces alone reveal Hamming-weight leakage (ρ = 0.9979) and allow full weight extraction (ρ = 0.9998).</p></details>
+      <pre class="bib" id="bib-das2026sidechannel" hidden>@inproceedings{das2026sidechannel,
+  title  = {Power Side-Channel Vulnerability on Analog In-Memory Computing Arrays},
+  author = {T. Das and U. Singh},
+  booktitle = {IEEE European Solid-State Electronics Research Conference (ESSERC)},
+  year   = {2026}
+}</pre>
+    </article>
+    </div>
+  </section>
+  <section class="year-group" data-group>
+    <h2>2025</h2>
+    <div>
+    <article class="pub" data-kind="journal">
+      <h3 class="pub-title">ESD Protection with Sub-3 Ω Dynamic Resistance for Neuromodulation System-on-Chip</h3>
+      <p class="pub-authors"><span class="me">T. Das</span>, N. Ahmad, L. Somappa, S. Lashkare</p>
+      <p class="pub-venue">IEEE Journal of the Electron Devices Society (JEDS), 2025</p>
+      <div class="pub-meta"><span class="tag journal">Journal</span> <a href="https://ieeexplore.ieee.org/abstract/document/11391546" rel="noopener">Paper ↗</a> <button type="button" data-bib="bib-das2025jeds">BibTeX</button></div>
+      <details><summary>Abstract</summary><p>An ESD protection topology with sub-3 Ω dynamic resistance for neuromodulation SoCs in 65 nm CMOS, validated by transmission-line-pulse characterisation and compliant with IEC 61000-4-2 for 10 V neurostimulator operation.</p></details>
+      <pre class="bib" id="bib-das2025jeds" hidden>@article{das2025jeds,
+  title  = {ESD Protection with Sub-3 Ω Dynamic Resistance for Neuromodulation System-on-Chip},
+  author = {T. Das and N. Ahmad and L. Somappa and S. Lashkare},
+  journal = {IEEE Journal of the Electron Devices Society},
+  year   = {2025}
+}</pre>
+    </article>
+    <article class="pub" data-kind="conference award">
+      <h3 class="pub-title">Hybrid Software-FPGA RRAM-Crossbar Array Platform for In-Memory Computing with Bit-Slicing Architecture</h3>
+      <p class="pub-authors">U. Singh, <span class="me">T. Das</span>, et al.</p>
+      <p class="pub-venue">International Conference on Emerging Electronics (ICEE), 2025</p>
+      <div class="pub-meta"><span class="tag">Conference</span><span class="tag award">Best Paper Award</span> <a href="https://ieeexplore.ieee.org/abstract/document/11409883" rel="noopener">Paper ↗</a> <button type="button" data-bib="bib-singh2025hybrid">BibTeX</button></div>
+      <details><summary>Abstract</summary><p>A hybrid software–FPGA platform built around RRAM crossbar arrays, using a bit-slicing architecture for in-memory computing.</p></details>
+      <pre class="bib" id="bib-singh2025hybrid" hidden>@inproceedings{singh2025hybrid,
+  title  = {Hybrid Software-FPGA RRAM-Crossbar Array Platform for In-Memory Computing with Bit-Slicing Architecture},
+  author = {U. Singh and T. Das and and others},
+  booktitle = {International Conference on Emerging Electronics (ICEE)},
+  year   = {2025}
+}</pre>
+    </article>
+    <article class="pub" data-kind="conference">
+      <h3 class="pub-title">Design of ESD Protection with On-Chip Diodes for 65 nm CMOS High-Voltage Neurostimulators</h3>
+      <p class="pub-authors"><span class="me">T. Das</span>, L. Somappa, S. Lashkare</p>
+      <p class="pub-venue">International Conference on Emerging Electronics (ICEE), 2025</p>
+      <div class="pub-meta"><span class="tag">Conference</span> <a href="https://ieeexplore.ieee.org/abstract/document/11409724" rel="noopener">Paper ↗</a> <button type="button" data-bib="bib-das2025diodes">BibTeX</button></div>
+      <details><summary>Abstract</summary><p>On-chip diode-based ESD protection for high-voltage neurostimulator circuits in 65 nm CMOS, characterised with transmission-line pulsing.</p></details>
+      <pre class="bib" id="bib-das2025diodes" hidden>@inproceedings{das2025diodes,
+  title  = {Design of ESD Protection with On-Chip Diodes for 65 nm CMOS High-Voltage Neurostimulators},
+  author = {T. Das and L. Somappa and S. Lashkare},
+  booktitle = {International Conference on Emerging Electronics (ICEE)},
+  year   = {2025}
+}</pre>
+    </article>
+    <article class="pub" data-kind="conference">
+      <h3 class="pub-title">TCAD-Guided Design of a Compact ESD Protection Circuit for Neurostimulators in 65 nm CMOS Technology</h3>
+      <p class="pub-authors">N. Maheshwari, <span class="me">T. Das</span>, et al.</p>
+      <p class="pub-venue">International Conference on Emerging Electronics (ICEE), 2025</p>
+      <div class="pub-meta"><span class="tag">Conference</span> <a href="https://ieeexplore.ieee.org/abstract/document/11409969" rel="noopener">Paper ↗</a> <button type="button" data-bib="bib-maheshwari2025tcad">BibTeX</button></div>
+      <details><summary>Abstract</summary><p>Device-level TCAD simulation used to guide the design of a compact ESD protection circuit for 65 nm neurostimulator applications.</p></details>
+      <pre class="bib" id="bib-maheshwari2025tcad" hidden>@inproceedings{maheshwari2025tcad,
+  title  = {TCAD-Guided Design of a Compact ESD Protection Circuit for Neurostimulators in 65 nm CMOS Technology},
+  author = {N. Maheshwari and T. Das and and others},
+  booktitle = {International Conference on Emerging Electronics (ICEE)},
+  year   = {2025}
+}</pre>
+    </article>
+    <article class="pub" data-kind="conference">
+      <h3 class="pub-title">Enhanced ESD Protection Techniques for 10 V Neurostimulator Circuits in 65 nm CMOS Technology</h3>
+      <p class="pub-authors"><span class="me">T. Das</span>, N. Ahmad, L. Somappa, S. Lashkare</p>
+      <p class="pub-venue">IEEE Electron Devices Technology and Manufacturing Conference (EDTM), 2025</p>
+      <div class="pub-meta"><span class="tag">Conference</span> <a href="https://ieeexplore.ieee.org/abstract/document/11041318" rel="noopener">Paper ↗</a> <button type="button" data-bib="bib-das2025edtm">BibTeX</button></div>
+      <details><summary>Abstract</summary><p>ESD protection techniques that allow 10 V operation of neurostimulator circuits in 65 nm CMOS while meeting IEC 61000-4-2.</p></details>
+      <pre class="bib" id="bib-das2025edtm" hidden>@inproceedings{das2025edtm,
+  title  = {Enhanced ESD Protection Techniques for 10 V Neurostimulator Circuits in 65 nm CMOS Technology},
+  author = {T. Das and N. Ahmad and L. Somappa and S. Lashkare},
+  booktitle = {IEEE Electron Devices Technology and Manufacturing Conference (EDTM)},
+  year   = {2025}
+}</pre>
+    </article>
+    </div>
+  </section>
+  <section class="year-group" data-group>
+    <h2>2024</h2>
+    <div>
+    <article class="pub" data-kind="conference">
+      <h3 class="pub-title">Dynamic Resistance Reduction Methods for Voltage Clamp Lowering to Enhance GGNMOS ESD Protection</h3>
+      <p class="pub-authors"><span class="me">T. Das</span>, M. Pathak, S. Lashkare</p>
+      <p class="pub-venue">International Symposium on VLSI Design and Test (VDAT), 2024</p>
+      <div class="pub-meta"><span class="tag">Conference</span> <a href="https://ieeexplore.ieee.org/document/10705717/" rel="noopener">Paper ↗</a> <button type="button" data-bib="bib-das2024vdat">BibTeX</button></div>
+      <details><summary>Abstract</summary><p>Circuit-level methods that reduce the dynamic on-resistance of GGNMOS clamps, lowering the clamping voltage without compromising holding behaviour.</p></details>
+      <pre class="bib" id="bib-das2024vdat" hidden>@inproceedings{das2024vdat,
+  title  = {Dynamic Resistance Reduction Methods for Voltage Clamp Lowering to Enhance GGNMOS ESD Protection},
+  author = {T. Das and M. Pathak and S. Lashkare},
+  booktitle = {International Symposium on VLSI Design and Test (VDAT)},
+  year   = {2024}
+}</pre>
+    </article>
+    </div>
+  </section>
+  <section class="year-group" data-group>
+    <h2>2022</h2>
+    <div>
+    <article class="pub" data-kind="journal">
+      <h3 class="pub-title">Synthesis and Characterization of MXene from MAX Phase</h3>
+      <p class="pub-authors">A. Ghosh, H. Pal, <span class="me">T. Das</span>, S. Chatterjee, A. Das</p>
+      <p class="pub-venue">Materials Today: Proceedings, 2022</p>
+      <div class="pub-meta"><span class="tag journal">Journal</span> <a href="https://doi.org/10.1016/j.matpr.2022.02.253" rel="noopener">Paper ↗</a> <button type="button" data-bib="bib-ghosh2022mxene">BibTeX</button></div>
+      <details><summary>Abstract</summary><p>Synthesis and structural characterisation of two-dimensional MXene derived from MAX-phase precursors.</p></details>
+      <pre class="bib" id="bib-ghosh2022mxene" hidden>@article{ghosh2022mxene,
+  title  = {Synthesis and Characterization of MXene from MAX Phase},
+  author = {A. Ghosh and H. Pal and T. Das and S. Chatterjee and A. Das},
+  journal = {Materials Today: Proceedings},
+  year   = {2022}
+}</pre>
+    </article>
+    </div>
+  </section>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 Tanay Das · Leuven, Belgium</span>
+    <nav aria-label="Elsewhere">
+      <a href="mailto:taanayd@gmail.com">Email</a>
+      <a href="https://scholar.google.com/citations?user=6aBaFCcAAAAJ" rel="noopener">Google Scholar</a>
+      <a href="https://www.linkedin.com/in/dastanay/" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/taanayd" rel="noopener">GitHub</a>
+      <a href="Tanay_CV_PhD.pdf">CV (PDF)</a>
+    </nav>
+  </div>
+</footer>
+
 </body>
 </html>

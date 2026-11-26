@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects — Tanay Das</title>
+<meta name="description" content="Projects by Tanay Das: RRAM crossbar hardware, non-volatile memory cells and AI-assisted verification tools.">
+<meta name="author" content="Tanay Das">
+<meta property="og:title" content="Projects — Tanay Das">
+<meta property="og:description" content="Projects by Tanay Das: RRAM crossbar hardware, non-volatile memory cells and AI-assisted verification tools.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://taanayd.github.io/portfolio/tanay.jpg">
+<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+<script>(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)})();</script>
+<link rel="preload" href="assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<script src="assets/js/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html"><b>Tanay Das</b><span>PhD researcher · KU Leuven</span></a>
+    <button class="icon-btn menu-btn" type="button" data-menu aria-controls="site-nav" aria-expanded="false" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="projects.html" aria-current="page">Projects</a>
+      <a href="experience.html">Experience</a>
+      <a href="gallery.html">Lab gallery</a>
+      <a href="photography.html">Photography</a>
+    </nav>
+    <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark theme"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+<header class="page-head">
+  <div class="eyebrow">Projects</div>
+  <h1>Projects</h1>
+  <p class="lede">Hardware and tools built alongside the research — from crossbar boards on the bench to verification infrastructure used by an industry team.</p>
+</header>
+<section class="section" style="padding-top:0" data-lightbox>
+<article class="project no-media">
+  
+  <div>
+    <div class="eyebrow">Research hardware · IIT Gandhinagar</div>
+    <h3>RRAM crossbar platform for in-memory computing</h3>
+    <p>Three custom RRAM crossbar boards with transimpedance front-ends and a multi-channel ADC, connected to an FPGA classifier. The FPGA runs a bit-sliced multiply–accumulate without any DSP blocks and classifies MNIST digits end to end. This co-design work received the Best Paper Award at IEEE ICEE 2025.</p>
+    <div class="facts"><div><b>8×8</b><span>largest array</span></div><div><b>3</b><span>boards</span></div><div><b>0</b><span>DSP blocks</span></div></div>
+    <div class="stack"><span class="tag">KiCad</span><span class="tag">Verilog</span><span class="tag">Vivado</span><span class="tag">Basys-3</span><span class="tag">TL072 / OPA2134 TIA</span><span class="tag">MCP3008</span></div>
+    <p style="margin-top:14px"><a href="https://ieeexplore.ieee.org/abstract/document/11409883" rel="noopener">ICEE 2025 paper ↗</a></p>
+  </div>
+</article>
+<article class="project no-media">
+  
+  <div>
+    <div class="eyebrow">Circuit design · IIT Gandhinagar</div>
+    <h3>Non-volatile SRAM / ReRAM cell</h3>
+    <p>A hybrid memory cell that keeps its state in ReRAM through power-down and serves reads at SRAM speed, together with a 12T interlocked SRAM variant that stays stable under in-memory-computing access patterns. ReRAM behaviour was modelled in Verilog-A and the cells were simulated in Spectre.</p>
+    <div class="facts"><div><b>2</b><span>cell designs</span></div><div><b>12T</b><span>SRAM variant</span></div><div><b>180 nm</b><span>node</span></div></div>
+    <div class="stack"><span class="tag">Verilog-A</span><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span></div>
+    
+  </div>
+</article>
+<article class="project">
+  <figure><a href="images/platform-live.png"><img src="images/platform-live.png" alt="Screenshot of the test-case generator interface" loading="lazy"></a><figcaption>Internal tool interface</figcaption></figure>
+  <div>
+    <div class="eyebrow">EDA tooling · AMD</div>
+    <h3>LRM-grounded RTL test-case generator</h3>
+    <p>The IEEE 1076 and 1800 language reference manuals are chunked and indexed for retrieval. An engineer chooses a language construct, the relevant clauses are retrieved, and a language model writes test cases that cite them. The suite then runs on four simulators in parallel and divergences are flagged automatically.</p>
+    <div class="facts"><div><b>4</b><span>simulators</span></div><div><b>7</b><span>test categories</span></div><div><b>RAG</b><span>spec-grounded</span></div></div>
+    <div class="stack"><span class="tag">Claude API</span><span class="tag">LlamaIndex</span><span class="tag">ChromaDB</span><span class="tag">FastAPI</span><span class="tag">WebSocket</span></div>
+    
+  </div>
+</article>
+<article class="project">
+  <figure><a href="images/tool-portal.png"><img src="images/tool-portal.png" alt="Screenshot of the batch verification portal" loading="lazy"></a><figcaption>Internal tool interface</figcaption></figure>
+  <div>
+    <div class="eyebrow">EDA tooling · AMD</div>
+    <h3>Change-request batch verification portal</h3>
+    <p>A web interface that pulls assigned change requests from Jira, reads each reproduction procedure, generates the simulation scripts and submits them to the LSF cluster in parallel, with live status streaming. A batch of 18 requests went from about three hours to about ten minutes.</p>
+    <div class="facts"><div><b>18×</b><span>faster</span></div><div><b>18</b><span>CRs in parallel</span></div><div><b>~10 min</b><span>vs ~3 h</span></div></div>
+    <div class="stack"><span class="tag">Jira REST API</span><span class="tag">Claude API</span><span class="tag">FastAPI</span><span class="tag">LSF</span><span class="tag">WebSocket</span></div>
+    
+  </div>
+</article>
+</section>
+<section class="section">
+  <div class="section-head"><h2>Analog design coursework</h2><span class="muted small">IIT Gandhinagar, 2024 · Prof. Nihar Ranjan Mahapatra</span></div>
+  <ul class="plain interest-list">
+    <li><b>Two-stage op-amp with Miller compensation</b><span>> 80 dB differential gain, CMRR > 100 dB, GBW > 10 MHz, PM > 65°, < 0.5 mW into 1 pF.</span></li>
+    <li><b>Folded-cascode op-amp, single-ended output</b><span>> 90 dB differential gain, CMRR > 100 dB, GBW > 10 MHz, < 20 µW.</span></li>
+    <li><b>Band-gap voltage reference</b><span>10 mV temperature and supply regulation within a 50 µW power budget.</span></li>
+  </ul>
+</section>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 Tanay Das · Leuven, Belgium</span>
+    <nav aria-label="Elsewhere">
+      <a href="mailto:taanayd@gmail.com">Email</a>
+      <a href="https://scholar.google.com/citations?user=6aBaFCcAAAAJ" rel="noopener">Google Scholar</a>
+      <a href="https://www.linkedin.com/in/dastanay/" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/taanayd" rel="noopener">GitHub</a>
+      <a href="Tanay_CV_PhD.pdf">CV (PDF)</a>
+    </nav>
+  </div>
+</footer>
+<script type="module" src="assets/js/lightbox.js"></script>
+</body>
+</html>
