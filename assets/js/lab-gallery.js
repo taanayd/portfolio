@@ -16,7 +16,7 @@ window.LAB_GALLERY = [
     org: 'KU Leuven',
     unit: 'COSIC · Embedded Systems & Security',
     place: 'Diepenbeek & Leuven, Belgium',
-    period: '2026 –',
+    period: '2026 – present',
     photos: [
       { src: 'assets/labs/kuleuven/winter-market-2026.jpg', thumb: 'assets/labs/kuleuven/winter-market-2026-sm.jpg', w: 1800, h: 1350,
         caption: 'Winter-market outing with colleagues in Belgium', year: '2026' }
@@ -75,7 +75,7 @@ window.LAB_GALLERY = [
     org: 'Conferences',
     unit: 'Talks & posters',
     place: 'ICEE 2025',
-    period: '2025 –',
+    period: '2025',
     photos: [
       { src: 'assets/labs/conferences/icee-2025-poster.jpg', thumb: 'assets/labs/conferences/icee-2025-poster-sm.jpg', w: 1280, h: 960,
         caption: 'Poster at ICEE 2025: ESD protection with on-chip diodes for 65 nm high-voltage neurostimulators', year: '2025' },
