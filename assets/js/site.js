@@ -1,6 +1,42 @@
 /* Shared behaviour: theme toggle, mobile menu, publication filters, BibTeX copy. */
 (function () {
   var root = document.documentElement;
+  root.classList.add('js');
+
+  /* Scroll-reveal: sections fade up as they enter the viewport. */
+  function setupReveal() {
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var sel = '.page-head, .hero > *, .section-head, .pub, .theme, .project, .timeline > li, .news li, .interest-list li, .awards li, .skills > div, .callout, .org-index, .moments .tile, .photo-grid .tile';
+    var els = Array.prototype.slice.call(document.querySelectorAll(sel));
+    if (reduce || !('IntersectionObserver' in window)) return;
+    els.forEach(function (el) {
+      var sib = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
+      el.style.setProperty('--d', Math.min(sib, 6));
+      el.classList.add('reveal');
+    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
+    els.forEach(function (el) { io.observe(el); });
+    setTimeout(function () { els.forEach(function (el) { el.classList.add('in'); }); }, 4000);
+  }
+
+  function setupHeader() {
+    var h = document.querySelector('.site-header');
+    if (!h) return;
+    var on = function () { h.classList.toggle('scrolled', window.scrollY > 8); };
+    on(); window.addEventListener('scroll', on, { passive: true });
+  }
+
+  function setupTiles() {
+    document.querySelectorAll('.tile img').forEach(function (img) {
+      var t = img.closest('.tile'), done = function () { t.classList.add('loaded'); };
+      if (img.complete) done(); else { img.addEventListener('load', done); img.addEventListener('error', done); }
+    });
+  }
+
+  function init() { setupReveal(); setupHeader(); setupTiles(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 
   function store(key, val) { try { localStorage.setItem(key, val); } catch (e) {} }
 
