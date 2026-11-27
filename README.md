@@ -23,5 +23,5 @@ Old URLs (`papers.html`, `journey.html`, `work.html`, `tools.html`, `toolkit.htm
 
 ## Third-party
 - [PhotoSwipe 5.4.4](https://github.com/dimsemenov/PhotoSwipe) (MIT) for the lightbox, vendored in `assets/vendor/photoswipe/`.
-- Fonts: Newsreader, IBM Plex Sans and IBM Plex Mono (SIL OFL), self-hosted in `assets/fonts/`.
+- Fonts: Instrument Serif, Libre Baskerville, IBM Plex Sans and IBM Plex Mono (SIL OFL), self-hosted in `assets/fonts/`.
 - Light/dark theme follows the system setting; the toggle in the header remembers your choice.
